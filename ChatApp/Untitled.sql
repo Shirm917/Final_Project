@@ -1,0 +1,17 @@
+CREATE TABLE users(
+	user_id SERIAL NOT NULL PRIMARY KEY,
+	username VARCHAR(255) UNIQUE NOT NULL,
+	password VARCHAR(255) NOT NULL
+);
+
+SELECT * FROM users;
+
+CREATE TABLE messages(
+	messages_id SERIAL NOT NULL PRIMARY KEY,
+	message VARCHAR(2000) NOT NULL,
+	from_id INTEGER REFERENCES users(user_id) NOT NULL,
+	to_id INTEGER REFERENCES users(user_id) NOT NULL,
+	timestamp TIMESTAMPTZ NOT NULL
+);
+
+SELECT * FROM messages;
