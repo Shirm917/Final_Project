@@ -1,6 +1,8 @@
 import {useState,useEffect} from "react";
 import io from "socket.io-client";
-
+// socket compoennt will hold all chat things, it will contain chatsidebar, chatbody, and chat input, 
+// so in the props we send chat text the setText state so we can do the on change and on submit there
+// in the props of chat body we send the messages array so we can map through them
 let socket = io.connect("/");
 
 function Socket() {
