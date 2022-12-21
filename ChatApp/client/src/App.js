@@ -4,6 +4,9 @@ import Navbar from "./components/Navbar";
 import LoginRegister from "./components/LoginRegister";
 import './App.css';
 
+// don't have link for chat in navbar when we successfully log in we want to be directed to socket component, so /chat,
+// socket compoennt will hold all chat things
+
 function App() {
   return (
     <div>
@@ -19,4 +22,3 @@ function App() {
 
 export default App;
 
-// push and merge for base and create branch users
