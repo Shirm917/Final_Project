@@ -1,8 +1,9 @@
+import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import express from "express";
 import http from "http";
 import { Server } from "socket.io";
+import users_router from "./routes/users.js";
 
 dotenv.config();
 
@@ -13,6 +14,10 @@ const io = new Server(server);
 app.use(cors({
     origin: "http://localhost:3000"
 }));
+
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
+app.use(users_router);
 
 io.on("connection", (socket) => {
     console.log("a user connected");

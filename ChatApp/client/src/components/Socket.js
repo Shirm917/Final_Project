@@ -1,5 +1,7 @@
 import {useState,useEffect} from "react";
 import io from "socket.io-client";
+import ChatSidebar from "./ChatSidebar";
+// What's not a compoenent here is the chatbody
 // socket compoennt will hold all chat things, it will contain chatsidebar, chatbody, and chat input, 
 // so in the props we send chat text the setText state so we can do the on change and on submit there
 // in the props of chat body we send the messages array so we can map through them
@@ -50,20 +52,25 @@ function Socket() {
 
   return (
     <div>
-      {/* <h1>Connected: {isConnected.toString()}</h1> */}
-      <ul id="messages">
-        {
-          messages.map(message => {
-            return (
-              <li>{message}</li>
-            )
-          })
-        }
-      </ul>
-      <form id="form" onSubmit={sendMessage}>
-        <input type="text" id="input" autoComplete="off" onChange={(event) => setText(event.target.value)}/>
-        <input type="submit" value="send" />
-      </form>
+      <div>
+        <ChatSidebar/>
+      </div>
+      <div className="chatBody">
+        {/* <h1>Connected: {isConnected.toString()}</h1> */}
+        <ul id="messages">
+          {
+            messages.map(message => {
+              return (
+                <li>{message}</li>
+              )
+            })
+          }
+        </ul>
+        <form id="form" onSubmit={sendMessage}>
+          <input type="text" id="input" autoComplete="off" onChange={(event) => setText(event.target.value)}/>
+          <input type="submit" value="send" />
+        </form>
+      </div>
     </div>
   );
 }
