@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import http from "http";
 import { Server } from "socket.io";
 import users_router from "./routes/users.js";
+import messages_router from "./routes/messages.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(cors({
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(users_router);
+app.use(messages_router);
 
 io.on("connection", (socket) => {
     console.log("a user connected");

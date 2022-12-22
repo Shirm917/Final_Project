@@ -30,9 +30,14 @@ const Socket = () => {
     setText("");
   };
 
-  const postMessage = () => {
+  useEffect(() => {
+    console.log(showChat);
+    setText("");
+  },[showChat])
+
+  const postMessage = async() => {
     const dateNow = new Date();
-    axios.post("/messages", {
+    await axios.post("/messages", {
       text,
       fromUserId,
       toUserId,
@@ -45,13 +50,13 @@ const Socket = () => {
     sendMessage();
     postMessage();
   };
- 
+  if (!showChat) return null;
   return (
-    !showChat ? null 
-    :
+    // !showChat ? ""
+    // :
     <div>
       <form id="form" onSubmit={handleSubmit}>
-        <input type="text" id="input" autoComplete="off" onChange={(event) => setText(event.target.value)} value={text}/>
+        <input type="text" id="input" value={text} onChange={(event) => setText(event.target.value)}/>
         <input type="submit" value="send" />
       </form>
     </div>

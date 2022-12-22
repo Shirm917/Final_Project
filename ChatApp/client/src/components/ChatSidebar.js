@@ -35,7 +35,7 @@ const ChatSidebar = () => {
     const handleClick = (id) => {
         setToUserId(id);
         setShowChat(true);
-    }
+    };
 
     return (
         <div>
