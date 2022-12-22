@@ -1,6 +1,6 @@
 import { useState,createContext } from "react";
 import {Routes,Route} from "react-router-dom";
-import Socket from "./components/Socket";
+import Chat from "./components/Chat";
 import Navbar from "./components/Navbar";
 import LoginRegister from "./components/LoginRegister";
 import './App.css';
@@ -14,6 +14,9 @@ function App() {
   const [userMsg, setUserMsg] = useState("");
   const [fromUserId,setFromUserId] = useState(null);
   const [toUserId,setToUserId] = useState(null);
+  const [dbMessages, setDbMessages] = useState([]);
+  const [emitMessages, setEmitMessages] = useState([]);
+  const [showChat,setShowChat] = useState(false);
 
   return (
     <AppContext.Provider 
@@ -24,7 +27,13 @@ function App() {
           fromUserId,
           setFromUserId,
           toUserId,
-          setToUserId
+          setToUserId,
+          dbMessages,
+          setDbMessages,
+          emitMessages,
+          setEmitMessages,
+          showChat,
+          setShowChat
         }
       }
     >
@@ -33,7 +42,7 @@ function App() {
         <Routes>
           <Route path="/register" element={<LoginRegister title="Register"/>}/>
           <Route path="/login" element={<LoginRegister title="Login"/>}/>
-          <Route path="/chat" element={<Socket/>}/>
+          <Route path="/chat" element={<Chat/>}/>
         </Routes>
       </div>
     </AppContext.Provider>
