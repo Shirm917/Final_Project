@@ -14,6 +14,4 @@ const db = knex({
     }
 });
 
-module.exports = {
-    db
-};
+export default db;

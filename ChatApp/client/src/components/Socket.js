@@ -1,67 +1,57 @@
-import {useState,useEffect} from "react";
+import {useState,useEffect,useContext} from "react";
 import io from "socket.io-client";
-// socket compoennt will hold all chat things, it will contain chatsidebar, chatbody, and chat input, 
-// so in the props we send chat text the setText state so we can do the on change and on submit there
-// in the props of chat body we send the messages array so we can map through them
+import { AppContext } from "../App";
+import axios from "axios";
+
+// the post/insert of the messages to the db gets done here
+// When they log in they should only see the users to pick one to type to
+// Shouldn't be able to see chat input when I haven't clicked on user
+// set state to true and false and it only shows on true
+
 let socket = io.connect("/");
 
-function Socket() {
-  // const [data,setData] = useState("");
-  // const [isConnected, setIsConnected] = useState(socket.connected);
+const Socket = () => {
+  const {emitMessages, setEmitMessages,fromUserId,toUserId,showChat} = useContext(AppContext);
   const [text,setText] = useState("");
-  const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-    // socket.on("connect", () => {
-    //   setIsConnected(true);
-    // });
-
-    // socket.on("disconnect", () => {
-    //   setIsConnected(false);
-    // });
-
-    // socket.on("chat message", (msg) => {
-    //   messages.push(msg);
-    // });
-
-    return () => {
-      socket.off("connect");
-      socket.off("disconnect");
-    }
-
-  },[]);
 
   useEffect(() => {
     socket.on("msgResponse", (message) => {
-      setMessages([...messages, message]);
+      setEmitMessages([...emitMessages, message]);
     });
     return () => {
       socket.off("msgResponse");
     }
-  },[socket,messages])
+  },[socket,emitMessages])
   
-  const sendMessage = (event) => {
-    event.preventDefault();
+  const sendMessage = () => {
     if (text) {
       socket.emit("chat message", text);
-    }
+    };
     setText("");
-  }
+  };
 
+  const postMessage = () => {
+    const dateNow = new Date();
+    axios.post("/messages", {
+      text,
+      fromUserId,
+      toUserId,
+      timestamp: dateNow.toUTCString()
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    sendMessage();
+    postMessage();
+  };
+ 
   return (
+    !showChat ? null 
+    :
     <div>
-      {/* <h1>Connected: {isConnected.toString()}</h1> */}
-      <ul id="messages">
-        {
-          messages.map(message => {
-            return (
-              <li>{message}</li>
-            )
-          })
-        }
-      </ul>
-      <form id="form" onSubmit={sendMessage}>
-        <input type="text" id="input" autoComplete="off" onChange={(event) => setText(event.target.value)}/>
+      <form id="form" onSubmit={handleSubmit}>
+        <input type="text" id="input" autoComplete="off" onChange={(event) => setText(event.target.value)} value={text}/>
         <input type="submit" value="send" />
       </form>
     </div>
