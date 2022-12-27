@@ -1,13 +1,13 @@
 // if props.title === "Register" we do the posts here to send the user and pass to the db, set msg to an empty string and navigate to login, if there's an error then in the catch set the msg to an err which will be sent from the backend
 // else when we login we post and send the user and pass we just put in in the body. we then check in the back end if the user and pass are right if yes we naviagte to chat and set msg back to an empty string if not we send the msg and we set msg to the err 
 import {useState,useContext, useEffect} from "react";
-import { AppContext } from "../App";
 import {useNavigate} from "react-router-dom";
+import { AppContext } from "../App";
 import axios from "axios";
 
 const LoginRegister = (props) => {
     const {title} = props;
-    const {userMsg,setUserMsg,setFromUserId} = useContext(AppContext);
+    const {userMsg,setUserMsg,setIsLoggedIn,setFromUserId} = useContext(AppContext);
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
 
@@ -40,6 +40,7 @@ const LoginRegister = (props) => {
                 })
                 setUserMsg("");
                 setFromUserId(response.data.id);
+                setIsLoggedIn(true);
                 navigate("/chat");
             } catch (err) {
                 setUserMsg(err.response.data.msg);

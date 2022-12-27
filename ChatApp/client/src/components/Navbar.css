@@ -1,0 +1,13 @@
+.bar {
+    z-index: 1;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+}

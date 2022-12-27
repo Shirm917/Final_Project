@@ -9,16 +9,18 @@
 import {useState,useEffect,useContext} from "react";
 import { AppContext } from "../App";
 import axios from "axios";
-import "./ChatSidebar.css";
-import Button from 'react-bootstrap/Button';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import Drawer from '@mui/material/Drawer';
+import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemButton from '@mui/material/ListItemButton';
+// import CircleIcon from '@mui/icons-material/Circle';
 
 const ChatSidebar = () => {
-    const {userMsg,setUserMsg,fromUserId,setToUserId,setShowChat} = useContext(AppContext);
+    const {userMsg,setUserMsg,isLoggedIn,fromUserId,setToUserId,setShowChat} = useContext(AppContext);
     const [users,setUsers] = useState([]);
-
-    const [show, setShow] = useState(false);
-    const handleShow = () => setShow(!show);
+    // const [color,setColor] = useState("");
 
     useEffect(() => {
         const getUsers = async() => {
@@ -30,6 +32,9 @@ const ChatSidebar = () => {
             }
         }
         getUsers();
+        // if(isLoggedIn) {
+        //     setColor("green");
+        // }
     },[])
 
     const handleClick = (id) => {
@@ -37,32 +42,34 @@ const ChatSidebar = () => {
         setShowChat(true);
     };
 
-    return (
-        <div>
-      <Button variant="primary" onClick={handleShow}>
-        Users
-      </Button>
-
-      <Offcanvas show={show}>
-        <Offcanvas.Header>
-          <Offcanvas.Title>Users</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-            {
+  return (
+    <Drawer anchor="left"  variant="permanent" sx={{
+        width: 200,
+        flexShrink: 0, 
+        zIndex: 0, 
+        [`& .MuiDrawer-paper`]: { width: 200, boxSizing: 'border-box', marginTop: 6 }
+        }}>
+        <List>
+        {
             !users || users.length === 0 ? <p>{userMsg}</p>
             :
             users.map(user => {
                 return (
-                    <div key={user.user_id}>
-                        <p onClick={() => handleClick(user.user_id)}>{user.username}</p>
-                    </div>
+                    <>
+                        <ListItem key={user.user_id}>
+                            <ListItemButton onClick={() => handleClick(user.user_id)}>
+                                <ListItemText primary={user.username} />
+                            </ListItemButton>
+                            {/* <CircleIcon style={{color: color}}/> */}
+                        </ListItem>
+                        <Divider/>
+                    </>
                 )
             })
-            }
-        </Offcanvas.Body>
-      </Offcanvas>
-    </div>
-    )
+        }
+        </List>
+    </Drawer>
+  );
 }
 
 export default ChatSidebar;
