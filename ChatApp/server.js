@@ -39,10 +39,28 @@ io.on("connection", (socket) => {
     })
 
     // ------ Group Messaging ------ //
-    socket.on("room name", (roomName) => {
+    socket.on("room name", (prevRoomName,roomName,fromUsername) => {
+        socket.leave(prevRoomName);
+        socket.to(prevRoomName).emit("roomMsg", `${fromUsername} has left`);
+
         socket.join(roomName);
+        socket.to(roomName).emit("roomMsg", `${fromUsername} has joined`);
+
     })
 
+    // io.of("/").adapter.on("join-room", (room,id) => {
+    //     // console.log(`${id} has joined room ${room}`);
+    //     socket.to(room).emit("roomMsgJoin", `${id} has joined`);
+    // })
+
+    // io.of("/").adapter.on("leave-room", (room,id) => {
+    //     // console.log(`${id} has left room ${room}`);
+    //     socket.to(room).emit("roomMsgLeave", `${id} has left`);
+    // })
+
+    socket.on("group message", (msg,roomName) => {
+        io.to(roomName).emit("group msgResponse", msg);
+    });
 });
 
 server.listen(process.env.PORT || 8080, () => {

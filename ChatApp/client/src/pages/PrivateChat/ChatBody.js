@@ -1,6 +1,8 @@
-import { useEffect,useContext } from "react"
-import { AppContext } from "../App"
+import { useState,useEffect,useContext } from "react"
+import { AppContext } from "../../App"
+import { socket } from "../../socket";
 import axios from "axios";
+
 
 // contains the get from the db to get the messages
 // in the use effect we get db messages and then emit messages are sent after 
@@ -8,13 +10,14 @@ import axios from "axios";
 
 
 const ChatBody = () => {
-    const {emitMessages,dbMessages,setDbMessages,fromUserId,toUserId,showChat} = useContext(AppContext);
+    const {emitMessages,setEmitMessages,fromUserId,toUserId,showChat} = useContext(AppContext);
+    const [dbMessages,setDbMessages] = useState([]);
 
     useEffect(() => {
         const getMessages = async() => {
             try {
                 const response = await axios.get(`/messages/${fromUserId}/${toUserId}`);
-                setDbMessages(response.data.messages)
+                setDbMessages(response.data.messages);
             } catch (err) {
                 console.log(err);
             }
@@ -22,6 +25,16 @@ const ChatBody = () => {
 
         getMessages();
     },[toUserId]);
+
+    useEffect(() => {
+        socket.on("msgResponse", (message) => {
+          setEmitMessages([...emitMessages, message]);
+        });
+        
+        return () => {
+          socket.off("msgResponse");
+        };
+      },[socket,emitMessages]);
     
 
     return (

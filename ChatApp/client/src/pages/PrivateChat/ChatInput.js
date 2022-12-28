@@ -1,6 +1,6 @@
 import {useState,useEffect,useContext} from "react";
-import {socket} from "../socket";
-import { AppContext } from "../App";
+import {socket} from "../../socket";
+import { AppContext } from "../../App";
 import axios from "axios";
 
 // the post/insert of the messages to the db gets done here
@@ -35,21 +35,6 @@ const ChatInput = () => {
     };
     setText("");
   };
-
-  useEffect(() => {
-    socket.on("msgResponse", (message) => {
-      setEmitMessages([...emitMessages, message]);
-    });
-    return () => {
-      socket.off("msgResponse");
-    }
-  },[socket,emitMessages])
-  
-
-  // useEffect(() => {
-  //   console.log(showChat);
-  //   setText("");
-  // },[showChat])
 
   const postMessage = async() => {
     const dateNow = new Date();

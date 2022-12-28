@@ -25,11 +25,6 @@ export const getMessages = async(req,res) => {
     // console.log(req.params);
     try {
         const messages = await db("messages")
-        // .innerJoin("users", () => {
-        //     this
-        //         .on("messages.from_id", "=", "users.user_id")
-        //         .orOn("messages.to_id", "=", "users.user_id")
-        // })
         .select("messages.message","messages.from_id","messages.to_id")
         .where({
             from_id,

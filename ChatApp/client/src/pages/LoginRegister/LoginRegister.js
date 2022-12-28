@@ -2,12 +2,12 @@
 // else when we login we post and send the user and pass we just put in in the body. we then check in the back end if the user and pass are right if yes we naviagte to chat and set msg back to an empty string if not we send the msg and we set msg to the err 
 import {useState,useContext, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import { AppContext } from "../App";
+import { AppContext } from "../../App";
 import axios from "axios";
 
 const LoginRegister = (props) => {
     const {title} = props;
-    const {userMsg,setUserMsg,setIsLoggedIn,setFromUserId} = useContext(AppContext);
+    const {userMsg,setUserMsg,setIsLoggedIn,setFromUserId,setFromUsername} = useContext(AppContext);
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
 
@@ -39,7 +39,8 @@ const LoginRegister = (props) => {
                     password
                 })
                 setUserMsg("");
-                setFromUserId(response.data.id);
+                setFromUserId(response.data[0].user_id);
+                setFromUsername(response.data[0].username)
                 setIsLoggedIn(true);
                 navigate("/chat");
             } catch (err) {

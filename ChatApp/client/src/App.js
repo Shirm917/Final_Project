@@ -1,8 +1,8 @@
 import { useState,createContext } from "react";
 import {Routes,Route} from "react-router-dom";
-import ChatNavbar from "./components/ChatNavbar";
-import Navbar from "./components/Navbar";
-import LoginRegister from "./components/LoginRegister";
+import ChatNavbar from "./Nav/ChatNavbar";
+import Navbar from "./Nav/Navbar";
+import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import './App.css';
 
 export const AppContext = createContext(null);
@@ -15,10 +15,13 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [fromUserId,setFromUserId] = useState(null);
   const [toUserId,setToUserId] = useState(null);
-  const [dbMessages, setDbMessages] = useState([]);
-  const [emitMessages, setEmitMessages] = useState([]);
+  const [fromUsername,setFromUsername] = useState("")
   const [showChat,setShowChat] = useState(false);
   const [roomName, setRoomName] = useState("");
+  const [prevRoomName,setPrevRoomName] = useState("");
+  const [emitMessages, setEmitMessages] = useState([]);
+  const [groupEmitMessages,setGroupEmitMessages] = useState([]);
+  const [roomMsgs,setRoomMsgs] = useState([]);
 
   return (
     <AppContext.Provider 
@@ -32,14 +35,20 @@ function App() {
           setFromUserId,
           toUserId,
           setToUserId,
-          dbMessages,
-          setDbMessages,
-          emitMessages,
-          setEmitMessages,
+          fromUsername,
+          setFromUsername,
           showChat,
           setShowChat,
           roomName,
-          setRoomName
+          setRoomName,
+          emitMessages,
+          setEmitMessages,
+          groupEmitMessages,
+          setGroupEmitMessages,
+          roomMsgs,
+          setRoomMsgs,
+          prevRoomName,
+          setPrevRoomName
         }
       }
     >

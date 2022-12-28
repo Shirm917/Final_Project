@@ -7,7 +7,7 @@
 // and when it's collapsed the chat grows to fit
 
 import {useState,useEffect,useContext} from "react";
-import { AppContext } from "../App";
+import { AppContext } from "../../App";
 import axios from "axios";
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
@@ -18,7 +18,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 // import CircleIcon from '@mui/icons-material/Circle';
 
 const ChatSidebar = () => {
-    const {userMsg,setUserMsg,isLoggedIn,fromUserId,setToUserId,setShowChat} = useContext(AppContext);
+    const {setEmitMessages,userMsg,setUserMsg,isLoggedIn,fromUserId,setToUserId,setShowChat} = useContext(AppContext);
     const [users,setUsers] = useState([]);
     // const [color,setColor] = useState("");
 
@@ -38,6 +38,7 @@ const ChatSidebar = () => {
     },[])
 
     const handleClick = (id) => {
+        setEmitMessages([]);
         setToUserId(id);
         setShowChat(true);
     };
