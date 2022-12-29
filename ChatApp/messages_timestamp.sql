@@ -1,0 +1,4 @@
+ALTER TABLE messages
+ALTER COLUMN timestamp TYPE TIMESTAMP
+
+SELECT * FROM messages;

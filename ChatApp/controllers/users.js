@@ -49,7 +49,7 @@ export const login = async(req,res) => {
         if (!match) {
             return res.status(400).json({msg: "Incorrect password"});
         }
-        res.status(200).json({id: user[0].user_id});
+        res.status(200).json({user});
     } catch (err) {
         res.status(400).json({msg: "Username doesn't exist"});
     };

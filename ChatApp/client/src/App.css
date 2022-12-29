@@ -1,11 +1,13 @@
-#form {
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.tabs {
+  padding-left: 200px;
 }
 
-input {
-  flex-grow: 1;
+/* ---- From Messages ---- */
+.fromId {
+  color: #0000ff;
+}
+
+/* ---- To Messages ---- */
+.toId {
+  color: #808080;
 }
