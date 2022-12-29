@@ -27,8 +27,8 @@ const ChatBody = () => {
     },[toUserId]);
 
     useEffect(() => {
-        socket.on("msgResponse", (message) => {
-          setEmitMessages([...emitMessages, message]);
+        socket.on("msgResponse", (fromId,message) => {
+          setEmitMessages([...emitMessages, {fromId,message}]);
         });
         
         return () => {
@@ -36,7 +36,7 @@ const ChatBody = () => {
         };
       },[socket,emitMessages]);
     
-
+      console.log(emitMessages);
     return (
         !showChat ? ""
         :
@@ -45,16 +45,18 @@ const ChatBody = () => {
                 {
                     !dbMessages || dbMessages.length === 0 ? null 
                     :
-                    dbMessages.map(message => {
+                    dbMessages.map(element => {
+                        const value = element.from_id === fromUserId ? "fromId" : "toId";
                         return (
-                            <li>{message.message}</li>
+                            <li className={value}>{element.message}</li>
                         )
                     })
                 }
                 {
-                    emitMessages.map(message => {
+                    emitMessages.map(element => {
+                        const value = element.fromId === fromUserId ? "fromId" : "toId";
                         return (
-                            <li>{message}</li>
+                            <li className={value}>{element.message}</li>
                         )
                     })
                 }

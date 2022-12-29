@@ -39,8 +39,8 @@ const LoginRegister = (props) => {
                     password
                 })
                 setUserMsg("");
-                setFromUserId(response.data[0].user_id);
-                setFromUsername(response.data[0].username)
+                setFromUserId(response.data.user[0].user_id);
+                setFromUsername(response.data.user[0].username);
                 setIsLoggedIn(true);
                 navigate("/chat");
             } catch (err) {

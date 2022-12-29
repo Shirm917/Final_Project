@@ -25,7 +25,7 @@ export const getMessages = async(req,res) => {
     // console.log(req.params);
     try {
         const messages = await db("messages")
-        .select("messages.message","messages.from_id","messages.to_id")
+        .select("message","from_id","to_id")
         .where({
             from_id,
             to_id

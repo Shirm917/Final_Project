@@ -3,11 +3,11 @@ import { socket } from "../../socket";
 import { AppContext } from "../../App";
 
 const GroupBody = () => {
-    const {groupEmitMessages,setGroupEmitMessages,prevRoomName} = useContext(AppContext);
+    const {groupEmitMessages,setGroupEmitMessages,prevRoomName,fromUserId} = useContext(AppContext);
 
     useEffect(() => {
-        socket.on("group msgResponse", message => {
-            setGroupEmitMessages([...groupEmitMessages, message]);
+        socket.on("group msgResponse", (message,fromId) => {
+            setGroupEmitMessages([...groupEmitMessages, {message,fromId}]);
         });
 
         return () => {
@@ -26,9 +26,10 @@ const GroupBody = () => {
                 {
                     !groupEmitMessages || groupEmitMessages.length === 0 ? null
                     :
-                    groupEmitMessages.map(message => {
+                    groupEmitMessages.map(element => {
+                        const value = fromUserId === element.fromId ? "fromId" : "toId";
                         return (
-                            <li>{message}</li>
+                            <li className={value}>{element.message}</li>
                         )
                     })
                 }

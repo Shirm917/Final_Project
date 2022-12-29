@@ -9,6 +9,7 @@ const JoinRoom  = () => {
 
     const submitRoomName = (event) => {
         event.preventDefault();
+        if (prevRoomName === roomName) return;
         clear();
         if (roomName) {
             socket.emit("room name", prevRoomName,roomName,fromUsername);
@@ -25,7 +26,7 @@ const JoinRoom  = () => {
     return (
         <div>
             <form id="form1" onSubmit={submitRoomName}>
-                <input type="text" onChange={(event) => setRoomName(event.target.value)}/>
+                <input type="text" onChange={(event) => setRoomName(event.target.value.toUpperCase())}/>
                 <button>Join Room</button>
             </form>
         </div>

@@ -3,13 +3,13 @@ import { AppContext } from "../../App";
 import { socket } from "../../socket";
 
 const GroupInput = () => {
-    const {roomName} = useContext(AppContext);
+    const {roomName,fromUserId} = useContext(AppContext);
     const [text, setText] = useState("");
 
     const sendMessage = (event) => {
         event.preventDefault();
         if (text) {
-            socket.emit("group message", text,roomName);
+            socket.emit("group message", text,roomName,fromUserId);
         };
         setText("");
     };

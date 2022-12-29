@@ -30,8 +30,8 @@ const ChatInput = () => {
   },[]);
 
   const sendMessage = () => {
-    if (text,toUserId) {
-      socket.emit("chat message", text,toUserId);
+    if (toUserId,text) {
+      socket.emit("chat message", toUserId,text);
     };
     setText("");
   };

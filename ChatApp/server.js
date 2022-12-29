@@ -34,8 +34,8 @@ io.on("connection", (socket) => {
     socket.fromUserId = socket.handshake.auth.fromUserId;
     socket.join(socket.fromUserId);
 
-    socket.on("chat message", (msg,toUserId) => {
-        io.to(socket.fromUserId).to(toUserId).emit("msgResponse", msg);
+    socket.on("chat message", (toUserId,msg) => {
+        io.to(socket.fromUserId).to(toUserId).emit("msgResponse", socket.fromUserId,msg);
     })
 
     // ------ Group Messaging ------ //
@@ -58,8 +58,8 @@ io.on("connection", (socket) => {
     //     socket.to(room).emit("roomMsgLeave", `${id} has left`);
     // })
 
-    socket.on("group message", (msg,roomName) => {
-        io.to(roomName).emit("group msgResponse", msg);
+    socket.on("group message", (msg,roomName,fromUserId) => {
+        io.to(roomName).emit("group msgResponse", msg,fromUserId);
     });
 });
 

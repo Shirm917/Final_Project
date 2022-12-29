@@ -1,3 +1,13 @@
 .tabs {
   padding-left: 200px;
 }
+
+/* ---- From Messages ---- */
+.fromId {
+  color: #0000ff;
+}
+
+/* ---- To Messages ---- */
+.toId {
+  color: #808080;
+}
