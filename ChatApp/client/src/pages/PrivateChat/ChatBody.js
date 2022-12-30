@@ -36,7 +36,6 @@ const ChatBody = () => {
         };
       },[socket,emitMessages]);
     
-      console.log(emitMessages);
     return (
         !showChat ? ""
         :

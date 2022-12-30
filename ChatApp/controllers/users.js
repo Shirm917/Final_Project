@@ -24,7 +24,7 @@ export const register = async(req,res) => {
             username,
             password: hash
         });
-        res.status(200);
+        res.sendStatus(200);
     } catch (err) {
         res.status(404).json({msg: "Username already exists"});
     }
@@ -55,15 +55,48 @@ export const login = async(req,res) => {
     };
 };
 
-export const getUsers = async(req,res) => {
-    const {from_id} = req.params;
+export const userStatus = async(req,res) => {
+    const {fromId} = req.body;
     try {
-        const users = await db("users")
-        .select("user_id", "username")
-        .whereNot({user_id: from_id});
+        const row = await db("online_notif")
+        .select("user_id")
+        .where({user_id: fromId})
 
-        res.status(200).json({users});
+        if (!row || row.length === 0) {
+            await db("online_notif")
+            .insert({
+                online_status: true,
+                user_id: fromId
+            });
+
+            res.sendStatus(200);
+        } else {
+            await db("online_notif")
+            .select("online_status","last_logged_in","user_id")
+            .update({
+                online_status: true,
+            })
+            .where({user_id: fromId})
+
+            res.sendStatus(200);
+        };
     } catch (err) {
-        res.status(404).json({msg: "Can't find users"});
-    }
+        console.log(err);
+    };
 };
+
+export const logout = async(req,res) => {
+    const {timestamp,fromUserId} = req.body;
+    try {
+        await db("online_notif")
+            .select("online_status","last_logged_in","user_id")
+            .update({
+                online_status: false,
+                last_logged_in: timestamp
+            })
+            .where({user_id: fromUserId});
+            res.sendStatus(200);
+    } catch (err) {
+        console.log(err);
+    }
+}

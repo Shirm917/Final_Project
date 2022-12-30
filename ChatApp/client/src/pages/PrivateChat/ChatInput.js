@@ -12,7 +12,7 @@ import axios from "axios";
 // also can double check with socket.connected
 
 const ChatInput = () => {
-    const {isLoggedIn,emitMessages, setEmitMessages,fromUserId,toUserId,showChat} = useContext(AppContext);
+    const {isLoggedIn,emitMessages, setEmitMessages,fromUserId,toUserId,showChat,fromUsername} = useContext(AppContext);
     const [text,setText] = useState("");
 
     // only connects once we get to chat and we are logged in
@@ -30,8 +30,8 @@ const ChatInput = () => {
   },[]);
 
   const sendMessage = () => {
-    if (toUserId,text) {
-      socket.emit("chat message", toUserId,text);
+    if (toUserId,text,fromUsername) {
+      socket.emit("chat message", toUserId,text,fromUsername);
     };
     setText("");
   };

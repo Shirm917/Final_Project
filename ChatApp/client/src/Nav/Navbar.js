@@ -1,4 +1,7 @@
-import {NavLink} from "react-router-dom";
+import {useContext} from "react";
+import {NavLink,useNavigate} from "react-router-dom";
+import axios from "axios";
+import { AppContext } from "../App";
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,6 +14,22 @@ import "./Navbar.css"
 // Use this for app bar, on home page there will be buttons for login register 
 
 const Navbar = () => {
+    const {fromUserId} = useContext(AppContext);
+    const navigate = useNavigate();
+
+    const logout = async() => {
+        try {
+            const dateNow = new Date();
+            await axios.post("/logout", {
+                timestamp: dateNow.toUTCString(),
+                fromUserId
+            });
+            navigate("/");
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     return (
         <Box>
             <AppBar position="sticky" className="bar">
@@ -24,11 +43,12 @@ const Navbar = () => {
                             sx={{ mr: 2 }}
                         >
                         <ChatIcon />
-                        <Typography>Chat App</Typography>
+                        <Typography>CHAT APP</Typography>
                         </IconButton>
                     </NavLink>
                     <NavLink to="/register" className="link">Register</NavLink>
                     <NavLink to="/login" className="link">Login</NavLink>
+                    <NavLink onClick={logout} className="link">Logout</NavLink>
                     {/* <NavLink to="/chat">Chat</NavLink> */}
                 </Toolbar>
             </AppBar>

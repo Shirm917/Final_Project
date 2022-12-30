@@ -15,26 +15,37 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
-// import CircleIcon from '@mui/icons-material/Circle';
+import CircleIcon from '@mui/icons-material/Circle';
+
+// do filter and map to join arrays together, then comment it out and do the inner join
 
 const ChatSidebar = () => {
     const {setEmitMessages,userMsg,setUserMsg,isLoggedIn,fromUserId,setToUserId,setShowChat} = useContext(AppContext);
-    const [users,setUsers] = useState([]);
-    // const [color,setColor] = useState("");
-
+    const [userStatuses,setUserStatuses] = useState([]);
+    const [notifs,setNotifs] = useState([]);
+    
     useEffect(() => {
-        const getUsers = async() => {
+        const getUserStatuses = async() => {
             try {
-                const response = await axios.get(`/users/${fromUserId}`);
-                setUsers(response.data.users);
+                const response = await axios.get(`/userStatuses/${fromUserId}`);
+                setUserStatuses(response.data.userStatuses);
             } catch (err) {
                 setUserMsg(err.response.data.msg);
             }
-        }
-        getUsers();
-        // if(isLoggedIn) {
-        //     setColor("green");
-        // }
+        };
+        getUserStatuses();
+    },[])
+
+    useEffect(() => {
+        const getNotifs = async() => {
+            try {
+                const response = await axios.get(`/notifs/${fromUserId}`);
+                setNotifs(response.data.notifs);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        getNotifs();
     },[])
 
     const handleClick = (id) => {
@@ -52,16 +63,24 @@ const ChatSidebar = () => {
         }}>
         <List>
         {
-            !users || users.length === 0 ? <p>{userMsg}</p>
+            !userStatuses || userStatuses.length === 0 ? <p>{userMsg}</p>
             :
-            users.map(user => {
+            userStatuses.map(user => {
+                const notifNum = notifs.filter(notif => {
+                    return user.user_id === notif.from_id;
+                })
                 return (
                     <>
                         <ListItem key={user.user_id}>
                             <ListItemButton onClick={() => handleClick(user.user_id)}>
+                            <ListItemText>{notifNum.length === 0 ? null : notifNum.length}</ListItemText>
                                 <ListItemText primary={user.username} />
+                                {
+                                !user.online_status ? null 
+                                :
+                                <CircleIcon style={{color: "#b9f6ca"}}/>
+                                }
                             </ListItemButton>
-                            {/* <CircleIcon style={{color: color}}/> */}
                         </ListItem>
                         <Divider/>
                     </>
@@ -74,3 +93,18 @@ const ChatSidebar = () => {
 }
 
 export default ChatSidebar;
+
+
+
+// What I did before I innerjoined users and statuses on the backend since at first I only had a users array and only did statuses later on, 
+// const combination = () => {
+//     const usersAndStatuses = users.map(user => {
+//         return {...user, 
+//             online_status: statuses.filter(status => {
+//                 return status.user_id === user.user_id;
+//             })
+//         }
+// })
+// console.log(usersAndStatuses);
+// You would map through this and do usersAndStatuses.username, usersAndStatuses.userId and usersAndStatuses.online_status[0].online_status
+// }
