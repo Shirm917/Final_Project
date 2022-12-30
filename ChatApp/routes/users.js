@@ -2,12 +2,13 @@
 // I import it from controllers ex: router.get("/users",getUsers)
 
 import express from "express";
-import { register,login,getUsers } from "../controllers/users.js";
+import { register,login,userStatus,logout} from "../controllers/users.js";
 
 const router = express.Router();
 
-router.post("/register", register);
-router.post("/login", login);
-router.get("/users/:from_id", getUsers);
+router.post("/register",register);
+router.post("/login",login);
+router.post("/userStatus",userStatus);
+router.post("/logout",logout);
 
 export default router;

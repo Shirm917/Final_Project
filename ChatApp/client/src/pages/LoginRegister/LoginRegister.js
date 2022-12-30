@@ -7,7 +7,7 @@ import axios from "axios";
 
 const LoginRegister = (props) => {
     const {title} = props;
-    const {userMsg,setUserMsg,setIsLoggedIn,setFromUserId,setFromUsername} = useContext(AppContext);
+    const {userMsg,setUserMsg,setIsLoggedIn,fromUserId,setFromUserId,setFromUsername} = useContext(AppContext);
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
 
@@ -41,6 +41,7 @@ const LoginRegister = (props) => {
                 setUserMsg("");
                 setFromUserId(response.data.user[0].user_id);
                 setFromUsername(response.data.user[0].username);
+                userStatus(response.data.user[0].user_id);
                 setIsLoggedIn(true);
                 navigate("/chat");
             } catch (err) {
@@ -48,6 +49,16 @@ const LoginRegister = (props) => {
             }
         }
     }
+
+    const userStatus = async(fromId) => {
+        try {
+            const result = await axios.post("/userStatus",{
+                fromId
+            })
+        } catch (err) {
+            console.log(err);
+        };
+    };
 
     return (
         <div>

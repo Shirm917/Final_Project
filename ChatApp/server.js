@@ -5,6 +5,8 @@ import http from "http";
 import { Server } from "socket.io";
 import users_router from "./routes/users.js";
 import messages_router from "./routes/messages.js";
+import userStatuses_router from "./routes/usersStatuses.js";
+import message_notif_router from "./routes/message_notif.js";
 // send all the online usernames or ids here and so we can do the green thing
 dotenv.config();
 
@@ -20,6 +22,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(users_router);
 app.use(messages_router);
+app.use(userStatuses_router);
+app.use(message_notif_router);
 
 
 // middleware like if fromuserid was actually sent/exists then go next()
@@ -34,8 +38,10 @@ io.on("connection", (socket) => {
     socket.fromUserId = socket.handshake.auth.fromUserId;
     socket.join(socket.fromUserId);
 
-    socket.on("chat message", (toUserId,msg) => {
+    socket.on("chat message", (toUserId,msg,fromUsername) => {
+        console.log(fromUsername);
         io.to(socket.fromUserId).to(toUserId).emit("msgResponse", socket.fromUserId,msg);
+        io.to(toUserId).emit("notif", `You got a message from ${fromUsername}`);
     })
 
     // ------ Group Messaging ------ //

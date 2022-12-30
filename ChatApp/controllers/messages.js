@@ -12,7 +12,7 @@ export const insertMessage = async(req,res) => {
             to_id: toUserId,
             timestamp
         })
-        res.status(200);
+        res.sendStatus(200);
     } catch (err) {
         console.log(err);
         res.status(400).json({msg: "Can't insert message"});
