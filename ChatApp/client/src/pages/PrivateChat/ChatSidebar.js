@@ -20,7 +20,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 // do filter and map to join arrays together, then comment it out and do the inner join
 
 const ChatSidebar = () => {
-    const {setEmitMessages,userMsg,setUserMsg,isLoggedIn,fromUserId,setToUserId,setShowChat} = useContext(AppContext);
+    const {setEmitMessages,userMsg,setUserMsg,fromUserId,setToUserId,setShowChat} = useContext(AppContext);
     const [userStatuses,setUserStatuses] = useState([]);
     const [notifs,setNotifs] = useState([]);
     
@@ -49,6 +49,10 @@ const ChatSidebar = () => {
     },[])
 
     const handleClick = (id) => {
+        const emptyNotifs = notifs.filter(notif => {
+            return notif.from_id !== id;
+        })
+        setNotifs([...emptyNotifs]);
         setEmitMessages([]);
         setToUserId(id);
         setShowChat(true);

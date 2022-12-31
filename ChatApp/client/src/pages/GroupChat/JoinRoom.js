@@ -1,5 +1,5 @@
 import {useState,useEffect,useContext} from "react";
-import {socket} from "../../socket";
+import {socket} from "../../utils/socket";
 import { AppContext } from "../../App";
 
 // regex for room name, can't start with number
@@ -18,14 +18,14 @@ const JoinRoom  = () => {
     };
 
     const clear = () => {
-        document.getElementById("form1").reset();
+        document.getElementById("joinForm").reset();
         setGroupEmitMessages([]);
         setRoomMsgs([]);
     };
 
     return (
         <div>
-            <form id="form1" onSubmit={submitRoomName}>
+            <form id="joinForm" onSubmit={submitRoomName}>
                 <input type="text" onChange={(event) => setRoomName(event.target.value.toUpperCase())}/>
                 <button>Join Room</button>
             </form>

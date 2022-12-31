@@ -7,7 +7,7 @@ import axios from "axios";
 
 const LoginRegister = (props) => {
     const {title} = props;
-    const {userMsg,setUserMsg,setIsLoggedIn,fromUserId,setFromUserId,setFromUsername} = useContext(AppContext);
+    const {userMsg,setUserMsg,setIsLoggedIn,fromUserId,setFromUserId,setFromUsername,reset} = useContext(AppContext);
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
 
@@ -38,6 +38,7 @@ const LoginRegister = (props) => {
                     username,
                     password
                 })
+                reset();
                 setUserMsg("");
                 setFromUserId(response.data.user[0].user_id);
                 setFromUsername(response.data.user[0].username);

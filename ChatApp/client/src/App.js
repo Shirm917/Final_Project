@@ -1,5 +1,6 @@
 import { useState,createContext } from "react";
 import {Routes,Route} from "react-router-dom";
+import { socket } from "./utils/socket";
 import Home from "./pages/Home/Home";
 import ChatNavbar from "./Nav/ChatNavbar";
 import Navbar from "./Nav/Navbar";
@@ -23,36 +24,48 @@ function App() {
   const [emitMessages, setEmitMessages] = useState([]);
   const [groupEmitMessages,setGroupEmitMessages] = useState([]);
   const [roomMsgs,setRoomMsgs] = useState([]);
+  const [notifs,setNotifs] = useState([]);
+
+  const reset = () => {
+    socket.emit("leave room",roomName,fromUsername);
+    setToUserId(null);
+    setShowChat(false);
+    setRoomName("");
+    setPrevRoomName("");
+    setGroupEmitMessages([]);
+    setRoomMsgs([]);
+    setNotifs([]);
+    socket.disconnect();
+  }
 
   return (
-    <AppContext.Provider 
-      value={
-        {
-          userMsg,
-          setUserMsg,
-          isLoggedIn,
-          setIsLoggedIn,
-          fromUserId,
-          setFromUserId,
-          toUserId,
-          setToUserId,
-          fromUsername,
-          setFromUsername,
-          showChat,
-          setShowChat,
-          roomName,
-          setRoomName,
-          emitMessages,
-          setEmitMessages,
-          groupEmitMessages,
-          setGroupEmitMessages,
-          roomMsgs,
-          setRoomMsgs,
-          prevRoomName,
-          setPrevRoomName
-        }
-      }
-    >
+    <AppContext.Provider value={{
+      userMsg,
+      setUserMsg,
+      isLoggedIn,
+      setIsLoggedIn,
+      fromUserId,
+      setFromUserId,
+      toUserId,
+      setToUserId,
+      fromUsername,
+      setFromUsername,
+      showChat,
+      setShowChat,
+      roomName,
+      setRoomName,
+      emitMessages,
+      setEmitMessages,
+      groupEmitMessages,
+      setGroupEmitMessages,
+      roomMsgs,
+      setRoomMsgs,
+      prevRoomName,
+      setPrevRoomName,
+      notifs,
+      setNotifs,
+      reset
+    }}>
       <div>
         <Navbar/>
         <Routes>

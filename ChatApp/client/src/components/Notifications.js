@@ -1,8 +1,9 @@
 import {useState,useEffect,useContext} from "react";
 import { socket } from "../socket";
+import { AppContext } from "../App";
 
 const Notifications = () => {
-    const [notifs,setNotifs] = useState([]);
+    const {notifs,setNotifs} = useContext(AppContext);
 
     useEffect(() => {
         socket.on("notif", (notif) => {

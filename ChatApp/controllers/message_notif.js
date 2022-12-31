@@ -5,7 +5,7 @@ export const getNotifs = async(req,res) => {
     try {
         const result = await db("online_notif")
         .select("last_logged_in")
-        .where({user_id: fromUserId})
+        .where({user_id: fromUserId});
 
         const notifs = await db("messages")
         .select("from_id")

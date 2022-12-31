@@ -14,21 +14,25 @@ import "./Navbar.css"
 // Use this for app bar, on home page there will be buttons for login register 
 
 const Navbar = () => {
-    const {fromUserId} = useContext(AppContext);
+    const {fromUserId,setIsLoggedIn,reset} = useContext(AppContext);
     const navigate = useNavigate();
 
     const logout = async() => {
         try {
+            
             const dateNow = new Date();
-            await axios.post("/logout", {
+            await axios.put("/logout", {
                 timestamp: dateNow.toUTCString(),
                 fromUserId
             });
+            setIsLoggedIn(false);
+            reset();
             navigate("/");
         } catch (err) {
             console.log(err);
         }
     }
+
 
     return (
         <Box>
