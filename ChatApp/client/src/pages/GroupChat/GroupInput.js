@@ -1,6 +1,6 @@
 import {useState,useEffect,useContext} from "react";
 import { AppContext } from "../../App";
-import { socket } from "../../socket";
+import { socket } from "../../utils/socket";
 
 const GroupInput = () => {
     const {roomName,fromUserId} = useContext(AppContext);

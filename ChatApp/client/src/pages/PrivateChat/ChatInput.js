@@ -1,5 +1,5 @@
 import {useState,useEffect,useContext} from "react";
-import {socket} from "../../socket";
+import {socket} from "../../utils/socket";
 import { AppContext } from "../../App";
 import axios from "axios";
 
@@ -12,16 +12,10 @@ import axios from "axios";
 // also can double check with socket.connected
 
 const ChatInput = () => {
-    const {isLoggedIn,emitMessages, setEmitMessages,fromUserId,toUserId,showChat,fromUsername} = useContext(AppContext);
+    const {fromUserId,toUserId,showChat,fromUsername} = useContext(AppContext);
     const [text,setText] = useState("");
 
     // only connects once we get to chat and we are logged in
-  useEffect(() => {
-    if (isLoggedIn) {
-        socket.auth = {fromUserId}
-        socket.connect();
-    }
-  },[]);
 
   useEffect(() => {
     if (fromUserId) {

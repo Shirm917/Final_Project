@@ -72,7 +72,6 @@ export const userStatus = async(req,res) => {
             res.sendStatus(200);
         } else {
             await db("online_notif")
-            .select("online_status","last_logged_in","user_id")
             .update({
                 online_status: true,
             })
@@ -89,12 +88,12 @@ export const logout = async(req,res) => {
     const {timestamp,fromUserId} = req.body;
     try {
         await db("online_notif")
-            .select("online_status","last_logged_in","user_id")
             .update({
                 online_status: false,
                 last_logged_in: timestamp
             })
             .where({user_id: fromUserId});
+
             res.sendStatus(200);
     } catch (err) {
         console.log(err);

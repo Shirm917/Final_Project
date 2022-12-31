@@ -37,9 +37,8 @@ io.on("connection", (socket) => {
     // ------ Private Messaging ------ //
     socket.fromUserId = socket.handshake.auth.fromUserId;
     socket.join(socket.fromUserId);
-
+    console.log(socket.fromUserId);
     socket.on("chat message", (toUserId,msg,fromUsername) => {
-        console.log(fromUsername);
         io.to(socket.fromUserId).to(toUserId).emit("msgResponse", socket.fromUserId,msg);
         io.to(toUserId).emit("notif", `You got a message from ${fromUsername}`);
     })
@@ -54,19 +53,15 @@ io.on("connection", (socket) => {
 
     })
 
-    // io.of("/").adapter.on("join-room", (room,id) => {
-    //     // console.log(`${id} has joined room ${room}`);
-    //     socket.to(room).emit("roomMsgJoin", `${id} has joined`);
-    // })
-
-    // io.of("/").adapter.on("leave-room", (room,id) => {
-    //     // console.log(`${id} has left room ${room}`);
-    //     socket.to(room).emit("roomMsgLeave", `${id} has left`);
-    // })
-
     socket.on("group message", (msg,roomName,fromUserId) => {
         io.to(roomName).emit("group msgResponse", msg,fromUserId);
     });
+
+    // on login and logout
+    socket.on("leave room", (roomName,fromUsername) => {
+        socket.leave(roomName);
+        socket.to(roomName).emit("roomMsg", `${fromUsername} has left`);
+    })
 });
 
 server.listen(process.env.PORT || 8080, () => {
