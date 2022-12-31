@@ -1,5 +1,5 @@
 import {useState,useEffect,useContext} from "react";
-import {socket} from "../../utils/socket";
+import {socket} from "../../Utils/socket";
 import { AppContext } from "../../App";
 import axios from "axios";
 
@@ -52,7 +52,7 @@ const ChatInput = () => {
   return (
     !showChat ? ""
     :
-    <form id="form" onSubmit={handleSubmit}>
+    <form className="chatForm" onSubmit={handleSubmit}>
       <input type="text" value={text} onChange={(event) => setText(event.target.value)}/>
       <button>Send</button>
     </form>

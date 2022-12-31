@@ -1,9 +1,10 @@
 import {useState} from "react";
-import Chat from "../pages/PrivateChat/Chat";
-import GroupChat from "../pages/GroupChat/GroupChat";
+import Chat from "../Pages/PrivateChat/Chat";
+import GroupChat from "../Pages/GroupChat/GroupChat";
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import "./Navbar.css";
 
 const ChatNavbar = () => {
     const [tabIndex, setTabIndex] = useState(0);

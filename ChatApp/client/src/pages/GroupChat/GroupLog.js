@@ -1,5 +1,5 @@
 import {useState,useEffect,useContext} from "react";
-import { socket } from "../../utils/socket";
+import { socket } from "../../Utils/socket";
 import { AppContext } from "../../App";
 
 const GroupLog = () => {
@@ -21,9 +21,9 @@ const GroupLog = () => {
         <div>
             <ul>
                 {
-                    roomMsgs.map(message => {
+                    roomMsgs.map((message,index) => {
                         return (
-                            <li>{message}</li>
+                            <li key={index}>{message}</li>
                         );
                     })
                 }

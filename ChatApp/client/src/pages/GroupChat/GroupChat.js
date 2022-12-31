@@ -7,7 +7,7 @@ import GroupInput from "./GroupInput";
 // change css 
 const GroupChat = () => {
     return (
-        <div>
+        <div className="chat">
             <JoinRoom/>
             <GroupLog/>
             <GroupBody/>

@@ -1,6 +1,6 @@
 import { useState,useEffect,useContext } from "react"
 import { AppContext } from "../../App"
-import { socket } from "../../utils/socket";
+import { socket } from "../../Utils/socket";
 import axios from "axios";
 
 
@@ -47,15 +47,15 @@ const ChatBody = () => {
                     dbMessages.map(element => {
                         const value = element.from_id === fromUserId ? "fromId" : "toId";
                         return (
-                            <li className={value}>{element.message}</li>
+                            <li key={element.messages_id} className={value}>{element.message}</li>
                         )
                     })
                 }
                 {
-                    emitMessages.map(element => {
+                    emitMessages.map((element,index) => {
                         const value = element.fromId === fromUserId ? "fromId" : "toId";
                         return (
-                            <li className={value}>{element.message}</li>
+                            <li key={index} className={value}>{element.message}</li>
                         )
                     })
                 }

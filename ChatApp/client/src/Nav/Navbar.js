@@ -8,7 +8,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import ChatIcon from '@mui/icons-material/Chat';
-import "./Navbar.css"
+import "./Navbar.css";
 
 // don't need chat link when we login we want to redirect to the /chat
 // Use this for app bar, on home page there will be buttons for login register 
