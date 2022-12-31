@@ -7,7 +7,7 @@ import axios from "axios";
 
 const LoginRegister = (props) => {
     const {title} = props;
-    const {userMsg,setUserMsg,setIsLoggedIn,fromUserId,setFromUserId,setFromUsername,reset} = useContext(AppContext);
+    const {userMsg,setUserMsg,setIsLoggedIn,setFromUserId,setFromUsername,reset} = useContext(AppContext);
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
 

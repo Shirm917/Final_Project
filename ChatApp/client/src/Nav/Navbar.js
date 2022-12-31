@@ -14,7 +14,7 @@ import "./Navbar.css"
 // Use this for app bar, on home page there will be buttons for login register 
 
 const Navbar = () => {
-    const {fromUserId,setIsLoggedIn,reset} = useContext(AppContext);
+    const {fromUserId,setIsLoggedIn,reset,setUserMsg} = useContext(AppContext);
     const navigate = useNavigate();
 
     const logout = async() => {
@@ -31,6 +31,10 @@ const Navbar = () => {
         } catch (err) {
             console.log(err);
         }
+    }
+
+    const chatMsg = () => {
+        setUserMsg("");
     }
 
 
@@ -50,10 +54,10 @@ const Navbar = () => {
                         <Typography>CHAT APP</Typography>
                         </IconButton>
                     </NavLink>
-                    <NavLink to="/register" className="link">Register</NavLink>
-                    <NavLink to="/login" className="link">Login</NavLink>
+                    <NavLink to="/chat" className="link">Chat</NavLink>
+                    <NavLink to="/register" className="link" onClick={chatMsg}>Register</NavLink>
+                    <NavLink to="/login" className="link" onClick={chatMsg}>Login</NavLink>
                     <NavLink onClick={logout} className="link">Logout</NavLink>
-                    {/* <NavLink to="/chat">Chat</NavLink> */}
                 </Toolbar>
             </AppBar>
         </Box>
