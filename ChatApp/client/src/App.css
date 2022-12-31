@@ -16,6 +16,12 @@ right: 0;
   margin-left: 200px;
 }
 
+.messages {
+  overflow: auto;
+  height: 80%;
+  /* margin-top: -20%; */
+}
+
 /* ---- From Messages ---- */
 .fromId {
   color: #0000ff;
@@ -24,4 +30,20 @@ right: 0;
 /* ---- To Messages ---- */
 .toId {
   color: #808080;
+}
+
+/* ---- Notifications ---- */
+
+.notifContainer {
+  height: 40vh;
+}
+
+.notifTitle {
+  height: 25%;
+}
+
+.notifs {
+  overflow: auto;
+  height: 75%;
+  margin-top: -40px;
 }

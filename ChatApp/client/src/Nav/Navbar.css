@@ -13,7 +13,17 @@
     text-decoration: none;
 }
 
-/* ---- Nav Tabs ---- */
-.tabs {
+/* ---- Nav Tabs and Chats Page ---- */
+.chatContainer {
+    height: 90vh;
+}
+
+.chatTitles {
     padding-left: 200px;
-  }
+    padding-top: 60px;
+}
+
+.chats {
+    overflow: auto;
+    height: 75%;
+}

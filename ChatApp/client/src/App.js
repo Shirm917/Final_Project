@@ -1,11 +1,12 @@
-import { useState,createContext } from "react";
+import { useState,createContext,useRef } from "react";
 import {Routes,Route} from "react-router-dom";
-import { socket } from "./Utils/socket";
-import Home from "./Pages/Home/Home";
+import { socket } from "./utils/socket";
+import axios from "axios";
+import Home from "./pages/Home/Home";
 import ChatNavbar from "./Nav/ChatNavbar";
 import Navbar from "./Nav/Navbar";
-import LoginRegister from "./Pages/LoginRegister/LoginRegister";
-import Protected from "./Components/Protected";
+import LoginRegister from "./pages/LoginRegister/LoginRegister";
+import Protected from "./components/Protected";
 import './App.css';
 
 export const AppContext = createContext(null);
@@ -27,6 +28,7 @@ function App() {
   const [roomMsgs,setRoomMsgs] = useState([]);
   const [notifs,setNotifs] = useState([]);
   const [search,setSearch] = useState("");
+  const messagesEnd = useRef(null);
 
   const reset = () => {
     socket.emit("leave room",roomName,fromUsername);
@@ -38,7 +40,20 @@ function App() {
     setRoomMsgs([]);
     setNotifs([]);
     socket.disconnect();
-  }
+  };
+
+  const scroll = () => {
+    messagesEnd.current?.scrollIntoView({behavior: "smooth"});
+  };
+
+  // If user doesn't log out 
+  const fixNotifications = async() => {
+    const dateNow = new Date();
+    await axios.put("/fixNotifs", {
+      timestamp: dateNow.toUTCString(),
+      fromUserId
+    });
+  };
 
   return (
     <AppContext.Provider value={{
@@ -68,7 +83,10 @@ function App() {
       setNotifs,
       search,
       setSearch,
-      reset
+      reset,
+      messagesEnd,
+      scroll,
+      fixNotifications
     }}>
       <div>
         <Navbar/>

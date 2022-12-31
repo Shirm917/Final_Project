@@ -1,9 +1,10 @@
 import {useState,useEffect,useContext} from "react";
-import { socket } from "../../Utils/socket";
+import { socket } from "../../utils/socket";
 import { AppContext } from "../../App";
+import Divider from '@mui/material/Divider';
 
 const GroupLog = () => {
-    const {roomMsgs,setRoomMsgs} = useContext(AppContext);
+    const {roomMsgs,setRoomMsgs,prevRoomName} = useContext(AppContext);
 
     useEffect(() => {
         socket.on("roomMsg", message => {
@@ -16,18 +17,28 @@ const GroupLog = () => {
     },[socket,roomMsgs])
     
     return (
-        !roomMsgs || roomMsgs.length === 0 ? null 
-        :
-        <div>
-            <ul>
+        <div className="groupContainer">
+            <div className="groupTitles">
                 {
-                    roomMsgs.map((message,index) => {
-                        return (
-                            <li key={index}>{message}</li>
-                        );
-                    })
+                    !prevRoomName ? <h3>Room Name:</h3>
+                    :
+                    <h3>Room Name: {prevRoomName}</h3>
                 }
-            </ul>
+                <h3>Log:</h3>
+            </div>
+            <div className="groupLog">
+                <ul>
+                    {
+                        !roomMsgs || roomMsgs.length === 0 ? null 
+                        :
+                        roomMsgs.map((message,index) => {
+                            return (
+                                <li key={index}>{message}</li>
+                            );
+                        })
+                    }
+                </ul>
+            </div>
         </div>
     )
 };

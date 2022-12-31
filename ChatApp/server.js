@@ -37,7 +37,7 @@ io.on("connection", (socket) => {
     // ------ Private Messaging ------ //
     socket.fromUserId = socket.handshake.auth.fromUserId;
     socket.join(socket.fromUserId);
-    console.log(socket.fromUserId);
+    
     socket.on("chat message", (toUserId,msg,fromUsername) => {
         io.to(socket.fromUserId).to(toUserId).emit("msgResponse", socket.fromUserId,msg);
         io.to(toUserId).emit("notif", `You got a message from ${fromUsername}`);
@@ -50,7 +50,6 @@ io.on("connection", (socket) => {
 
         socket.join(roomName);
         socket.to(roomName).emit("roomMsg", `${fromUsername} has joined`);
-
     })
 
     socket.on("group message", (msg,roomName,fromUserId) => {

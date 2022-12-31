@@ -1,9 +1,9 @@
 import {useState,useEffect,useContext} from "react";
-import { socket } from "../../Utils/socket";
+import { socket } from "../../utils/socket";
 import { AppContext } from "../../App";
 
 const GroupBody = () => {
-    const {groupEmitMessages,setGroupEmitMessages,prevRoomName,fromUserId} = useContext(AppContext);
+    const {groupEmitMessages,setGroupEmitMessages,fromUserId,messagesEnd,scroll} = useContext(AppContext);
 
     useEffect(() => {
         socket.on("group msgResponse", (message,fromId) => {
@@ -15,13 +15,12 @@ const GroupBody = () => {
         };
     },[socket,groupEmitMessages]);
 
+    useEffect(() => {
+        scroll();
+    },[groupEmitMessages]);
+
     return (
-        <div>
-            {
-                !prevRoomName ? null 
-                :
-                <p>Room: {prevRoomName}</p>
-            }
+        <div className="messages">
             <ul>
                 {
                     !groupEmitMessages || groupEmitMessages.length === 0 ? null
@@ -34,6 +33,7 @@ const GroupBody = () => {
                     })
                 }
             </ul>
+            <div ref={messagesEnd}/>
         </div>
     );
 };
