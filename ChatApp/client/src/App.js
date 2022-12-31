@@ -5,6 +5,7 @@ import Home from "./pages/Home/Home";
 import ChatNavbar from "./Nav/ChatNavbar";
 import Navbar from "./Nav/Navbar";
 import LoginRegister from "./pages/LoginRegister/LoginRegister";
+import Protected from "./components/Protected";
 import './App.css';
 
 export const AppContext = createContext(null);
@@ -72,7 +73,7 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/register" element={<LoginRegister title="Register"/>}/>
           <Route path="/login" element={<LoginRegister title="Login"/>}/>
-          <Route path="/chat" element={<ChatNavbar/>}/>
+          <Route path="/chat" element={<Protected><ChatNavbar/></Protected>}/>
         </Routes>
       </div>
     </AppContext.Provider>
