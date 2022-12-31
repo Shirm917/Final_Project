@@ -1,0 +1,22 @@
+.groupContainer {
+    height: 35vh;
+}
+
+.groupTitles {
+    height: 25%;
+}
+
+.groupLog {
+    height: 75%;
+    overflow: auto;
+}
+
+
+.joinBtn {
+    border: none;
+    color: rgb(25, 25, 220);
+    font-size: medium;
+}
+
+
+

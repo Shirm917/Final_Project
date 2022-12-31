@@ -1,0 +1,8 @@
+.userStatuses {
+    height: 40%;
+    overflow: auto;
+}
+
+.chatNotifs {
+    overflow: auto;
+}

@@ -38,7 +38,7 @@ const LoginRegister = (props) => {
                     username,
                     password
                 })
-                reset();
+                reset();  // If user doesn't log out 
                 setUserMsg("");
                 setFromUserId(response.data.user[0].user_id);
                 setFromUsername(response.data.user[0].username);

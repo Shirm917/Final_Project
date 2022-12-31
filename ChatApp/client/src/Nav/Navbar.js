@@ -40,7 +40,7 @@ const Navbar = () => {
 
     return (
         <Box>
-            <AppBar position="sticky" className="bar">
+            <AppBar position="fixed" className="bar">
                 <Toolbar className="toolbar">
                     <NavLink to="/" className="link">
                         <IconButton

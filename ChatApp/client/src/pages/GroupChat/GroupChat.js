@@ -1,5 +1,4 @@
-import JoinRoom from "./JoinRoom";
-import GroupLog from "./GroupLog";
+import GroupSidebar from "./GroupSidebar";
 import GroupBody from "./GroupBody";
 import GroupInput from "./GroupInput";
 
@@ -8,8 +7,7 @@ import GroupInput from "./GroupInput";
 const GroupChat = () => {
     return (
         <div className="chat">
-            <JoinRoom/>
-            <GroupLog/>
+            <GroupSidebar/>
             <GroupBody/>
             <GroupInput/>
        </div>

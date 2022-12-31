@@ -1,5 +1,5 @@
 import {useState,useEffect,useContext} from "react";
-import {socket} from "../../Utils/socket";
+import {socket} from "../../utils/socket";
 import { AppContext } from "../../App";
 import axios from "axios";
 

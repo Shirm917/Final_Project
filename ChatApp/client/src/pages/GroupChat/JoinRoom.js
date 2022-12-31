@@ -1,11 +1,19 @@
 import {useState,useEffect,useContext} from "react";
-import {socket} from "../../Utils/socket";
+import {socket} from "../../utils/socket";
 import { AppContext } from "../../App";
+import TextField from '@mui/material/TextField';
 
 // regex for room name, can't start with number
 
 const JoinRoom  = () => {
     const {setGroupEmitMessages,roomName,setRoomName,setRoomMsgs,prevRoomName,setPrevRoomName,fromUsername} = useContext(AppContext);
+
+    const handleChange = (event) => {
+        const regex = /^[A-Za-z]*[A-Za-z][A-Za-z0-9-. _]*$/;
+        if (event.target.value === "" || regex.test(event.target.value)) {
+            setRoomName(event.target.value.toUpperCase());
+        };
+    };
 
     const submitRoomName = (event) => {
         event.preventDefault();
@@ -26,8 +34,15 @@ const JoinRoom  = () => {
     return (
         <div>
             <form id="joinForm" onSubmit={submitRoomName}>
-                <input type="text" onChange={(event) => setRoomName(event.target.value.toUpperCase())}/>
-                <button>Join Room</button>
+                <TextField
+                 id="filled-error-helper-text" 
+                 label="Room Name" 
+                 variant="filled" 
+                 helperText="Room Name can't start with a number"
+                 size="small" 
+                 onChange={handleChange}
+                 InputProps={{endAdornment: <button className="joinBtn">Join</button>}} 
+                 />
             </form>
         </div>
     )
