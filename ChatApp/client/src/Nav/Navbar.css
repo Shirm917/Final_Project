@@ -1,3 +1,4 @@
+/* ---- Navbar ---- */
 .bar {
     z-index: 1;
 }
@@ -11,3 +12,8 @@
     color: white;
     text-decoration: none;
 }
+
+/* ---- Nav Tabs ---- */
+.tabs {
+    padding-left: 200px;
+  }

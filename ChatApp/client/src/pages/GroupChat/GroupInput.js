@@ -1,6 +1,6 @@
 import {useState,useEffect,useContext} from "react";
 import { AppContext } from "../../App";
-import { socket } from "../../utils/socket";
+import { socket } from "../../Utils/socket";
 
 const GroupInput = () => {
     const {roomName,fromUserId} = useContext(AppContext);
@@ -16,7 +16,7 @@ const GroupInput = () => {
 
     return (
         <div>
-            <form id="form" onSubmit={sendMessage}>
+            <form className="chatForm" onSubmit={sendMessage}>
                 <input type="text" value={text} onChange={(event) => setText(event.target.value)}/>
                 <button>Send</button>
             </form>

@@ -9,6 +9,7 @@
 import {useState,useEffect,useContext} from "react";
 import { AppContext } from "../../App";
 import axios from "axios";
+import Search from "./Search";
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
@@ -20,7 +21,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 // do filter and map to join arrays together, then comment it out and do the inner join
 
 const ChatSidebar = () => {
-    const {setEmitMessages,userMsg,setUserMsg,fromUserId,setToUserId,setShowChat} = useContext(AppContext);
+    const {setEmitMessages,userMsg,setUserMsg,fromUserId,setToUserId,setShowChat,search} = useContext(AppContext);
     const [userStatuses,setUserStatuses] = useState([]);
     const [notifs,setNotifs] = useState([]);
     
@@ -63,13 +64,17 @@ const ChatSidebar = () => {
         width: 200,
         flexShrink: 0, 
         zIndex: 0, 
-        [`& .MuiDrawer-paper`]: { width: 200, boxSizing: 'border-box', marginTop: 6 }
+        [`& .MuiDrawer-paper`]: { width: 200, boxSizing: 'border-box', marginTop: 7.6 }
         }}>
+        <Search/>
         <List>
         {
             !userStatuses || userStatuses.length === 0 ? <p>{userMsg}</p>
             :
-            userStatuses.map(user => {
+            userStatuses.filter(element => {
+                return element.username.startsWith(search);
+            })
+            .map(user => {
                 const notifNum = notifs.filter(notif => {
                     return user.user_id === notif.from_id;
                 })

@@ -1,11 +1,11 @@
 import { useState,createContext } from "react";
 import {Routes,Route} from "react-router-dom";
-import { socket } from "./utils/socket";
-import Home from "./pages/Home/Home";
+import { socket } from "./Utils/socket";
+import Home from "./Pages/Home/Home";
 import ChatNavbar from "./Nav/ChatNavbar";
 import Navbar from "./Nav/Navbar";
-import LoginRegister from "./pages/LoginRegister/LoginRegister";
-import Protected from "./components/Protected";
+import LoginRegister from "./Pages/LoginRegister/LoginRegister";
+import Protected from "./Components/Protected";
 import './App.css';
 
 export const AppContext = createContext(null);
@@ -26,6 +26,7 @@ function App() {
   const [groupEmitMessages,setGroupEmitMessages] = useState([]);
   const [roomMsgs,setRoomMsgs] = useState([]);
   const [notifs,setNotifs] = useState([]);
+  const [search,setSearch] = useState("");
 
   const reset = () => {
     socket.emit("leave room",roomName,fromUsername);
@@ -65,6 +66,8 @@ function App() {
       setPrevRoomName,
       notifs,
       setNotifs,
+      search,
+      setSearch,
       reset
     }}>
       <div>

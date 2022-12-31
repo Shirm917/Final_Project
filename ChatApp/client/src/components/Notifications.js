@@ -21,9 +21,9 @@ const Notifications = () => {
             {
                 !notifs || notifs.length === 0 ? null
                 :
-                notifs.map(notif => {
+                notifs.map((notif,index) => {
                     return (
-                        <li>{notif}</li>
+                        <li key={index}>{notif}</li>
                     )
                 })
             }

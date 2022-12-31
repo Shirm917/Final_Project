@@ -55,35 +55,6 @@ export const login = async(req,res) => {
     };
 };
 
-export const userStatus = async(req,res) => {
-    const {fromId} = req.body;
-    try {
-        const row = await db("online_notif")
-        .select("user_id")
-        .where({user_id: fromId})
-
-        if (!row || row.length === 0) {
-            await db("online_notif")
-            .insert({
-                online_status: true,
-                user_id: fromId
-            });
-
-            res.sendStatus(200);
-        } else {
-            await db("online_notif")
-            .update({
-                online_status: true,
-            })
-            .where({user_id: fromId})
-
-            res.sendStatus(200);
-        };
-    } catch (err) {
-        console.log(err);
-    };
-};
-
 export const logout = async(req,res) => {
     const {timestamp,fromUserId} = req.body;
     try {

@@ -1,5 +1,5 @@
 import {useState,useEffect,useContext} from "react";
-import { socket } from "../../utils/socket";
+import { socket } from "../../Utils/socket";
 import { AppContext } from "../../App";
 
 const GroupBody = () => {
@@ -26,10 +26,10 @@ const GroupBody = () => {
                 {
                     !groupEmitMessages || groupEmitMessages.length === 0 ? null
                     :
-                    groupEmitMessages.map(element => {
+                    groupEmitMessages.map((element,index) => {
                         const value = fromUserId === element.fromId ? "fromId" : "toId";
                         return (
-                            <li className={value}>{element.message}</li>
+                            <li key={index} className={value}>{element.message}</li>
                         )
                     })
                 }
