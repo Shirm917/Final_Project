@@ -44,8 +44,8 @@ io.on("connection", (socket) => {
         socket.to(roomName).emit("roomMsg", `${fromUsername} has joined`);
     })
 
-    socket.on("group message", (msg,roomName,fromUserId) => {
-        io.to(roomName).emit("group msgResponse", msg,fromUserId);
+    socket.on("group message", (msg,roomName,fromUserId,fromUsername) => {
+        io.to(roomName).emit("group msgResponse", msg,fromUserId,fromUsername);
     });
 
     // on login and logout

@@ -6,8 +6,8 @@ const GroupBody = () => {
     const {groupEmitMessages,setGroupEmitMessages,fromUserId,messagesEnd,scroll} = useContext(AppContext);
 
     useEffect(() => {
-        socket.on("group msgResponse", (message,fromId) => {
-            setGroupEmitMessages([...groupEmitMessages, {message,fromId}]);
+        socket.on("group msgResponse", (message,fromId,fromUsername) => {
+            setGroupEmitMessages([...groupEmitMessages, {message,fromId,fromUsername}]);
         });
 
         return () => {
@@ -28,7 +28,7 @@ const GroupBody = () => {
                     groupEmitMessages.map((element,index) => {
                         const value = fromUserId === element.fromId ? "fromId" : "toId";
                         return (
-                            <li key={index} className={value}>{element.message}</li>
+                            <li key={index} className={value}>{element.message} -{element.fromUsername}</li>
                         )
                     })
                 }

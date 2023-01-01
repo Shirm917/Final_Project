@@ -4,13 +4,13 @@ import { socket } from "../../utils/socket";
 import TextField from '@mui/material/TextField';
 
 const GroupInput = () => {
-    const {roomName,fromUserId} = useContext(AppContext);
+    const {roomName,fromUserId,fromUsername} = useContext(AppContext);
     const [text, setText] = useState("");
 
     const sendMessage = (event) => {
         event.preventDefault();
-        if (text) {
-            socket.emit("group message", text,roomName,fromUserId);
+        if (text && roomName && fromUserId && fromUsername) {
+            socket.emit("group message", text,roomName,fromUserId,fromUsername);
         };
         setText("");
     };
