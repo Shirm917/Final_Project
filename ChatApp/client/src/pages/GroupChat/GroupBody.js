@@ -1,4 +1,4 @@
-import {useState,useEffect,useContext} from "react";
+import {useEffect,useContext} from "react";
 import { socket } from "../../utils/socket";
 import { AppContext } from "../../App";
 
@@ -20,8 +20,8 @@ const GroupBody = () => {
     },[groupEmitMessages]);
 
     return (
-        <div className="messages">
-            <ul>
+        <div className="bodyContainer">
+            <ul className="messagesContainer">
                 {
                     !groupEmitMessages || groupEmitMessages.length === 0 ? null
                     :

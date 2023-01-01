@@ -1,10 +1,8 @@
-import {useState,useEffect,useContext} from "react";
 import JoinRoom from "./JoinRoom";
 import GroupLog from "./GroupLog";
 import Notifications from "../../components/Notifications";
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
-import Box from "@mui/system/Box";
 import "./GroupSidebar.css";
 
 const GroupSidebar = () => {

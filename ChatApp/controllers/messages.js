@@ -1,7 +1,7 @@
 import db from "../config/dbElephantSql.js";
 
 
-// here is the function to insert the messages into the database
+// Function to insert the messages into the database
 export const insertMessage = async(req,res) => {
     const {text,fromUserId,toUserId,timestamp} = req.body;
     try {
@@ -14,7 +14,6 @@ export const insertMessage = async(req,res) => {
         })
         res.sendStatus(200);
     } catch (err) {
-        console.log(err);
         res.status(400).json({msg: "Can't insert message"});
     };
 };
@@ -22,7 +21,7 @@ export const insertMessage = async(req,res) => {
 // Getting all the messages for a specific chat
 export const getMessages = async(req,res) => {
     const {from_id,to_id} = req.params;
-    // console.log(req.params);
+
     try {
         const messages = await db("messages")
         .select("message","from_id","to_id")
@@ -36,7 +35,6 @@ export const getMessages = async(req,res) => {
         })
         .orderBy("timestamp", "asc");
 
-        // console.log(messages);
         res.status(200).json({messages});
     } catch (err) {
         res.status(404).json({msg: "Can't find messages"});

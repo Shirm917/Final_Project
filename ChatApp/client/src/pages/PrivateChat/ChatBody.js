@@ -1,4 +1,4 @@
-import { useState,useEffect,useContext,useRef } from "react"
+import { useState,useEffect,useContext } from "react"
 import { AppContext } from "../../App"
 import { socket } from "../../utils/socket";
 import axios from "axios";
@@ -19,7 +19,6 @@ const ChatBody = () => {
                 const response = await axios.get(`/messages/${fromUserId}/${toUserId}`);
                 setDbMessages(response.data.messages);
             } catch (err) {
-                console.log(err);
             }
         }
 
@@ -39,12 +38,12 @@ const ChatBody = () => {
     useEffect(() => {
         scroll();
     },[dbMessages,emitMessages])
-    
+
     return (
         !showChat ? ""
         :
-        <div className="messages">
-            <ul>
+        <div className="bodyContainer">
+            <ul className="messagesContainer">
                 {
                     !dbMessages || dbMessages.length === 0 ? null 
                     :
@@ -59,8 +58,9 @@ const ChatBody = () => {
                     emitMessages.map((element,index) => {
                         const value = element.fromId === fromUserId ? "fromId" : "toId";
                         return (
-                            element.fromId !== toUserId ? null :
+                            element.fromId === toUserId || element.fromId === fromUserId ? 
                             <li key={index} className={value}>{element.message}</li>
+                            : null
                         )
                     })
                 }
