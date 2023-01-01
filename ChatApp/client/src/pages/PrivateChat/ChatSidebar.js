@@ -12,7 +12,7 @@ const ChatSidebar = () => {
         width: 200,
         flexShrink: 0, 
         zIndex: 0, 
-        [`& .MuiDrawer-paper`]: { width: 200, boxSizing: 'border-box', marginTop: 7.6 }
+        [`& .MuiDrawer-paper`]: { width: 200, boxSizing: 'border-box', marginTop: 7.6,marginRight: 20 }
         }}>
         <Search/>
         <UserStatuses/>

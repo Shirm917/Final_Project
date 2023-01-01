@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+}
+
 /* Home */
 .homeContainer {
   height: 100vh;
@@ -47,8 +51,8 @@
 .bodyContainer {
   overflow: auto;
   height: 80%;
-  width: 100vw;
-  margin-left: 65px;
+  /* width: 100vw; */
+  /* margin-left: 125px; */
 }
 
 /* ---- Messages ---- */
@@ -56,8 +60,7 @@
 .messagesContainer { 
   display: flex;
   flex-direction: column;
-  /* width: 100%; */
-  margin-left: -40px;
+  width: 60vw;
 }
 
 .fromId,
@@ -114,15 +117,19 @@
 
 /* Media Queries */
 @media only screen and (min-width: 992px) {
-  .messagesContainer { 
-    width: 80vw;
+  .messagesContainer {
+    position: relative; 
+    margin: 0 auto;
+    width: 150%;
     margin-left: -40px;
+    right: 0;
+    padding: 0 200px 200px;
   }
 }
 
 @media only screen and (min-width: 768px) {
   .messagesContainer { 
-    width: 60vw;
+    width: 70vw;
     margin-left: -40px;
   }
 }
