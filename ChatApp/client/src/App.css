@@ -51,8 +51,7 @@ body {
 .bodyContainer {
   overflow: auto;
   height: 80%;
-  /* width: 100vw; */
-  /* margin-left: 125px; */
+  overflow-x: hidden;
 }
 
 /* ---- Messages ---- */
