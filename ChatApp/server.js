@@ -3,11 +3,12 @@ import cors from "cors";
 import dotenv from "dotenv";
 import http from "http";
 import { Server } from "socket.io";
+import path from "path";
 import users_router from "./routes/users.js";
 import messages_router from "./routes/messages.js";
 import userStatuses_router from "./routes/usersStatuses.js";
 import message_notif_router from "./routes/message_notif.js";
-// send all the online usernames or ids here and so we can do the green thing
+
 dotenv.config();
 
 const app = express();
@@ -25,14 +26,7 @@ app.use(messages_router);
 app.use(userStatuses_router);
 app.use(message_notif_router);
 
-
-// middleware like if fromuserid was actually sent/exists then go next()
 io.on("connection", (socket) => {
-    console.log("a user connected");
-    console.log(`id: ${socket.id}`);
-    socket.on("disconnect", () => {
-        console.log("a user disconnected");
-    })
 
     // ------ Private Messaging ------ //
     socket.fromUserId = socket.handshake.auth.fromUserId;
@@ -66,3 +60,11 @@ io.on("connection", (socket) => {
 server.listen(process.env.PORT || 8080, () => {
     console.log(`Listening on port ${process.env.PORT || 8080}`);
 });
+
+const __dirname = path.resolve();
+
+app.use(express.static(path.join(__dirname, "./client/build")));
+
+app.get("*", (req,res) => {
+    res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+})

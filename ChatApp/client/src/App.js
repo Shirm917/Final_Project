@@ -11,9 +11,6 @@ import './App.css';
 
 export const AppContext = createContext(null);
 
-// don't have link for chat in navbar when we successfully log in we want to be directed to chat component, so /chat,
-// chat component will hold all chat things
-
 function App() {
   const [userMsg, setUserMsg] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);

@@ -16,14 +16,18 @@
 /* ---- Nav Tabs and Chats Page ---- */
 .chatContainer {
     height: 90vh;
+    width: 90vw;
+    overflow-x: hidden;
 }
 
 .chatTitles {
-    padding-left: 200px;
-    padding-top: 60px;
+    margin-left: 26%;
+    margin-top: 65px;
+    width: 95%;
 }
 
 .chats {
     overflow: auto;
     height: 75%;
+    margin-right: -200px;
 }

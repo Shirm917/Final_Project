@@ -1,7 +1,6 @@
-import {useState,useEffect,useContext} from "react";
+import {useEffect,useContext} from "react";
 import { socket } from "../../utils/socket";
 import { AppContext } from "../../App";
-import Divider from '@mui/material/Divider';
 
 const GroupLog = () => {
     const {roomMsgs,setRoomMsgs,prevRoomName} = useContext(AppContext);

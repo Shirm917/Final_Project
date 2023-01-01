@@ -4,18 +4,23 @@
 
 .groupTitles {
     height: 25%;
+    text-align: center;
 }
 
 .groupLog {
-    height: 75%;
+    height: 65%;
     overflow: auto;
+    margin-top: -15px;
+    list-style: none;
 }
 
-
-.joinBtn {
-    border: none;
-    color: rgb(25, 25, 220);
-    font-size: medium;
+@media only screen and (max-width: 500px) {
+    .groupTitles {
+        visibility: hidden;
+    }
+    .groupLog {
+        margin-top: -50px;
+    }
 }
 
 

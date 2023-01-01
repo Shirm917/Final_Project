@@ -14,7 +14,6 @@ export const getNotifs = async(req,res) => {
 
         res.status(200).json({notifs});
     } catch (err) {
-        console.log(err);
     }
 };
 
@@ -29,6 +28,5 @@ export const fixNotifs = async(req,res) => {
 
             res.sendStatus(200);
     } catch (err) {
-        console.log(err);
     }
 };

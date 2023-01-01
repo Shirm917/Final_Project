@@ -4,6 +4,9 @@ import {useState,useContext, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import { AppContext } from "../../App";
 import axios from "axios";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 const LoginRegister = (props) => {
     const {title} = props;
@@ -17,17 +20,19 @@ const LoginRegister = (props) => {
         setUserMsg("");
     },[]);
 
-    const handleSubmit = async(event) => {
+    const handleClick = async(event) => {
         event.preventDefault();
         if (title === "Register") {
             try {
-                const response = await axios.post("/register", 
-                {
-                    username,
-                    password
-                })
-                setUserMsg("");
-                navigate("/login");
+                if (username && password) {
+                    const response = await axios.post("/register", 
+                    {
+                        username,
+                        password
+                    })
+                    setUserMsg("");
+                    navigate("/login");
+                }
             } catch (err) {
                 setUserMsg(err.response.data.msg);
             }
@@ -57,21 +62,33 @@ const LoginRegister = (props) => {
                 fromId
             })
         } catch (err) {
-            console.log(err);
         };
     };
 
     return (
         <div>
-            <h1>{title}</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username: </label>
-                <input type="text" id="username" onChange={(event) => setUsername(event.target.value)}/><br/>
-                <label htmlFor="password">Password: </label>
-                <input type="password" id="password" onChange={(event) => setPassword(event.target.value)}/><br/>
-                <button>{title}</button>
-            </form>
-            <p>{userMsg}</p>
+            <h1 className="lrTitle">{title}</h1>
+            <Box component="form" sx={{display: "flex", flexDirection: "column", margin: "0 auto", width: "50%"}} noValidate autoComplete="off">
+                <TextField
+                    sx={{m:1}}
+                    id="username"
+                    label="Enter Username"
+                    variant="outlined"
+                    required
+                    onChange={(event) => setUsername(event.target.value)}
+                />
+                <TextField
+                    sx={{m:1}}
+                    id="password"
+                    type="password"
+                    label="Enter Password"
+                    variant="outlined"
+                    required
+                    onChange={(event) => setPassword(event.target.value)}
+                />
+                <Button variant="contained" onClick={handleClick}>{title}</Button>
+            </Box>
+            <p className="userMsg">{userMsg}</p>
         </div>
     )
 }

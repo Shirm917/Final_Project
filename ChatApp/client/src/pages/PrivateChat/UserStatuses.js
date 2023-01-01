@@ -35,13 +35,12 @@ const UserStatuses = () => {
         const getNotifs = async() => {
             try {
                 const response = await axios.get(`/notifs/${fromUserId}`);
-                setNotifs(response.data.notifs);
-                fixNotifications();
-                setInterval(() => {
-                    fixNotifications();
-                },5000);
+                setNotifs(response.data.notifs, () => {
+                    setInterval(() => {
+                        fixNotifications();
+                    },5000);
+                });
             } catch (err) {
-                console.log(err);
             }
         };
         getNotifs();
@@ -70,7 +69,7 @@ const UserStatuses = () => {
             !userStatuses || userStatuses.length === 0 ? <p>{userMsg}</p>
             :
             userStatuses.filter(element => {
-                return element.username.startsWith(search);
+                return element.username.toLowerCase().startsWith(search.toLowerCase());
             })
             .map(user => {
                 const notifNum = notifs.filter(notif => {
@@ -80,10 +79,11 @@ const UserStatuses = () => {
                     <>
                         <ListItem key={user.user_id}>
                             <ListItemButton onClick={() => handleClick(user.user_id)}>
-                            <ListItemText>{notifNum.length === 0 ? null : notifNum.length}</ListItemText>
+                            <ListItemText>{notifNum.length === 0 ? "" : notifNum.length}</ListItemText>
                                 <ListItemText primary={user.username} />
                                 {
-                                !user.online_status ? null 
+                                !user.online_status ? 
+                                <CircleIcon style={{color: "white"}}/> 
                                 :
                                 <CircleIcon style={{color: "#b9f6ca"}}/>
                                 }

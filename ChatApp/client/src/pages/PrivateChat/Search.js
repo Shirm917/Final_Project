@@ -6,7 +6,7 @@ const Search = () => {
     const {setSearch} = useContext(AppContext);
 
     return (
-        <TextField id="filled-basic" label="Search Users" variant="filled" margin="dense" size="small" onChange={(event) => setSearch(event.target.value)}/>
+        <TextField id="filled-basic" label="Search Users" variant="filled" margin="dense" size="small" autoComplete="off" onChange={(event) => setSearch(event.target.value)}/>
     )
 };
 

@@ -1,6 +1,7 @@
-import {useState,useEffect,useContext} from "react";
+import {useState,useContext} from "react";
 import { AppContext } from "../../App";
 import { socket } from "../../utils/socket";
+import TextField from '@mui/material/TextField';
 
 const GroupInput = () => {
     const {roomName,fromUserId} = useContext(AppContext);
@@ -17,8 +18,15 @@ const GroupInput = () => {
     return (
         <div>
             <form className="chatForm" onSubmit={sendMessage}>
-                <input type="text" value={text} onChange={(event) => setText(event.target.value)}/>
-                <button>Send</button>
+                <TextField 
+                className="textfield" 
+                id="outlined-multiline-flexible" 
+                value={text}  
+                onChange={(event) => setText(event.target.value)}
+                multiline
+                autoComplete="off"
+                InputProps={{endAdornment: <button className="btn">Send</button>}} 
+                />
             </form>
         </div>
     )

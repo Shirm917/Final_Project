@@ -10,9 +10,6 @@ import IconButton from '@mui/material/IconButton';
 import ChatIcon from '@mui/icons-material/Chat';
 import "./Navbar.css";
 
-// don't need chat link when we login we want to redirect to the /chat
-// Use this for app bar, on home page there will be buttons for login register 
-
 const Navbar = () => {
     const {fromUserId,setIsLoggedIn,reset,setUserMsg} = useContext(AppContext);
     const navigate = useNavigate();
@@ -29,7 +26,6 @@ const Navbar = () => {
             reset();
             navigate("/");
         } catch (err) {
-            console.log(err);
         }
     }
 

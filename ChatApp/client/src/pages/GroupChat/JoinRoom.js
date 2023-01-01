@@ -1,9 +1,8 @@
-import {useState,useEffect,useContext} from "react";
+import {useContext} from "react";
 import {socket} from "../../utils/socket";
 import { AppContext } from "../../App";
 import TextField from '@mui/material/TextField';
 
-// regex for room name, can't start with number
 
 const JoinRoom  = () => {
     const {setGroupEmitMessages,roomName,setRoomName,setRoomMsgs,prevRoomName,setPrevRoomName,fromUsername} = useContext(AppContext);
@@ -41,7 +40,7 @@ const JoinRoom  = () => {
                  helperText="Room Name can't start with a number"
                  size="small" 
                  onChange={handleChange}
-                 InputProps={{endAdornment: <button className="joinBtn">Join</button>}} 
+                 InputProps={{endAdornment: <button className="btn">Join</button>}} 
                  />
             </form>
         </div>
