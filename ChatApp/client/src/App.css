@@ -9,13 +9,12 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: rgb(52, 51, 64);
-  color: white;
-  background: linear-gradient(90deg, rgb(26, 26, 33) 0%, rgb(19, 30, 32) 0%, rgba(233,228,235,0.8554006968641115) 100%);
+  /* color: white; */
 }
 
 .homeTitle {
   margin-top: 30vh;
+  font-size: 100px;
 }
 
 /* ---- Login Register ---- */

@@ -35,11 +35,12 @@ const UserStatuses = () => {
         const getNotifs = async() => {
             try {
                 const response = await axios.get(`/notifs/${fromUserId}`);
-                setNotifs(response.data.notifs, () => {
-                    setInterval(() => {
-                        fixNotifications();
-                    },5000);
-                });
+                setNotifs(response.data.notifs)
+                //     () => {
+                //     setInterval(() => {
+                //         fixNotifications();
+                //     },5000);
+                // });
             } catch (err) {
             }
         };
@@ -48,7 +49,7 @@ const UserStatuses = () => {
 
     useEffect(() => {
         return () => {
-            clearInterval(fixNotifications);
+            // clearInterval(fixNotifications);
             clearInterval(getUserStatuses);
         }
     },[]);

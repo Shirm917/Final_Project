@@ -7,6 +7,7 @@ import ChatNavbar from "./Nav/ChatNavbar";
 import Navbar from "./Nav/Navbar";
 import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import Protected from "./components/Protected";
+import {useBeforeunload} from "react-beforeunload";
 import './App.css';
 
 export const AppContext = createContext(null);
@@ -29,6 +30,7 @@ function App() {
 
   const reset = () => {
     socket.emit("leave room",roomName,fromUsername);
+    setFromUserId(null);
     setToUserId(null);
     setShowChat(false);
     setRoomName("");
@@ -43,14 +45,21 @@ function App() {
     messagesEnd.current?.scrollIntoView({behavior: "smooth"});
   };
 
-  // If user doesn't log out 
-  const fixNotifications = async() => {
-    const dateNow = new Date();
-    await axios.put("/fixNotifs", {
-      timestamp: dateNow.toUTCString(),
-      fromUserId
-    });
-  };
+  useBeforeunload((event) => {
+    if(fromUserId) {
+      event.preventDefault();
+      const test = async() => {
+          const dateNow = new Date();
+              await axios.put("/logout", {
+                  timestamp: dateNow.toUTCString(),
+                  fromUserId
+          });
+          setIsLoggedIn(false);
+          reset();
+      }
+      test();
+    }
+},[])
 
   return (
     <AppContext.Provider value={{
@@ -82,8 +91,7 @@ function App() {
       setSearch,
       reset,
       messagesEnd,
-      scroll,
-      fixNotifications
+      scroll
     }}>
       <div>
         <Navbar/>

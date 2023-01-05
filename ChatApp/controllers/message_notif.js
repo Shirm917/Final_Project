@@ -16,17 +16,3 @@ export const getNotifs = async(req,res) => {
     } catch (err) {
     }
 };
-
-export const fixNotifs = async(req,res) => {
-    const {timestamp,fromUserId} = req.body;
-    try {
-        await db("online_notif")
-            .update({
-                last_logged_in: timestamp
-            })
-            .where({user_id: fromUserId});
-
-            res.sendStatus(200);
-    } catch (err) {
-    }
-};

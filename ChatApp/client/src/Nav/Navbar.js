@@ -11,18 +11,18 @@ import ChatIcon from '@mui/icons-material/Chat';
 import "./Navbar.css";
 
 const Navbar = () => {
-    const {fromUserId,setIsLoggedIn,reset,setUserMsg} = useContext(AppContext);
+    const {fromUserId,setFromUserId,setIsLoggedIn,reset,setUserMsg} = useContext(AppContext);
     const navigate = useNavigate();
 
     const logout = async() => {
         try {
-            
             const dateNow = new Date();
             await axios.put("/logout", {
                 timestamp: dateNow.toUTCString(),
                 fromUserId
             });
             setIsLoggedIn(false);
+            setFromUserId(null);
             reset();
             navigate("/");
         } catch (err) {
