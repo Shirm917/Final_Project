@@ -7,6 +7,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 import CircleIcon from '@mui/icons-material/Circle';
+import Badge from '@mui/material/Badge';
 
 const UserStatuses = () => {
     const {setEmitMessages,fromUserId,setToUserId,setShowChat,search,userMsg,setUserMsg} = useContext(AppContext);
@@ -74,11 +75,11 @@ const UserStatuses = () => {
                     <>
                         <ListItem key={user.user_id}>
                             <ListItemButton onClick={() => handleClick(user.user_id)}>
-                            <ListItemText>{notifNum.length === 0 ? "" : notifNum.length}</ListItemText>
+                            <ListItemText>{notifNum.length === 0 ? "" : <Badge badgeContent={notifNum.length} color="success"></Badge>}</ListItemText>
                                 <ListItemText primary={user.username} />
                                 {
                                 !user.online_status ? 
-                                <CircleIcon style={{color: "white"}}/> 
+                                <CircleIcon style={{color: "transparent"}}/> 
                                 :
                                 <CircleIcon style={{color: "#b9f6ca"}}/>
                                 }
