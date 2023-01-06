@@ -9,7 +9,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import CircleIcon from '@mui/icons-material/Circle';
 
 const UserStatuses = () => {
-    const {setEmitMessages,fromUserId,setToUserId,setShowChat,search,userMsg,setUserMsg,fixNotifications} = useContext(AppContext);
+    const {setEmitMessages,fromUserId,setToUserId,setShowChat,search,userMsg,setUserMsg} = useContext(AppContext);
     const [userStatuses,setUserStatuses] = useState([]);
     const [notifs,setNotifs] = useState([]);
 
@@ -36,11 +36,6 @@ const UserStatuses = () => {
             try {
                 const response = await axios.get(`/notifs/${fromUserId}`);
                 setNotifs(response.data.notifs)
-                //     () => {
-                //     setInterval(() => {
-                //         fixNotifications();
-                //     },5000);
-                // });
             } catch (err) {
             }
         };
@@ -49,7 +44,6 @@ const UserStatuses = () => {
 
     useEffect(() => {
         return () => {
-            // clearInterval(fixNotifications);
             clearInterval(getUserStatuses);
         }
     },[]);

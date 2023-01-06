@@ -15,6 +15,13 @@ const GroupInput = () => {
         setText("");
     };
 
+    const handleKeyDown = (event) => {
+        if (!event.shiftKey && event.key === "Enter") {
+          event.preventDefault();
+          sendMessage(event);
+        }
+    }
+
     return (
         <div>
             <form className="chatForm" onSubmit={sendMessage}>
@@ -22,10 +29,11 @@ const GroupInput = () => {
                 className="textfield" 
                 id="outlined-multiline-flexible" 
                 value={text}  
-                onChange={(event) => setText(event.target.value)}
                 multiline
                 autoComplete="off"
                 InputProps={{endAdornment: <button className="btn">Send</button>}} 
+                onChange={(event) => setText(event.target.value)}
+                onKeyDown={handleKeyDown}
                 />
             </form>
         </div>

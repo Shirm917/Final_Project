@@ -9,7 +9,6 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  /* color: white; */
 }
 
 .homeTitle {
@@ -44,7 +43,7 @@ body {
 .chatForm .textfield {
   flex-grow: 1;
   margin-left: 200px;
-  z-index: 2;
+  background-color: white;
 }
 
 .bodyContainer {

@@ -41,6 +41,12 @@ const ChatInput = () => {
     postMessage();
   };
 
+  const handleKeyDown = (event) => {
+    if (!event.shiftKey && event.key === "Enter") {
+      event.preventDefault();
+      handleSubmit(event);
+    }
+  }
 
   return (
     !showChat ? ""
@@ -50,10 +56,11 @@ const ChatInput = () => {
       className="textfield" 
       id="outlined-multiline-flexible" 
       value={text} 
-      onChange={(event) => setText(event.target.value)} 
-      multiline
       autoComplete="off"
+      multiline
       InputProps={{endAdornment: <button className="btn">Send</button>}} 
+      onChange={(event) => setText(event.target.value)} 
+      onKeyDown={handleKeyDown}
       />
     </form>
   );
