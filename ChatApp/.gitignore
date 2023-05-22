@@ -26,3 +26,4 @@ package-lock.json
 /client/npm-debug.log*
 /client/yarn-debug.log*
 /client/yarn-error.log*
+*.sql
