@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import { socket } from "./utils/socket";
 import axios from "axios";
 import Home from "./pages/Home/Home";
-import ChatNavbar from "./Nav/ChatNavbar";
-import Navbar from "./Nav/Navbar";
+import ChatNavbar from "./nav/ChatNavbar";
+import Navbar from "./nav/Navbar";
 import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import Protected from "./components/Protected";
 import { useBeforeunload } from "react-beforeunload";
@@ -48,7 +48,7 @@ function App() {
   useBeforeunload((event) => {
     if (fromUserId) {
       event.preventDefault();
-      const test = async () => {
+      const logout = async () => {
         const dateNow = new Date();
         await axios.put("/logout", {
           timestamp: dateNow.toUTCString(),
@@ -57,7 +57,7 @@ function App() {
         setIsLoggedIn(false);
         reset();
       };
-      test();
+      logout();
     }
   }, []);
 
