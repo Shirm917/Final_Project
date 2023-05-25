@@ -1,12 +1,10 @@
-// if props.title === "Register" we do the posts here to send the user and pass to the db, set msg to an empty string and navigate to login, if there's an error then in the catch set the msg to an err which will be sent from the backend
-// else when we login we post and send the user and pass we just put in in the body. we then check in the back end if the user and pass are right if yes we naviagte to chat and set msg back to an empty string if not we send the msg and we set msg to the err 
 import {useState,useContext, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import { AppContext } from "../../App";
 import axios from "axios";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import FormInput from "./FormInput";
 
 const LoginRegister = (props) => {
     const {title} = props;
@@ -25,7 +23,7 @@ const LoginRegister = (props) => {
         if (title === "Register") {
             try {
                 if (username && password) {
-                    const response = await axios.post("/register", 
+                    const response = await axios.post("/register",
                     {
                         username,
                         password
@@ -38,7 +36,7 @@ const LoginRegister = (props) => {
             }
         } else {
             try {
-                const response = await axios.post("/login", 
+                const response = await axios.post("/login",
                 {
                     username,
                     password
@@ -68,22 +66,17 @@ const LoginRegister = (props) => {
         <div>
             <h1 className="lrTitle">{title}</h1>
             <Box component="form" sx={{display: "flex", flexDirection: "column", margin: "0 auto", width: "50%"}} noValidate autoComplete="off">
-                <TextField
-                    sx={{m:1}}
+                <FormInput
                     id="username"
+                    type="text"
                     label="Enter Username"
-                    variant="outlined"
-                    required
-                    onChange={(event) => setUsername(event.target.value)}
+                    setValue={setUsername}
                 />
-                <TextField
-                    sx={{m:1}}
+                <FormInput
                     id="password"
                     type="password"
                     label="Enter Password"
-                    variant="outlined"
-                    required
-                    onChange={(event) => setPassword(event.target.value)}
+                    setValue={setPassword}
                 />
                 <Button variant="contained" onClick={handleClick}>{title}</Button>
             </Box>
