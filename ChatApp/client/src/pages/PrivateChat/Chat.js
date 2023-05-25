@@ -7,7 +7,7 @@ import ChatInput from "./ChatInput";
 
 const Chat = () => {
     const {isLoggedIn,fromUserId} = useContext(AppContext);
-    
+
     useEffect(() => {
         if (isLoggedIn) {
             socket.auth = {fromUserId}

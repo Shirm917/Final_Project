@@ -1,25 +1,22 @@
 import JoinRoom from "./JoinRoom";
 import GroupLog from "./GroupLog";
 import Notifications from "../../components/Notifications";
-import Drawer from '@mui/material/Drawer';
-import Divider from '@mui/material/Divider';
+import Divider from "@mui/material/Divider";
+import ResponsiveDrawer from "../../components/ResponsiveDrawer";
 import "./GroupSidebar.css";
 
 const GroupSidebar = () => {
-    return (
-        <Drawer anchor="left"  variant="permanent" sx={{
-            width: 200,
-            flexShrink: 0, 
-            zIndex: 0, 
-            [`& .MuiDrawer-paper`]: { width: 200, boxSizing: 'border-box', marginTop: 8 }
-            }}>
-            <JoinRoom/>
-            <Divider/>
-            <GroupLog/>
-            <Divider/>
-            <Notifications/>
-        </Drawer>
-    )
-}
+  const drawer = (
+    <>
+      <JoinRoom />
+      <Divider />
+      <GroupLog />
+      <Divider />
+      <Notifications />
+    </>
+  );
+
+  return <ResponsiveDrawer drawer={drawer} />;
+};
 
 export default GroupSidebar;

@@ -1,41 +1,41 @@
-import {useState} from "react";
+import { useState } from "react";
 import Chat from "../pages/PrivateChat/Chat";
 import GroupChat from "../pages/GroupChat/GroupChat";
-import Box from '@mui/material/Box';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import Box from "@mui/material/Box";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 import "./Navbar.css";
 
 const ChatNavbar = () => {
-    const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex, setTabIndex] = useState(0);
 
-    const handleTabChange = (event,newTabIndex) => {
-        setTabIndex(newTabIndex);
-    };
+  const handleTabChange = (event, newTabIndex) => {
+    setTabIndex(newTabIndex);
+  };
 
-    return (
-        <Box className="chatContainer">
-            <Box className="chatTitles">
-                <Tabs value={tabIndex} onChange={handleTabChange} centered>
-                    <Tab label="Private Chat" />
-                    <Tab label="Group Chat" />
-                </Tabs>
-            </Box>
+  return (
+    <Box className="chatContainer">
+      <Box className="chatTitles">
+        <Tabs value={tabIndex} onChange={handleTabChange} centered>
+          <Tab label="Private Chat" />
+          <Tab label="Group Chat" />
+        </Tabs>
+      </Box>
 
-            <Box className="chats" sx={{ padding: 2 }}>
-                {tabIndex === 0 && (
-                    <Box>
-                        <Chat/>
-                    </Box>
-                )}
-                {tabIndex === 1 && (
-                    <Box>
-                        <GroupChat/>
-                    </Box>
-                )}
-            </Box>
-        </Box>
-    )
+      <Box className="chats" sx={{ padding: 2 }}>
+        {tabIndex === 0 && (
+          <Box>
+            <Chat />
+          </Box>
+        )}
+        {tabIndex === 1 && (
+          <Box>
+            <GroupChat />
+          </Box>
+        )}
+      </Box>
+    </Box>
+  );
 };
 
 export default ChatNavbar;

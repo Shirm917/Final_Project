@@ -26,6 +26,7 @@ function App() {
   const [roomMsgs, setRoomMsgs] = useState([]);
   const [notifs, setNotifs] = useState([]);
   const [search, setSearch] = useState("");
+  const [mobileOpen, setMobileOpen] = useState(false);
   const messagesEnd = useRef(null);
 
   const reset = () => {
@@ -91,6 +92,8 @@ function App() {
         search,
         setSearch,
         reset,
+        mobileOpen,
+        setMobileOpen,
         messagesEnd,
         scroll
       }}

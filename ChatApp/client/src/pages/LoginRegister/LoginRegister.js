@@ -48,6 +48,7 @@ const LoginRegister = (props) => {
                 setIsLoggedIn(true);
                 navigate("/chat");
             } catch (err) {
+                console.log(err);
                 setUserMsg(err.response.data.msg);
             }
         }

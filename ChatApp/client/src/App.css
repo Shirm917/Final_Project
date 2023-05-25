@@ -42,7 +42,7 @@ body {
 
 .chatForm .textfield {
   flex-grow: 1;
-  margin-left: 200px;
+  /* margin-left: 200px; */
   background-color: white;
 }
 
@@ -50,6 +50,9 @@ body {
   overflow: auto;
   height: 80%;
   overflow-x: hidden;
+  width: 100%;
+  display: flex;
+  /* justify-content: flex-end; */
 }
 
 /* ---- Messages ---- */
@@ -57,7 +60,10 @@ body {
 .messagesContainer {
   display: flex;
   flex-direction: column;
-  width: 60vw;
+  align-items: flex-end;
+  margin-right: 20px;
+  width: 60%;
+  overflow: auto;
 }
 
 .fromId,
@@ -113,9 +119,11 @@ body {
 }
 
 /* Media Queries */
-@media only screen and (max-width: 500px) {
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
   .notifTitle {
-    visibility: hidden;
+    /* visibility: hidden; */
   }
 
   .formInput label {
@@ -123,6 +131,12 @@ body {
   }
 }
 
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .messagesContainer {
     width: 70vw;
@@ -130,6 +144,7 @@ body {
   }
 }
 
+/* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   .messagesContainer {
     position: relative;
@@ -140,5 +155,11 @@ body {
     padding: 0 200px 200px;
   }
 }
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
+
 
 

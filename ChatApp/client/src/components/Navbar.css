@@ -36,8 +36,14 @@
 }
 
 .chatTitles {
-  margin-left: 300px;
+    text-align: center;
+  /* margin-left: 30px; */
   margin-top: 65px;
+}
+
+.tabLabel {
+    text-align: center;
+  font-size: 15px;
 }
 
 .chats {
