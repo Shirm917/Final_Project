@@ -1,31 +1,47 @@
 /* ---- Navbar ---- */
 .bar {
-    z-index: 1;
+  z-index: 1;
 }
 
 .toolbar {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .link {
-    color: black;
-    text-decoration: none;
+  text-decoration: none;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.page {
+  color: #000;
 }
 
 /* ---- Nav Tabs and Chats Page ---- */
 .chatContainer {
-    height: 90vh;
-    width: 90vw;
+  height: 90vh;
+  width: 90vw;
 }
 
 .chatTitles {
-    margin-left: 300px;
-    margin-top: 65px;
+  margin-left: 300px;
+  margin-top: 65px;
 }
 
 .chats {
-    overflow: auto;
-    height: 75%;
-    margin-right: -200px;
+  overflow: auto;
+  height: 75%;
+  margin-right: -200px;
 }
