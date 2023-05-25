@@ -70,12 +70,14 @@ const LoginRegister = (props) => {
                     id="username"
                     type="text"
                     label="Enter Username"
+                    value={username}
                     setValue={setUsername}
                 />
                 <FormInput
                     id="password"
                     type="password"
                     label="Enter Password"
+                    value={password}
                     setValue={setPassword}
                 />
                 <Button variant="contained" onClick={handleClick}>{title}</Button>

@@ -54,7 +54,7 @@ body {
 
 /* ---- Messages ---- */
 
-.messagesContainer { 
+.messagesContainer {
   display: flex;
   flex-direction: column;
   width: 60vw;
@@ -113,9 +113,26 @@ body {
 }
 
 /* Media Queries */
+@media only screen and (max-width: 500px) {
+  .notifTitle {
+    visibility: hidden;
+  }
+
+  .formInput label {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .messagesContainer {
+    width: 70vw;
+    margin-left: -40px;
+  }
+}
+
 @media only screen and (min-width: 992px) {
   .messagesContainer {
-    position: relative; 
+    position: relative;
     margin: 0 auto;
     width: 150%;
     margin-left: -40px;
@@ -124,15 +141,4 @@ body {
   }
 }
 
-@media only screen and (min-width: 768px) {
-  .messagesContainer { 
-    width: 70vw;
-    margin-left: -40px;
-  }
-}
 
-@media only screen and (max-width: 500px) {
-  .notifTitle {
-    visibility: hidden;
-  }
-}
