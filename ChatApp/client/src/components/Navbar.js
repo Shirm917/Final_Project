@@ -10,41 +10,21 @@ import IconButton from "@mui/material/IconButton";
 import ChatIcon from "@mui/icons-material/Chat";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import "./Navbar.css";
-
-const pages = [
-  { id: 1, name: "Chat", toLink: "/chat", onClick: null },
-  { id: 2, name: "Register", toLink: "/register", onClick: "chatMsg" },
-  { id: 3, name: "Login", toLink: "/login", onClick: "chatMsg" },
-  { id: 4, name: "Logout", toLink: null, onClick: "logout" },
-];
 
 const Navbar = () => {
   const { fromUserId, setFromUserId, setIsLoggedIn, reset, setUserMsg } =
     useContext(AppContext);
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
   const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   const logout = async () => {
@@ -64,6 +44,13 @@ const Navbar = () => {
   const chatMsg = () => {
     setUserMsg("");
   };
+
+  const pages = [
+    { id: 1, name: "Chat", toLink: "/chat", onClick: null },
+    { id: 2, name: "Register", toLink: "/register", onClick: chatMsg },
+    { id: 3, name: "Login", toLink: "/login", onClick: chatMsg },
+    { id: 4, name: "Logout", toLink: null, onClick: logout },
+  ];
 
   return (
     <Box>
@@ -98,7 +85,7 @@ const Navbar = () => {
             {pages.map((page) => (
               <NavLink
                 key={page.id}
-                className="link page"
+                className="link bigPage"
                 to={page.toLink}
                 onClick={page.onClick}
                 sx={{ my: 2, display: "block" }}
@@ -145,7 +132,7 @@ const Navbar = () => {
                 {pages.map((page) => (
                   <MenuItem key={page.id} onClick={handleCloseNavMenu}>
                     <NavLink
-                      className="link page"
+                      className="link smallPage"
                       to={page.toLink}
                       onClick={page.onClick}
                     >

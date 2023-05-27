@@ -6,6 +6,7 @@
 .toolbar {
   display: flex;
   justify-content: space-between;
+  background-color: #1a237e;
 }
 
 .link {
@@ -25,8 +26,12 @@
   transform: translate(-50%, -50%);
 }
 
-.page {
-  color: #000;
+.smallPage {
+  color: #212121;
+}
+
+.bigPage {
+  color: #f5f5f5;
 }
 
 /* ---- Nav Tabs and Chats Page ---- */
