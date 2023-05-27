@@ -7,18 +7,25 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   background-color: #f5f5f5;
+  margin-top: 2px;
 }
 
-.chatIcon {
-  margin-top: 30vh;
+.chatIcon,
+.aboutText {
+  color: #424242;
 }
 
 .homeTitle {
-  /* margin-top: 30vh; */
-  font-size: 100px;
+  font-size: 60px;
   color: #1a237e;
+}
+
+.aboutText {
+  font-size: 15px;
+  text-align: center;
 }
 
 /* ---- Login Register ---- */
