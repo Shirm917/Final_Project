@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { AppContext } from "../App";
+import { AppContext } from "../contexts/AppContext";
 import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
