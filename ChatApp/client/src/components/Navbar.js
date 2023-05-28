@@ -41,14 +41,14 @@ const Navbar = () => {
     } catch (err) {}
   };
 
-  const chatMsg = () => {
+  const resetUserMsg = () => {
     setUserMsg("");
   };
 
   const pages = [
     { id: 1, name: "Chat", toLink: "/chat", onClick: null },
-    { id: 2, name: "Register", toLink: "/register", onClick: chatMsg },
-    { id: 3, name: "Login", toLink: "/login", onClick: chatMsg },
+    { id: 2, name: "Register", toLink: "/register", onClick: resetUserMsg },
+    { id: 3, name: "Login", toLink: "/login", onClick: resetUserMsg },
     { id: 4, name: "Logout", toLink: null, onClick: logout },
   ];
 

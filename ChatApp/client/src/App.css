@@ -28,6 +28,10 @@ body {
   text-align: center;
 }
 
+.loginRegButtons {
+  margin-top: 10px
+}
+
 /* ---- Login Register ---- */
 .lrTitle {
   margin-top: 30vh;
