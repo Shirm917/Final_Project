@@ -1,5 +1,5 @@
 body {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 /* Home */
@@ -14,23 +14,35 @@ body {
 }
 
 .chatIcon,
-.aboutText {
+.aboutText,
+.explanationTitle {
   color: #424242;
 }
 
 .homeTitle {
   font-size: 60px;
+}
+
+.homeTitle,
+.explanationPara {
   color: #1a237e;
 }
 
 .aboutText {
   font-size: 15px;
+}
+
+.aboutText,
+.explanationTitle,
+.explanationPara {
   text-align: center;
 }
 
-.loginRegButtons {
-  margin-top: 10px
+.loginRegButtons,
+.explanationContainer {
+  margin-top: 10px;
 }
+
 
 /* ---- Login Register ---- */
 .lrTitle {
@@ -149,7 +161,6 @@ body {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -174,8 +185,4 @@ body {
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-
 }
-
-
-
