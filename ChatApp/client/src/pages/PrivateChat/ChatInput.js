@@ -1,6 +1,6 @@
 import {useState,useEffect,useContext} from "react";
 import {socket} from "../../utils/socket";
-import { AppContext } from "../../App";
+import { AppContext } from "../../contexts/AppContext";
 import axios from "axios";
 import TextField from '@mui/material/TextField';
 
@@ -52,14 +52,14 @@ const ChatInput = () => {
     !showChat ? ""
     :
     <form className="chatForm" onSubmit={handleSubmit}>
-      <TextField 
-      className="textfield" 
-      id="outlined-multiline-flexible" 
-      value={text} 
+      <TextField
+      className="textfield"
+      id="outlined-multiline-flexible"
+      value={text}
       autoComplete="off"
       multiline
-      InputProps={{endAdornment: <button className="btn">Send</button>}} 
-      onChange={(event) => setText(event.target.value)} 
+      InputProps={{endAdornment: <button className="btn">Send</button>}}
+      onChange={(event) => setText(event.target.value)}
       onKeyDown={handleKeyDown}
       />
     </form>

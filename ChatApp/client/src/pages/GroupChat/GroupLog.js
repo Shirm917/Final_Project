@@ -1,6 +1,6 @@
 import {useEffect,useContext} from "react";
 import { socket } from "../../utils/socket";
-import { AppContext } from "../../App";
+import { AppContext } from "../../contexts/AppContext";
 
 const GroupLog = () => {
     const {roomMsgs,setRoomMsgs,prevRoomName} = useContext(AppContext);
@@ -14,7 +14,7 @@ const GroupLog = () => {
             socket.off("roomMsg");
         };
     },[socket,roomMsgs])
-    
+
     return (
         <div className="groupContainer">
             <div className="groupTitles">
@@ -28,7 +28,7 @@ const GroupLog = () => {
             <div className="groupLog">
                 <ul>
                     {
-                        !roomMsgs || roomMsgs.length === 0 ? null 
+                        !roomMsgs || roomMsgs.length === 0 ? null
                         :
                         roomMsgs.map((message,index) => {
                             return (

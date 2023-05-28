@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AppContext } from "../App";
+import { AppContext } from "../contexts/AppContext";
 import IconButton from "@mui/material/IconButton";
 import ViewSidebarIcon from "@mui/icons-material/ViewSidebar";
 

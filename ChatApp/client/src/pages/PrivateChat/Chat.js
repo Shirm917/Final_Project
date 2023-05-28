@@ -1,6 +1,6 @@
 import { useEffect,useContext } from "react";
 import {socket} from "../../utils/socket";
-import { AppContext } from "../../App";
+import { AppContext } from "../../contexts/AppContext";
 import ChatSidebar from "./ChatSidebar";
 import ChatBody from "./ChatBody";
 import ChatInput from "./ChatInput";

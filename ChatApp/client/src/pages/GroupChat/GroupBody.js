@@ -1,6 +1,6 @@
 import {useEffect,useContext} from "react";
 import { socket } from "../../utils/socket";
-import { AppContext } from "../../App";
+import { AppContext } from "../../contexts/AppContext";
 
 const GroupBody = () => {
     const {groupEmitMessages,setGroupEmitMessages,fromUserId,messagesEnd,scroll} = useContext(AppContext);

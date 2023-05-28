@@ -1,8 +1,7 @@
 import {useContext} from "react";
 import {socket} from "../../utils/socket";
-import { AppContext } from "../../App";
+import { AppContext } from "../../contexts/AppContext";
 import TextField from '@mui/material/TextField';
-
 
 const JoinRoom  = () => {
     const {setGroupEmitMessages,roomName,setRoomName,setRoomMsgs,prevRoomName,setPrevRoomName,fromUsername} = useContext(AppContext);
@@ -34,13 +33,13 @@ const JoinRoom  = () => {
         <div>
             <form id="joinForm" onSubmit={submitRoomName}>
                 <TextField
-                 id="filled-error-helper-text" 
-                 label="Room Name" 
-                 variant="filled" 
+                 id="filled-error-helper-text"
+                 label="Room Name"
+                 variant="filled"
                  helperText="Room Name can't start with a number"
-                 size="small" 
+                 size="small"
                  onChange={handleChange}
-                 InputProps={{endAdornment: <button className="btn">Join</button>}} 
+                 InputProps={{endAdornment: <button className="btn">Join</button>}}
                  />
             </form>
         </div>

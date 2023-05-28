@@ -1,6 +1,6 @@
 import {useState,useContext, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import { AppContext } from "../../App";
+import { AppContext } from "../../contexts/AppContext";
 import axios from "axios";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";

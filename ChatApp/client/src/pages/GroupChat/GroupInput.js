@@ -1,5 +1,5 @@
 import {useState,useContext} from "react";
-import { AppContext } from "../../App";
+import { AppContext } from "../../contexts/AppContext";
 import { socket } from "../../utils/socket";
 import TextField from '@mui/material/TextField';
 
@@ -25,13 +25,13 @@ const GroupInput = () => {
     return (
         <div>
             <form className="chatForm" onSubmit={sendMessage}>
-                <TextField 
-                className="textfield" 
-                id="outlined-multiline-flexible" 
-                value={text}  
+                <TextField
+                className="textfield"
+                id="outlined-multiline-flexible"
+                value={text}
                 multiline
                 autoComplete="off"
-                InputProps={{endAdornment: <button className="btn">Send</button>}} 
+                InputProps={{endAdornment: <button className="btn">Send</button>}}
                 onChange={(event) => setText(event.target.value)}
                 onKeyDown={handleKeyDown}
                 />

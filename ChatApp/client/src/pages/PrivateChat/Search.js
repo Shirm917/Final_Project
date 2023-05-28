@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AppContext } from "../../App";
+import { AppContext } from "../../contexts/AppContext";
 import TextField from '@mui/material/TextField';
 
 const Search = () => {

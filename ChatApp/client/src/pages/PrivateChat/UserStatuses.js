@@ -1,5 +1,5 @@
 import {useState,useEffect,useContext} from "react";
-import { AppContext } from "../../App";
+import { AppContext } from "../../contexts/AppContext";
 import axios from "axios";
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
@@ -14,7 +14,7 @@ const UserStatuses = () => {
     const [userStatuses,setUserStatuses] = useState([]);
     const [notifs,setNotifs] = useState([]);
 
-    
+
     const getUserStatuses = async() => {
         try {
             const response = await axios.get(`/userStatuses/${fromUserId}`);
@@ -78,8 +78,8 @@ const UserStatuses = () => {
                             <ListItemText>{notifNum.length === 0 ? "" : <Badge badgeContent={notifNum.length} color="success"></Badge>}</ListItemText>
                                 <ListItemText primary={user.username} />
                                 {
-                                !user.online_status ? 
-                                <CircleIcon style={{color: "transparent"}}/> 
+                                !user.online_status ?
+                                <CircleIcon style={{color: "transparent"}}/>
                                 :
                                 <CircleIcon style={{color: "#b9f6ca"}}/>
                                 }
