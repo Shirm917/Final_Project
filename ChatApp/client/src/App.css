@@ -14,22 +14,19 @@ body {
 }
 
 .chatIcon,
-.aboutText,
 .explanationTitle {
   color: #424242;
 }
 
 .homeTitle {
   font-size: 60px;
+  margin-top: -10px;
+  margin-bottom: 20px;
 }
 
 .homeTitle,
 .explanationPara {
   color: #1a237e;
-}
-
-.aboutText {
-  font-size: 15px;
 }
 
 .aboutText,
@@ -42,7 +39,6 @@ body {
 .explanationContainer {
   margin-top: 10px;
 }
-
 
 /* ---- Login Register ---- */
 .lrTitle {

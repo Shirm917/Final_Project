@@ -16,10 +16,11 @@ const Explanation = () => {
         className="explanationPara"
         sx={{ display: visible ? "block" : "none", fontSize: "15px" }}
       >
-        In Chat Click Private Chat Tab To Chat Privately With Friends and Click
-        Group Chat Tab And Enter Any Text To Join A Room and Chat With People
-        Who Joined The Same Room. Rooms Are Temporary So Once You Join Another
-        Or Logout, The Messages Will Disappear.
+        A Chat App With Private Messaging and Temporary Group Messaging. In Chat
+        Click Private Chat Tab To Chat Privately With Friends and Click Group
+        Chat Tab And Enter Any Text To Join A Room and Chat With People Who
+        Joined The Same Room. Rooms Are Temporary So Once You Join Another Or
+        Logout, The Messages Will Disappear.
       </Typography>
     </section>
   );
