@@ -2,19 +2,19 @@ import { useState } from "react";
 import Typography from "@mui/material/Typography";
 
 const Explanation = () => {
-  const [visible, setVisible] = useState(false);
-  return (
+    const [visible, setVisible] = useState(false);
+    return (
     <section className="explanationContainer">
       <Typography
         className="explanationTitle"
-        sx={{ fontSize: "20px" }}
+        sx={{ fontSize: "18px" }}
         onClick={() => setVisible(!visible)}
       >
         Learn More
       </Typography>
       <Typography
         className="explanationPara"
-        sx={{ display: visible ? "block" : "none", fontSize: "15px" }}
+        sx={{ display: visible ? "block" : "none", fontSize: "14px" }}
       >
         A Chat App With Private Messaging and Temporary Group Messaging. In Chat
         Click Private Chat Tab To Chat Privately With Friends and Click Group

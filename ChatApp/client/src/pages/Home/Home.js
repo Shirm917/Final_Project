@@ -1,14 +1,21 @@
 import ChatIcon from "@mui/icons-material/Chat";
 import Buttons from "./Buttons";
 import Explanation from "./Explanation";
+import Typography from "@mui/material/Typography";
 
 const Home = () => {
   return (
     <section className="homeContainer">
-      <ChatIcon className="chatIcon" sx={{ width: 100, height: 100 }} />
-      <h1 className="homeTitle">Chat App</h1>
-      <Buttons />
-      <Explanation/>
+      <div className="innerContainer">
+        <ChatIcon className="chatIcon" sx={{ width: 90, height: 190 }} />
+        <Typography sx={{ fontSize: "60px" }} className="homeTitle">
+          Chat App
+        </Typography>
+      </div>
+      <div>
+        <Buttons />
+        <Explanation />
+      </div>
     </section>
   );
 };
