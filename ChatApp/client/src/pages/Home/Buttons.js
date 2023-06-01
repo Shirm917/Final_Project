@@ -23,7 +23,7 @@ const Buttons = () => {
   };
 
   return (
-    <section className="loginRegButtons">
+    <section className="loginRegBtns">
       <Button sx={{backgroundColor: "#1a237e", marginRight: "2%", width: "48%"}} variant="contained" onClick={register}>
         Register
       </Button>

@@ -7,15 +7,13 @@ const Home = () => {
   return (
     <section className="homeContainer">
       <div className="innerContainer">
-        <ChatIcon className="chatIcon" sx={{ width: 90, height: 190 }} />
+        <ChatIcon className="chatIcon" sx={{ width: 90, height: 90 }} />
         <Typography sx={{ fontSize: "60px" }} className="homeTitle">
           Chat App
         </Typography>
       </div>
-      <div>
         <Buttons />
         <Explanation />
-      </div>
     </section>
   );
 };

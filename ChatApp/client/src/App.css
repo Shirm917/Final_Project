@@ -34,11 +34,6 @@ body {
   text-align: center;
 }
 
-.loginRegButtons,
-.explanationContainer {
-  margin-top: 10px;
-}
-
 /* ---- Login Register ---- */
 .lrTitle {
   margin-top: 30vh;
