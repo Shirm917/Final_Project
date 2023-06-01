@@ -23,16 +23,8 @@ const ChatNavbar = () => {
       </Box>
 
       <Box className="chats" sx={{ padding: 2 }}>
-        {tabIndex === 0 && (
-          <Box>
-            <Chat />
-          </Box>
-        )}
-        {tabIndex === 1 && (
-          <Box>
-            <GroupChat />
-          </Box>
-        )}
+        {tabIndex === 0 && <Chat />}
+        {tabIndex === 1 && <GroupChat />}
       </Box>
     </Box>
   );

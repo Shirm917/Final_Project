@@ -53,8 +53,8 @@ const Navbar = () => {
   ];
 
   return (
-    <Box>
-      <AppBar position="fixed" className="bar">
+    <>
+      <AppBar className="appbar" position="fixed">
         <Toolbar className="toolbar">
           <NavLink to="/" className="link titleContainer">
             <IconButton
@@ -156,7 +156,8 @@ const Navbar = () => {
           </Box>
         </Toolbar>
       </AppBar>
-    </Box>
+      <Toolbar />
+    </>
   );
 };
 
