@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { AppContextProvider } from "./contexts/AppContext";
 import Home from "./pages/Home/Home";
-import ChatNavbar from "./components/ChatNavbar";
-import Navbar from "./components/Navbar";
+import ChatNavbar from "./nav/ChatNavbar";
+import Navbar from "./nav/Navbar";
 import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import Protected from "./components/Protected";
 import "./App.css";
