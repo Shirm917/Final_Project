@@ -4,10 +4,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import ChatIcon from "@mui/icons-material/Chat";
 
-
-const NavbarLarge = () => {
-    const navigate = useNavigate();
-
+const NavbarLarge = ({ pages }) => {
   return (
     <Box>
       <NavLink to="/" className="link titleContainer">

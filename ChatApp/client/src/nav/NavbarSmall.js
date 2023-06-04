@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -7,10 +8,16 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-const SmallNavbar = (props) => {
-    const {} = props;
+const NavbarSmall = ({ pages }) => {
+  const [anchorElNav, setAnchorElNav] = useState(null);
 
-  const navigate = useNavigate();
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
 
   return (
     <Box
@@ -70,4 +77,4 @@ const SmallNavbar = (props) => {
   );
 };
 
-export default SmallNavbar;
+export default NavbarSmall;

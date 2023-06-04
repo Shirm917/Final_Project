@@ -1,23 +1,18 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AppContext } from "../contexts/AppContext";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
+import NavbarSmall from "./NavbarSmall";
+import NavbarLarge from "./NavbarLarge";
 import "./Navbar.css";
 
 const Navbar = () => {
   const { fromUserId, setFromUserId, setIsLoggedIn, reset, setUserMsg } =
     useContext(AppContext);
-  const [anchorElNav, setAnchorElNav] = useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  const navigate = useNavigate();
 
   const logout = async () => {
     try {
@@ -37,10 +32,20 @@ const Navbar = () => {
     setUserMsg("");
   };
 
+  const pages = [
+    { id: 1, name: "Chat", toLink: "/chat", onClick: null },
+    { id: 2, name: "Register", toLink: "/register", onClick: resetUserMsg },
+    { id: 3, name: "Login", toLink: "/login", onClick: resetUserMsg },
+    { id: 4, name: "Logout", toLink: null, onClick: logout },
+  ];
+
   return (
     <>
       <AppBar className="appbar" position="fixed">
-        <Toolbar className="toolbar"></Toolbar>
+        <Toolbar className="toolbar">
+          <NavbarSmall pages={pages} />
+          <NavbarLarge pages={pages} />
+        </Toolbar>
       </AppBar>
       <Toolbar />
     </>
