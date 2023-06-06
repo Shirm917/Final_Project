@@ -4,7 +4,7 @@ import { AppContext } from "../../contexts/AppContext";
 import axios from "axios";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import FormInput from "./FormInput";
+import FormInput from "./pageComponents/FormInput";
 
 const LoginRegister = (props) => {
     const {title} = props;

@@ -1,6 +1,6 @@
-import GroupSidebar from "./GroupSidebar";
-import GroupBody from "./GroupBody";
-import GroupInput from "./GroupInput";
+import GroupSidebar from "./pageComponents/GroupSidebar"
+import GroupBody from "./pageComponents/GroupBody";
+import GroupInput from "./pageComponents/GroupInput";
 
 const GroupChat = () => {
     return (

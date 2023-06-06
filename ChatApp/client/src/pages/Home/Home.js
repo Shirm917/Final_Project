@@ -1,6 +1,6 @@
 import ChatIcon from "@mui/icons-material/Chat";
-import Buttons from "./Buttons";
-import Explanation from "./Explanation";
+import Buttons from "./pageComponents/Buttons";
+import Explanation from "./pageComponents/Explanation";
 import Typography from "@mui/material/Typography";
 
 const Home = () => {
