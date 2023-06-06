@@ -1,8 +1,8 @@
 import JoinRoom from "./JoinRoom";
 import GroupLog from "./GroupLog";
-import Notifications from "../../components/Notifications";
+import Notifications from "../../../components/Notifications";
 import Divider from "@mui/material/Divider";
-import ResponsiveDrawer from "../../components/ResponsiveDrawer";
+import ResponsiveDrawer from "../../../components/ResponsiveDrawer";
 import "./GroupSidebar.css";
 
 const GroupSidebar = () => {

@@ -1,6 +1,6 @@
 import {useEffect,useContext} from "react";
-import { socket } from "../../utils/socket";
-import { AppContext } from "../../contexts/AppContext";
+import { socket } from "../../../utils/socket";
+import { AppContext } from "../../../contexts/AppContext";
 
 const GroupLog = () => {
     const {roomMsgs,setRoomMsgs,prevRoomName} = useContext(AppContext);

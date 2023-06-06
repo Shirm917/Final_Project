@@ -1,6 +1,6 @@
 import { useState,useEffect,useContext } from "react"
-import { AppContext } from "../../contexts/AppContext";
-import { socket } from "../../utils/socket";
+import { AppContext } from "../../../contexts/AppContext";
+import { socket } from "../../../utils/socket";
 import axios from "axios";
 
 const ChatBody = () => {

@@ -1,6 +1,6 @@
 import {useState,useContext} from "react";
-import { AppContext } from "../../contexts/AppContext";
-import { socket } from "../../utils/socket";
+import { AppContext } from "../../../contexts/AppContext";
+import { socket } from "../../../utils/socket";
 import TextField from '@mui/material/TextField';
 
 const GroupInput = () => {
