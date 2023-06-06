@@ -6,7 +6,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 
 const NavbarLarge = ({ pages }) => {
   return (
-    <Box>
+    <>
       <NavLink to="/" className="link titleContainer">
         <IconButton
           size="large"
@@ -45,7 +45,7 @@ const NavbarLarge = ({ pages }) => {
           </NavLink>
         ))}
       </Box>
-    </Box>
+    </>
   );
 };
 

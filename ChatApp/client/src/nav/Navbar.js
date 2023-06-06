@@ -9,8 +9,14 @@ import NavbarLarge from "./NavbarLarge";
 import "./Navbar.css";
 
 const Navbar = () => {
-  const { fromUserId, setFromUserId, setIsLoggedIn, reset, setUserMsg } =
-    useContext(AppContext);
+  const {
+    fromUserId,
+    setFromUserId,
+    isLoggedIn,
+    setIsLoggedIn,
+    reset,
+    setUserMsg,
+  } = useContext(AppContext);
 
   const navigate = useNavigate();
 
@@ -36,12 +42,15 @@ const Navbar = () => {
     { id: 1, name: "Chat", toLink: "/chat", onClick: null },
     { id: 2, name: "Register", toLink: "/register", onClick: resetUserMsg },
     { id: 3, name: "Login", toLink: "/login", onClick: resetUserMsg },
-    { id: 4, name: "Logout", toLink: null, onClick: logout },
   ];
+
+  if (isLoggedIn) {
+    pages.push({ id: 4, name: "Logout", toLink: null, onClick: logout });
+  };
 
   return (
     <>
-      <AppBar className="appbar" position="fixed">
+      <AppBar className="appBar" position="fixed">
         <Toolbar className="toolbar">
           <NavbarSmall pages={pages} />
           <NavbarLarge pages={pages} />
