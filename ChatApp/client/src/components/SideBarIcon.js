@@ -2,24 +2,32 @@ import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 import IconButton from "@mui/material/IconButton";
 import ViewSidebarIcon from "@mui/icons-material/ViewSidebar";
+import Badge from "@mui/material/Badge";
 
 const SideBarIcon = () => {
-  const { mobileOpen, setMobileOpen } = useContext(AppContext);
+  const { mobileOpen, setMobileOpen, badgeNotifs } = useContext(AppContext);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   return (
-    <IconButton
-      color="inherit"
-      aria-label="open drawer"
-      edge="start"
-      onClick={handleDrawerToggle}
-      sx={{ mr: 2, display: { sm: "none" }, position: "absolute", top: "50%" }}
-    >
-      <ViewSidebarIcon />
-    </IconButton>
+    !mobileOpen && (
+      <Badge
+        badgeContent={badgeNotifs.length}
+        color="success"
+        sx={{ ml: 2, display: { sm: "none" }, position: "absolute", top: "50%" }}
+      >
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          edge="start"
+          onClick={handleDrawerToggle}
+        >
+          <ViewSidebarIcon />
+        </IconButton>
+      </Badge>
+    )
   );
 };
 
