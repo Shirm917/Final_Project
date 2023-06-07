@@ -3,6 +3,6 @@ import { getNotifs } from "../controllers/message_notif.js";
 
 const router = express.Router();
 
-router.get("/notifs/:fromUserId", getNotifs);
+router.get("/messageNotifs/:fromUserId", getNotifs);
 
 export default router;

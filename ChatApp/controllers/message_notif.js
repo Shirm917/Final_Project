@@ -7,12 +7,12 @@ export const getNotifs = async(req,res) => {
         .select("last_logged_in")
         .where({user_id: fromUserId});
 
-        const notifs = await db("messages")
+        const messageNotifs = await db("messages")
         .select("from_id")
         .where({to_id: fromUserId})
         .andWhere("timestamp", ">", result[0].last_logged_in);
 
-        res.status(200).json({notifs});
+        res.status(200).json({messageNotifs});
     } catch (err) {
     }
 };
