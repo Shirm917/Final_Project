@@ -1,39 +1,35 @@
-import {useEffect,useContext} from "react";
+import { useEffect, useContext } from "react";
 import { socket } from "../utils/socket";
 import { AppContext } from "../contexts/AppContext";
 const Notifications = () => {
-    const {notifs,setNotifs} = useContext(AppContext);
+  const { messageNotifs, setMessageNotifs } = useContext(AppContext);
 
-    useEffect(() => {
-        socket.on("notif", (notif) => {
-            setNotifs([...notifs,notif]);
-        });
+  useEffect(() => {
+    socket.on("notif", (messageNotif) => {
+      setMessageNotifs([...messageNotifs, messageNotif]);
+    });
 
-        return () => {
-          socket.off("notif");
-        };
-      },[socket,notifs]);
+    return () => {
+      socket.off("notif");
+    };
+  }, [socket, messageNotifs]);
 
-    return (
-        <div className="notifContainer">
-            <div className="notifTitle">
-                <h3>Notifications</h3>
-            </div>
-            <div className="notifs">
-                <ul>
-                {
-                    !notifs || notifs.length === 0 ? null
-                    :
-                    notifs.map((notif,index) => {
-                        return (
-                            <li key={index}>{notif}</li>
-                        )
-                    })
-                }
-                </ul>
-            </div>
-        </div>
-    )
+  return (
+    <div className="notifContainer">
+      <div className="notifTitle">
+        <h3>Notifications</h3>
+      </div>
+      <div className="notifs">
+        <ul>
+          {!messageNotifs || messageNotifs.length === 0
+            ? null
+            : messageNotifs.map((messageNotif, index) => {
+                return <li key={index}>{messageNotif}</li>;
+              })}
+        </ul>
+      </div>
+    </div>
+  );
 };
 
 export default Notifications;

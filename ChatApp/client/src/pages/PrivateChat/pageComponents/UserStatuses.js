@@ -18,9 +18,10 @@ const UserStatuses = () => {
     search,
     userMsg,
     setUserMsg,
+    badgeNotifs,
+    setBadgeNotifs
   } = useContext(AppContext);
   const [userStatuses, setUserStatuses] = useState([]);
-  const [badgeNotifs, setBadgeNotifs] = useState([]);
 
   const getUserStatuses = async () => {
     try {

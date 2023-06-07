@@ -17,7 +17,8 @@ const AppContextProvider = (props) => {
   const [emitMessages, setEmitMessages] = useState([]);
   const [groupEmitMessages, setGroupEmitMessages] = useState([]);
   const [roomMsgs, setRoomMsgs] = useState([]);
-  const [notifs, setNotifs] = useState([]);
+  const [messageNotifs, setMessageNotifs] = useState([]);
+  const [badgeNotifs, setBadgeNotifs] = useState([]);
   const [search, setSearch] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const messagesEnd = useRef(null);
@@ -31,7 +32,7 @@ const AppContextProvider = (props) => {
     setPrevRoomName("");
     setGroupEmitMessages([]);
     setRoomMsgs([]);
-    setNotifs([]);
+    setMessageNotifs([]);
     socket.disconnect();
   };
 
@@ -80,8 +81,10 @@ const AppContextProvider = (props) => {
         setRoomMsgs,
         prevRoomName,
         setPrevRoomName,
-        notifs,
-        setNotifs,
+        messageNotifs,
+        setMessageNotifs,
+        badgeNotifs,
+        setBadgeNotifs,
         search,
         setSearch,
         reset,
