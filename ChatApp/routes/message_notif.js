@@ -1,8 +1,8 @@
 import express from "express";
-import { getNotifs } from "../controllers/message_notif.js";
+import { getBadgeNotifs } from "../controllers/message_notif.js";
 
 const router = express.Router();
 
-router.get("/messageNotifs/:fromUserId", getNotifs);
+router.get("/badgeNotifs/:fromUserId", getBadgeNotifs);
 
 export default router;

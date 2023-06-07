@@ -20,7 +20,7 @@ const UserStatuses = () => {
     setUserMsg,
   } = useContext(AppContext);
   const [userStatuses, setUserStatuses] = useState([]);
-  const [messageNotifs, setMessageNotifs] = useState([]);
+  const [badgeNotifs, setBadgeNotifs] = useState([]);
 
   const getUserStatuses = async () => {
     try {
@@ -39,13 +39,13 @@ const UserStatuses = () => {
   }, []);
 
   useEffect(() => {
-    const getMessageNotifs = async () => {
+    const getBadgeNotifs = async () => {
       try {
-        const response = await axios.get(`/messageNotifs/${fromUserId}`);
-        setMessageNotifs(response.data.messageNotifs);
+        const response = await axios.get(`/badgeNotifs/${fromUserId}`);
+        setBadgeNotifs(response.data.badgeNotifs);
       } catch (err) {}
     };
-    getMessageNotifs();
+    getBadgeNotifs();
   }, []);
 
   useEffect(() => {
@@ -55,10 +55,10 @@ const UserStatuses = () => {
   }, []);
 
   const handleClick = (id) => {
-    const emptyMessageNotifs = messageNotifs.filter((messageNotif) => {
-      return messageNotif.from_id !== id;
+    const emptyBadgeNotifs = badgeNotifs.filter((badgeNotif) => {
+      return badgeNotif.from_id !== id;
     });
-    setMessageNotifs([...emptyMessageNotifs]);
+    setBadgeNotifs([...emptyBadgeNotifs]);
     setEmitMessages([]);
     setToUserId(id);
     setShowChat(true);
@@ -76,19 +76,19 @@ const UserStatuses = () => {
               .startsWith(search.toLowerCase());
           })
           .map((user) => {
-            const messageNotifNum = messageNotifs.filter((messageNotif) => {
-              return user.user_id === messageNotif.from_id;
+            const badgeNotifNum = badgeNotifs.filter((badgeNotif) => {
+              return user.user_id === badgeNotif.from_id;
             });
             return (
               <>
                 <ListItem key={user.user_id}>
                   <ListItemButton onClick={() => handleClick(user.user_id)}>
                     <ListItemText>
-                      {messageNotifNum.length === 0 ? (
+                      {badgeNotifNum.length === 0 ? (
                         ""
                       ) : (
                         <Badge
-                          badgeContent={messageNotifNum.length}
+                          badgeContent={badgeNotifNum.length}
                           color="success"
                         ></Badge>
                       )}
