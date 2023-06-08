@@ -19,7 +19,8 @@ const UserStatuses = () => {
     userMsg,
     setUserMsg,
     badgeNotifs,
-    setBadgeNotifs
+    setBadgeNotifs,
+    setMobileOpen
   } = useContext(AppContext);
   const [userStatuses, setUserStatuses] = useState([]);
 
@@ -63,6 +64,7 @@ const UserStatuses = () => {
     setEmitMessages([]);
     setToUserId(id);
     setShowChat(true);
+    setMobileOpen(false);
   };
 
   return (
