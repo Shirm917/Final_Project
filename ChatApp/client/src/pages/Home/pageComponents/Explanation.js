@@ -14,7 +14,7 @@ const Explanation = () => {
       </Typography>
       <Typography
         className="explanationPara"
-        sx={{ display: visible ? "block" : "none", fontSize: "10px" }}
+        sx={{ display: visible ? "block" : "none", fontSize: "12px" }}
       >
         A Chat App With Private Messaging and Temporary Group Messaging. In Chat
         Click Private Chat Tab To Chat Privately With Friends and Click Group
