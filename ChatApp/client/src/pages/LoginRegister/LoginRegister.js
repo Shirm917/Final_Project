@@ -64,7 +64,7 @@ const LoginRegister = (props) => {
     };
 
     return (
-        <div>
+        <section className="loginRegisterContainer">
             <h1 className="lrTitle">{title}</h1>
             <Box component="form" sx={{display: "flex", flexDirection: "column", margin: "0 auto", width: "50%"}} noValidate autoComplete="off">
                 <FormInput
@@ -84,7 +84,7 @@ const LoginRegister = (props) => {
                 <Button variant="contained" onClick={handleClick}>{title}</Button>
             </Box>
             <p className="userMsg">{userMsg}</p>
-        </div>
+        </section>
     )
 }
 

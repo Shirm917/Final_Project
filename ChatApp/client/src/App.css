@@ -35,13 +35,22 @@ body {
 }
 
 /* ---- Login Register ---- */
-.lrTitle {
-  margin-top: 30vh;
+
+.loginRegisterContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 95vh;
 }
 
 .userMsg,
 .lrTitle {
   text-align: center;
+}
+
+.formInput label {
+  font-size: 14px;
 }
 
 /* ---- Private Chat and Group Chat ---- */
@@ -141,10 +150,6 @@ body {
 @media only screen and (max-width: 600px) {
   .notifTitle {
     /* visibility: hidden; */
-  }
-
-  .formInput label {
-    font-size: 14px;
   }
 }
 
