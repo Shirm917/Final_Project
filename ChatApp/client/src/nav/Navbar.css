@@ -41,13 +41,13 @@
 }
 
 .chatTitles {
-  /* height: 10%; */
+  /* height: 3%; */
   width: 100%;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
   background-color: #fff;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .tabLabel {
@@ -59,4 +59,5 @@
   overflow-y: auto;
   height: 90%;
   /* margin-right: -200px; */
+  /* flex-grow: 1; */
 }
