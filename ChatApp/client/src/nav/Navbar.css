@@ -38,16 +38,14 @@
 /* ---- Nav Tabs and Chats Page ---- */
 .chatContainer {
   height: 95vh;
+  width: 100vw;
 }
 
 .chatTitles {
-  /* height: 3%; */
+  /* height: 20px; */
   width: 100%;
   position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
   background-color: #fff;
-  /* margin-bottom: 10px; */
 }
 
 .tabLabel {
@@ -58,6 +56,32 @@
 .chats {
   overflow-y: auto;
   height: 90%;
+  /* position: relative; */
   /* margin-right: -200px; */
   /* flex-grow: 1; */
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 600px) {
+
+}
+
+@media only screen and (min-width: 600px) {
+  .chatTitles {
+    width: calc(100vw - 200px);
+    margin-left: 200px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+}
+
+@media only screen and (min-width: 992px) {
+
+}
+
+@media only screen and (min-width: 1200px) {
 }

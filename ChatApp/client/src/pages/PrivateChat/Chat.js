@@ -16,11 +16,11 @@ const Chat = () => {
       },[]);
 
     return (
-        <div className="chat">
+        <section className="chat">
             <ChatSidebar/>
             <ChatBody/>
             <ChatInput/>
-        </div>
+        </section>
     )
 }
 

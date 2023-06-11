@@ -15,12 +15,12 @@ const ChatNavbar = () => {
 
   return (
     <Box className="chatContainer">
-      {/* <Box className="chatTitles"> */}
-        <Tabs className="chatTitles" value={tabIndex} onChange={handleTabChange} centered>
+      <Box className="chatTitles">
+        <Tabs value={tabIndex} onChange={handleTabChange} centered>
           <Tab label="Private Chat" />
           <Tab label="Group Chat" />
         </Tabs>
-      {/* </Box> */}
+      </Box>
       <Box className="chats" sx={{ padding: 2 }}>
         {tabIndex === 0 && <Chat />}
         {tabIndex === 1 && <GroupChat />}

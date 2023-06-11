@@ -82,8 +82,13 @@ body {
   justify-content: center;
   /* z-index: 0; */
   /* border: 1px solid black; */
-  margin-top: 20px;
-  margin-bottom: 10px;
+  /* margin-top: 8%;
+  margin-bottom: 8%; */
+}
+
+.userStatuses {
+  height: 40%;
+  overflow: auto;
 }
 
 /* ---- Messages ---- */
@@ -92,11 +97,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  width: 70%;
+  width: 90%;
   /* border: 1px solid black; */
   /* margin-top: 25px; */
   /* margin-bottom: 2px; */
   /* z-index: 2; */
+  padding-top: 7%;
+  padding-bottom: 8%;
+  padding-right: 10px;
 }
 
 .fromId,
@@ -105,7 +113,7 @@ body {
   word-wrap: break-word;
   color: white;
   border-radius: 20px;
-  padding: 4%;
+  padding: 3%;
   margin: 5px;
   max-width: 100%;
   display: inline-block;
@@ -155,7 +163,12 @@ body {
 
 /* Media Queries */
 
-/* Extra small devices (phones, 600px and down) */
+/* @media only screen and (max-height: 568px) {
+  .messagesContainer {
+    padding-bottom: 35%;
+  }
+} */
+
 @media only screen and (max-width: 600px) {
   .formInput label {
     font-size: 14px;
@@ -163,30 +176,27 @@ body {
 
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  /* .messagesContainer {
-    width: 70vw;
-    margin-left: -40px;
-  } */
+  .messagesContainer {
+    padding-top: 50px;
+    padding-bottom: 25px;
+  }
+  .chatForm .textfield {
+    margin-left: 200px;
+  }
+  .userStatuses {
+    height: 20%;
+  }
 }
 
-/* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  /* .messagesContainer {
-    position: relative;
-    margin: 0 auto;
-    width: 150%;
-    margin-left: -40px;
-    right: 0;
-    padding: 0 200px 200px;
-  } */
+  .userStatuses {
+    height: 40%;
+  }
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
 }

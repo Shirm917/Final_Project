@@ -3,7 +3,6 @@ import UserStatuses from "./UserStatuses";
 import Notifications from "../../../components/Notifications";
 import Divider from "@mui/material/Divider";
 import ResponsiveDrawer from "../../../components/ResponsiveDrawer";
-import "./ChatSidebar.css";
 
 const ChatSidebar = () => {
   const drawer = (
