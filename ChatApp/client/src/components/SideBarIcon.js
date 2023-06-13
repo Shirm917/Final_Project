@@ -16,7 +16,7 @@ const SideBarIcon = () => {
       <Badge
         badgeContent={badgeNotifs.length}
         color="success"
-        sx={{ ml: 2, display: { sm: "none" }, position: "absolute", top: "50%" }}
+        sx={{ display: { sm: "none" }, position: "absolute", top: "50%" }}
       >
         <IconButton
           color="inherit"

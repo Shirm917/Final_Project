@@ -15,12 +15,12 @@
 }
 
 @media only screen and (max-width: 500px) {
-    .groupTitles {
+    /* .groupTitles {
         visibility: hidden;
     }
     .groupLog {
         margin-top: -50px;
-    }
+    } */
 }
 
 

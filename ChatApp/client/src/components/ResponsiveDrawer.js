@@ -34,7 +34,7 @@ const ResponsiveDrawer = (props) => {
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: 200,
-            marginTop: 7.6,
+            marginTop: 6.6,
             marginRight: 20,
           },
         }}

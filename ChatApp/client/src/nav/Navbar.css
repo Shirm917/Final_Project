@@ -42,7 +42,7 @@
 }
 
 .chatTitles {
-  /* height: 20px; */
+  height: 50px;
   width: 100%;
   position: fixed;
   background-color: #fff;

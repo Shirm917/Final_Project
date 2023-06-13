@@ -17,7 +17,6 @@ const LoginRegister = (props) => {
   } = useContext(AppContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
 
   const navigate = useNavigate();
 
@@ -81,15 +80,6 @@ const LoginRegister = (props) => {
         noValidate
         autoComplete="off"
       >
-        {title === "Register" ? (
-          <FormInput
-            id="email"
-            type="email"
-            label="Enter Email"
-            value={email}
-            setValue={setEmail}
-          />
-        ) : null}
         <FormInput
           id="username"
           type="text"
