@@ -4,7 +4,7 @@ import ChatNavbar from "../nav/ChatNavbar";
 import LoginRegister from "../pages/LoginRegister/LoginRegister";
 import Protected from "../components/Protected";
 
-const Routes = () => {
+const PageRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -22,4 +22,4 @@ const Routes = () => {
   );
 };
 
-export default Routes;
+export default PageRoutes;

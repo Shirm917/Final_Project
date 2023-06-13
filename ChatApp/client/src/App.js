@@ -1,13 +1,13 @@
 import { AppContextProvider } from "./contexts/AppContext";
 import Navbar from "./nav/Navbar";
-import Routes from "./routes/routes";
+import PageRoutes from "./routes/PageRoutes";
 import "./App.css";
 
 function App() {
   return (
     <AppContextProvider>
       <Navbar />
-      <Routes/>
+      <PageRoutes/>
     </AppContextProvider>
   );
 }

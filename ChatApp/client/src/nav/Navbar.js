@@ -39,9 +39,9 @@ const Navbar = () => {
   };
 
   const pages = [
-    { id: 1, name: "Chat", toLink: "/chat", onClick: null },
-    { id: 2, name: "Register", toLink: "/register", onClick: resetUserMsg },
-    { id: 3, name: "Login", toLink: "/login", onClick: resetUserMsg },
+    { id: 1, name: "Register", toLink: "/register", onClick: resetUserMsg },
+    { id: 2, name: "Login", toLink: "/login", onClick: resetUserMsg },
+    { id: 3, name: "Chat", toLink: "/chat", onClick: null },
   ];
 
   if (isLoggedIn) {

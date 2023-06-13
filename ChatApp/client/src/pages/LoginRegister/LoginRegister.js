@@ -14,7 +14,6 @@ const LoginRegister = (props) => {
     setIsLoggedIn,
     setFromUserId,
     setFromUsername,
-    reset,
   } = useContext(AppContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -62,7 +61,7 @@ const LoginRegister = (props) => {
 
   const userStatus = async (fromId) => {
     try {
-      const result = await axios.post("/userStatus", {
+      await axios.post("/userStatus", {
         fromId,
       });
     } catch (err) {}

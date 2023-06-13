@@ -29,8 +29,4 @@ export const configureSocket = (io) => {
             socket.to(roomName).emit("roomMsg", `${fromUsername} has left`);
         })
     });
-
-    server.listen(process.env.PORT || 8080, () => {
-        console.log(`Listening on port ${process.env.PORT || 8080}`);
-    });
 };
