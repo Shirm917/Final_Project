@@ -53,6 +53,7 @@ const ChatInput = () => {
     :
     <form className="chatForm" onSubmit={handleSubmit}>
       <TextField
+      sx={{marginLeft: { xs: "0px", sm: "200px" }}}
       className="textfield"
       id="outlined-multiline-flexible"
       value={text}

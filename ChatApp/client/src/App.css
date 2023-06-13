@@ -69,7 +69,6 @@ body {
 
 .chatForm .textfield {
   flex-grow: 1;
-  /* margin-left: 200px; */
   background-color: white;
 }
 
@@ -183,9 +182,6 @@ body {
   .messagesContainer {
     padding-top: 50px;
     padding-bottom: 25px;
-  }
-  .chatForm .textfield {
-    margin-left: 200px;
   }
   .userStatuses {
     height: 20%;
