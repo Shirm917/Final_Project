@@ -106,7 +106,7 @@ body {
   word-wrap: break-word;
   color: white;
   border-radius: 20px;
-  padding: 3%;
+  padding: 2%;
   margin: 5px;
   max-width: 100%;
   display: inline-block;
@@ -157,10 +157,10 @@ body {
 
 /* Media Queries */
 
-@media (max-height: 568px) {
+@media (max-height: 600px) {
   .bodyContainer {
     margin-top: 50px;
-    margin-bottom: 40px;
+    margin-bottom: 55px;
   }
 }
 
