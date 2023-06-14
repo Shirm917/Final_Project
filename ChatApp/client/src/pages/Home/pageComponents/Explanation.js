@@ -7,7 +7,7 @@ const Explanation = () => {
     <section className="explanationContainer">
       <Typography
         className="explanationTitle"
-        sx={{ fontSize: "18px" }}
+        sx={{ fontSize: "16px", marginTop: "-20px" }}
         onClick={() => setVisible(!visible)}
       >
         Learn More
