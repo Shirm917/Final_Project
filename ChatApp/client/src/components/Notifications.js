@@ -15,7 +15,7 @@ const Notifications = () => {
   }, [socket, messageNotifs]);
 
   return (
-    <div className="notifContainer">
+    <section className="notifContainer">
       <div className="notifTitle">
         <h3>Notifications</h3>
       </div>
@@ -28,7 +28,7 @@ const Notifications = () => {
               })}
         </ul>
       </div>
-    </div>
+    </section>
   );
 };
 

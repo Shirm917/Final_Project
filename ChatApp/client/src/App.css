@@ -128,17 +128,18 @@ body {
 /* ---- Notifications ---- */
 
 .notifContainer {
-  height: 40vh;
+  height: 40%;
 }
 
 .notifTitle {
-  height: 25%;
+  height: 30%;
   text-align: center;
+  background-color: #fff;
 }
 
 .notifs {
   overflow: auto;
-  height: 75%;
+  height: 80%;
   margin-top: -60px;
   list-style: none;
 }

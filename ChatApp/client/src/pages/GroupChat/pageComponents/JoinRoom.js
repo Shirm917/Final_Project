@@ -43,7 +43,7 @@ const JoinRoom = () => {
         id="filled-error-helper-text"
         label="Room Name"
         variant="filled"
-        helperText={`Room Name can't start with a number ${roomName}`}
+        helperText="Room Name can't start with a number."
         size="small"
         onChange={handleChange}
         InputProps={{ endAdornment: <button className="btn">Join</button> }}
