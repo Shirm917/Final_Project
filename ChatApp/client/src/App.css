@@ -158,6 +158,12 @@ body {
 
 /* Media Queries */
 
+@media (max-height: 360px) {
+  .loginRegBtns {
+    display: none;
+  }
+}
+
 @media (max-height: 600px) {
   .bodyContainer {
     margin-top: 50px;
@@ -178,9 +184,6 @@ body {
   .userStatuses {
     height: 20%;
   }
-  .loginRegBtns {
-    display: none;
-  }
   .homeContainer {
     margin-top: -23px;
   }
@@ -189,9 +192,6 @@ body {
 @media only screen and (min-width: 991px) {
   .userStatuses {
     height: 35%;
-  }
-  .loginRegBtns {
-    display: block;
   }
 }
 
