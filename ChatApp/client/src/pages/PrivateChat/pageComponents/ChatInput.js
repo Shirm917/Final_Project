@@ -56,9 +56,11 @@ const ChatInput = () => {
       sx={{marginLeft: { xs: "0px", sm: "200px" }}}
       className="textfield"
       id="outlined-multiline-flexible"
+      helperText="Shift + Return/Enter for new line"
       value={text}
       autoComplete="off"
       multiline
+      // style={{ whiteSpace: 'pre-wrap' }}
       InputProps={{endAdornment: <button className="btn">Send</button>}}
       onChange={(event) => setText(event.target.value)}
       onKeyDown={handleKeyDown}

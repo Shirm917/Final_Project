@@ -53,10 +53,6 @@ body {
   text-align: center;
 }
 
-/* .formInput label {
-  font-size: 14px;
-} */
-
 /* ---- Private Chat and Group Chat ---- */
 .chat {
   display: flex;
@@ -84,6 +80,7 @@ body {
   align-items: center;
   margin-top: 45px;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .userStatuses {
