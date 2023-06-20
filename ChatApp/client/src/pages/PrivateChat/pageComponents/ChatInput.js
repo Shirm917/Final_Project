@@ -17,15 +17,13 @@ const ChatInput = () => {
 
   const sendMessage = () => {
     if (toUserId && text && fromUsername) {
-      const processedText = text.replace(/ +/g, "\u00A0");
-      socket.emit("chat message", toUserId, processedText, fromUsername);
+      socket.emit("chat message", toUserId, text, fromUsername);
     }
     setText("");
   };
 
   const postMessage = async () => {
     const dateNow = new Date();
-    const processedText = text.replace(/ +/g, "\u00A0");
     if (text) {
       await axios.post("/messages", {
         text,

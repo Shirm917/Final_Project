@@ -97,6 +97,10 @@ body {
   width: 80%;
 }
 
+.messagesContainer li {
+  white-space: pre-wrap;
+}
+
 .fromId,
 .toId {
   list-style: none;
