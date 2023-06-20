@@ -28,7 +28,7 @@ const GroupBody = () => {
                     groupEmitMessages.map((element,index) => {
                         const value = fromUserId === element.fromId ? "fromId" : "toId";
                         return (
-                            <li key={index} className={value}>{element.message} -{element.fromUsername}</li>
+                            <li key={index} className={value}>{element.fromUsername}: {element.message}</li>
                         )
                     })
                 }
