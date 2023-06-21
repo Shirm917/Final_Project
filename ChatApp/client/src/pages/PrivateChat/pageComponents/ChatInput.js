@@ -5,9 +5,8 @@ import { AppContext } from "../../../contexts/AppContext";
 import MessageInputForm from "../../../components/MessageInputForm";
 
 const ChatInput = () => {
-  const { fromUserId, toUserId, showChat, fromUsername } =
+  const { fromUserId, toUserId, showChat, fromUsername,text,setText } =
     useContext(AppContext);
-  const [text, setText] = useState("");
 
   useEffect(() => {
     if (fromUserId) {

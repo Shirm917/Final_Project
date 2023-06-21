@@ -12,6 +12,7 @@ const AppContextProvider = (props) => {
   const [toUserId, setToUserId] = useState(null);
   const [fromUsername, setFromUsername] = useState("");
   const [showChat, setShowChat] = useState(false);
+  const [text,setText] = useState("");
   const [roomName, setRoomName] = useState("");
   const [prevRoomName, setPrevRoomName] = useState("");
   const [emitMessages, setEmitMessages] = useState([]);
@@ -92,6 +93,8 @@ const AppContextProvider = (props) => {
         setMobileOpen,
         messagesEnd,
         scroll,
+        text,
+        setText
       }}
     >
       {props.children}
