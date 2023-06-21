@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { socket } from "../../../utils/socket";
-import TextField from "@mui/material/TextField";
+import MessageInputForm from "../../../components/MessageInputForm";
 
 const GroupInput = () => {
   const { roomName, fromUserId, fromUsername } = useContext(AppContext);
@@ -15,29 +15,12 @@ const GroupInput = () => {
     setText("");
   };
 
-  const handleKeyDown = (event) => {
-    if (!event.shiftKey && event.key === "Enter") {
-      event.preventDefault();
-      sendMessage(event);
-    }
-  };
-
   return (
-    <div>
-      <form className="chatForm" onSubmit={sendMessage}>
-        <TextField
-          sx={{ marginLeft: { xs: "0px", sm: "200px" } }}
-          className="textfield"
-          id="outlined-multiline-flexible"
-          value={text}
-          multiline
-          autoComplete="off"
-          InputProps={{ endAdornment: <button className="btn">Send</button> }}
-          onChange={(event) => setText(event.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-      </form>
-    </div>
+    <MessageInputForm
+      onSubmit={sendMessage}
+      value={text}
+      onChange={(event) => setText(event.target.value)}
+    />
   );
 };
 

@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from "react";
+import axios from "axios";
 import { socket } from "../../../utils/socket";
 import { AppContext } from "../../../contexts/AppContext";
-import axios from "axios";
-import TextField from "@mui/material/TextField";
+import MessageInputForm from "../../../components/MessageInputForm";
 
 const ChatInput = () => {
   const { fromUserId, toUserId, showChat, fromUsername } =
@@ -41,30 +41,14 @@ const ChatInput = () => {
     postMessage();
   };
 
-  const handleKeyDown = (event) => {
-    if (!event.shiftKey && event.key === "Enter") {
-      event.preventDefault();
-      handleSubmit(event);
-    }
-  };
-
   return !showChat ? (
     ""
   ) : (
-    <form className="chatForm" onSubmit={handleSubmit}>
-      <TextField
-        sx={{ marginLeft: { xs: "0px", sm: "200px" } }}
-        className="textfield"
-        id="outlined-multiline-flexible"
-        helperText="Shift + Return/Enter for new line"
-        value={text}
-        autoComplete="off"
-        multiline
-        InputProps={{ endAdornment: <button className="btn">Send</button> }}
-        onChange={(event) => setText(event.target.value)}
-        onKeyDown={handleKeyDown}
-      />
-    </form>
+    <MessageInputForm
+      onSubmit={handleSubmit}
+      value={text}
+      onChange={(event) => setText(event.target.value)}
+    />
   );
 };
 
