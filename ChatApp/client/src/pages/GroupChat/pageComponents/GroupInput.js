@@ -19,6 +19,7 @@ const GroupInput = () => {
     <MessageInputForm
       onSubmit={sendMessage}
       value={text}
+      setValue={setText}
       onChange={(event) => setText(event.target.value)}
     />
   );

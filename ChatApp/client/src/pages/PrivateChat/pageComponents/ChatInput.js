@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import axios from "axios";
 import { socket } from "../../../utils/socket";
 import { AppContext } from "../../../contexts/AppContext";
@@ -46,6 +46,7 @@ const ChatInput = () => {
     <MessageInputForm
       onSubmit={handleSubmit}
       value={text}
+      setValue={setText}
       onChange={(event) => setText(event.target.value)}
     />
   );
