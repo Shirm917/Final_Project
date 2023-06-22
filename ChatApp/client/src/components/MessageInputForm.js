@@ -5,12 +5,23 @@ import EmojiPicker from "emoji-picker-react";
 const MessageInputForm = (props) => {
   const { onSubmit, value, setValue, onChange } = props;
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [selectedEmoji,setSelectedEmoji] = useState(null);
 
   const handleKeyDown = (event) => {
     if (!event.shiftKey && event.key === "Enter") {
       event.preventDefault();
+      setShowEmojiPicker(false);
       onSubmit(event);
     }
+  };
+
+  const onEmojiClick = (emojiObject) => {
+    setSelectedEmoji(emojiObject.emoji);
+    setValue(value + emojiObject.emoji);
+  };
+
+  const closeEmojiPicker = () => {
+    setShowEmojiPicker(false);
   };
 
   return (
@@ -29,29 +40,31 @@ const MessageInputForm = (props) => {
                 role="button"
                 tabIndex={0}
               >
-                😊
+                {selectedEmoji || "😊"}
               </span>
             </div>
           }
           value={value}
           autoComplete="off"
           multiline
-          InputProps={{
-            endAdornment: <button className="btn">Send</button>,
-          }}
           onChange={onChange}
           onKeyDown={handleKeyDown}
+          InputProps={{
+            endAdornment: (
+              <button className="btn" onClick={closeEmojiPicker}>
+                Send
+              </button>
+            ),
+          }}
         />
       </form>
       {showEmojiPicker && (
         <div className="emojiPickerContainer">
-          <button className="btn" onClick={() => setShowEmojiPicker(false)}>
+          <button className="btn" onClick={closeEmojiPicker}>
             Close
           </button>
           <EmojiPicker
-            onEmojiClick={(event, emojiObject) => {
-              setValue(value + emojiObject.emoji);
-            }}
+            onEmojiClick={onEmojiClick}
           />
         </div>
       )}
