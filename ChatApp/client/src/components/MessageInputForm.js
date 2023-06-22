@@ -37,31 +37,24 @@ const MessageInputForm = (props) => {
           autoComplete="off"
           multiline
           InputProps={{
-            endAdornment: (
-              <div>
-                {showEmojiPicker && (
-                  <EmojiPicker
-                    onEmojiClick={(event, emojiObject) => {
-                      setValue(value + emojiObject.emoji);
-                    }}
-                    pickerStyle={{
-                      position: "absolute",
-                      bottom: "50px",
-                      right: "10px",
-                    }}
-                    searchDisabled
-                    skinTonesDisabled
-                    onClose={() => setShowEmojiPicker(false)}
-                  />
-                )}
-                <button className="btn">Send</button>
-              </div>
-            ),
+            endAdornment: <button className="btn">Send</button>,
           }}
           onChange={onChange}
           onKeyDown={handleKeyDown}
         />
       </form>
+      {showEmojiPicker && (
+        <div className="emojiPickerContainer">
+          <button className="btn" onClick={() => setShowEmojiPicker(false)}>
+            Close
+          </button>
+          <EmojiPicker
+            onEmojiClick={(event, emojiObject) => {
+              setValue(value + emojiObject.emoji);
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };
