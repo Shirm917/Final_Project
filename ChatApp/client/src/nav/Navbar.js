@@ -49,7 +49,7 @@ const Navbar = () => {
   };
 
   return (
-    <>
+    <nav>
       <AppBar className="appBar" position="fixed">
         <Toolbar className="toolbar">
           <NavbarSmall pages={pages} />
@@ -57,7 +57,7 @@ const Navbar = () => {
         </Toolbar>
       </AppBar>
       <Toolbar />
-    </>
+    </nav>
   );
 };
 

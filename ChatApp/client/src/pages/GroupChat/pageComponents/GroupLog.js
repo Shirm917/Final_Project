@@ -16,7 +16,7 @@ const GroupLog = () => {
     },[socket,roomMsgs])
 
     return (
-        <div className="groupContainer">
+        <section className="groupContainer">
             <div className="groupTitles">
                 {
                     !prevRoomName ? <h3>Room Name:</h3>
@@ -38,7 +38,7 @@ const GroupLog = () => {
                     }
                 </ul>
             </div>
-        </div>
+        </section>
     )
 };
 

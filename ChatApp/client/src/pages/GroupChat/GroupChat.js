@@ -4,11 +4,11 @@ import GroupInput from "./pageComponents/GroupInput";
 
 const GroupChat = () => {
     return (
-        <div className="chat">
+        <section className="chat">
             <GroupSidebar/>
             <GroupBody/>
             <GroupInput/>
-       </div>
+       </section>
     )
 };
 

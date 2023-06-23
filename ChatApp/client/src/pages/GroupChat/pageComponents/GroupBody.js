@@ -20,7 +20,7 @@ const GroupBody = () => {
     },[groupEmitMessages]);
 
     return (
-        <div className="bodyContainer">
+        <section className="bodyContainer">
             <ul className="messagesContainer">
                 {
                     !groupEmitMessages || groupEmitMessages.length === 0 ? null
@@ -34,7 +34,7 @@ const GroupBody = () => {
                 }
             </ul>
             <div ref={messagesEnd}/>
-        </div>
+        </section>
     );
 };
 
