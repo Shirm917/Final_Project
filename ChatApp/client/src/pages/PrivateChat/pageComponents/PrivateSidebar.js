@@ -4,7 +4,7 @@ import Notifications from "../../../components/Notifications";
 import Divider from "@mui/material/Divider";
 import ResponsiveDrawer from "../../../components/ResponsiveDrawer";
 
-const ChatSidebar = () => {
+const PrivateSidebar = () => {
   const drawer = (
     <>
       <Search />
@@ -19,4 +19,4 @@ const ChatSidebar = () => {
   );
 };
 
-export default ChatSidebar;
+export default PrivateSidebar;

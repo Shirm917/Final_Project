@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Chat from "../pages/PrivateChat/Chat";
+import PrivateChat from "../pages/PrivateChat/PrivateChat";
 import GroupChat from "../pages/GroupChat/GroupChat";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
@@ -22,7 +22,7 @@ const ChatNavbar = () => {
         </Tabs>
       </Box>
       <Box className="chats" sx={{ padding: 2 }}>
-        {tabIndex === 0 && <Chat />}
+        {tabIndex === 0 && <PrivateChat />}
         {tabIndex === 1 && <GroupChat />}
       </Box>
     </Box>

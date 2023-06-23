@@ -3,7 +3,7 @@ import { AppContext } from "../../../contexts/AppContext";
 import { socket } from "../../../utils/socket";
 import axios from "axios";
 
-const ChatBody = () => {
+const PrivateBody = () => {
   const {
     emitMessages,
     setEmitMessages,
@@ -71,4 +71,4 @@ const ChatBody = () => {
   );
 };
 
-export default ChatBody;
+export default PrivateBody;

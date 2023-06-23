@@ -4,7 +4,7 @@ import { socket } from "../../../utils/socket";
 import { AppContext } from "../../../contexts/AppContext";
 import MessageInputForm from "../../../components/MessageInputForm";
 
-const ChatInput = () => {
+const PrivateInput = () => {
   const { fromUserId, toUserId, showChat, fromUsername,text,setText } =
     useContext(AppContext);
 
@@ -52,4 +52,4 @@ const ChatInput = () => {
   );
 };
 
-export default ChatInput;
+export default PrivateInput;

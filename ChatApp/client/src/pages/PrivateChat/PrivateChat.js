@@ -1,11 +1,11 @@
 import { useEffect,useContext } from "react";
 import {socket} from "../../utils/socket";
 import { AppContext } from "../../contexts/AppContext";
-import ChatSidebar from "./pageComponents/ChatSidebar";
-import ChatBody from "./pageComponents/ChatBody";
-import ChatInput from "./pageComponents/ChatInput";
+import PrivateSidebar from "./pageComponents/PrivateSidebar";
+import PrivateBody from "./pageComponents/PrivateBody";
+import PrivateInput from "./pageComponents/PrivateInput";
 
-const Chat = () => {
+const PrivateChat = () => {
     const {isLoggedIn,fromUserId} = useContext(AppContext);
 
     useEffect(() => {
@@ -17,11 +17,11 @@ const Chat = () => {
 
     return (
         <section className="chat">
-            <ChatSidebar/>
-            <ChatBody/>
-            <ChatInput/>
+            <PrivateSidebar/>
+            <PrivateBody/>
+            <PrivateInput/>
         </section>
     )
 }
 
-export default Chat;
+export default PrivateChat;
