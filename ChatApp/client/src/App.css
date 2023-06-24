@@ -171,11 +171,16 @@ body {
 .btn {
   border: none;
   color: rgb(25, 25, 220);
-  font-size: medium;
+}
+
+.groupBtn {
+  font-size: small;
+  margin-right: -5px;
 }
 
 .chatForm .btn {
   background-color: white;
+  font-size: medium;
 }
 
 /* Media Queries */

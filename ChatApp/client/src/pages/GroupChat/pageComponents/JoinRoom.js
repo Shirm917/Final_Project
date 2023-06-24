@@ -31,6 +31,14 @@ const JoinRoom = () => {
     setPrevRoomName(roomName);
   };
 
+  const leaveRoom = (event) => {
+    event.preventDefault();
+    clear(event);
+    if (roomName) {
+      socket.emit("leave room", roomName, fromUsername);
+    }
+  };
+
   const clear = (event) => {
     event.currentTarget.reset();
     setGroupEmitMessages([]);
@@ -38,15 +46,20 @@ const JoinRoom = () => {
   };
 
   return (
-    <form id="joinForm" onSubmit={joinRoom}>
+    <form id="groupRoomForm" onSubmit={joinRoom}>
       <TextField
         id="filled-error-helper-text"
         label="Room Name"
         variant="filled"
         helperText="Room Name can't start with a number."
-        size="small"
+        size="medium"
         onChange={handleChange}
-        InputProps={{ endAdornment: <button className="btn">Join</button> }}
+        InputProps={{ endAdornment:
+          <>
+            <button className="btn groupBtn" type="submit">Join</button>
+            <button className="btn groupBtn" onClick={leaveRoom}>Leave</button>
+          </>
+        }}
       />
     </form>
   );
