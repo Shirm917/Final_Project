@@ -21,12 +21,12 @@ const JoinRoom = () => {
     }
   };
 
-  const submitRoomName = (event) => {
+  const joinRoom = (event) => {
     event.preventDefault();
     if ((prevRoomName === roomName) || !roomName) return;
     clear(event);
     if (roomName) {
-      socket.emit("room name", prevRoomName, roomName, fromUsername);
+      socket.emit("join room", prevRoomName, roomName, fromUsername);
     }
     setPrevRoomName(roomName);
   };
@@ -38,7 +38,7 @@ const JoinRoom = () => {
   };
 
   return (
-    <form id="joinForm" onSubmit={submitRoomName}>
+    <form id="joinForm" onSubmit={joinRoom}>
       <TextField
         id="filled-error-helper-text"
         label="Room Name"

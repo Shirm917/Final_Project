@@ -11,7 +11,7 @@ export const configureSocket = (io) => {
         })
 
         // ------ Group Messaging ------ //
-        socket.on("room name", (prevRoomName,roomName,fromUsername) => {
+        socket.on("join room", (prevRoomName,roomName,fromUsername) => {
             socket.leave(prevRoomName);
             socket.to(prevRoomName).emit("roomMsg", `${fromUsername} has left`);
 
