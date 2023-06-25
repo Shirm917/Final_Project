@@ -12,11 +12,17 @@ export const configureSocket = (io) => {
 
         // ------ Group Messaging ------ //
         socket.on("join room", (prevRoomName,roomName,fromUsername) => {
+           if (prevRoomName && prevRoomName !== "") {
             socket.leave(prevRoomName);
             socket.to(prevRoomName).emit("roomMsg", `${fromUsername} has left`);
-
+           };
             socket.join(roomName);
             socket.to(roomName).emit("roomMsg", `${fromUsername} has joined`);
+        });
+
+        socket.on("leave room", (currentPrevRoomName,fromUsername) => {
+            socket.leave(currentPrevRoomName);
+            socket.to(currentPrevRoomName).emit("roomMsg", `${fromUsername} has left`);
         })
 
         socket.on("group message", (msg,roomName,fromUserId,fromUsername) => {
@@ -24,9 +30,9 @@ export const configureSocket = (io) => {
         });
 
         // on login and logout
-        socket.on("leave room", (roomName,fromUsername) => {
-            socket.leave(roomName);
-            socket.to(roomName).emit("roomMsg", `${fromUsername} has left`);
-        })
+        // socket.on("leave room", (roomName,fromUsername) => {
+        //     socket.leave(roomName);
+        //     socket.to(roomName).emit("roomMsg", `${fromUsername} has left`);
+        // });
     });
 };

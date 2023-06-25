@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useEffect,useContext } from "react";
 import { socket } from "../../../utils/socket";
 import { AppContext } from "../../../contexts/AppContext";
 import TextField from "@mui/material/TextField";
@@ -23,24 +23,31 @@ const JoinRoom = () => {
 
   const joinRoom = (event) => {
     event.preventDefault();
-    if ((prevRoomName === roomName) || !roomName) return;
-    clear(event);
+    if (prevRoomName === roomName || !roomName) return;
     if (roomName) {
+      clear(event);
       socket.emit("join room", prevRoomName, roomName, fromUsername);
+      setPrevRoomName(roomName);
+      event.target.reset();
     }
-    setPrevRoomName(roomName);
   };
 
   const leaveRoom = (event) => {
     event.preventDefault();
-    clear(event);
+    const currentPrevRoomName = prevRoomName;
     if (roomName) {
-      socket.emit("leave room", roomName, fromUsername);
+      clear();
+      socket.emit("leave room", currentPrevRoomName, fromUsername);
+      setPrevRoomName("");
+      setRoomName("");
     }
   };
 
-  const clear = (event) => {
-    event.currentTarget.reset();
+  useEffect(() => {
+    console.log("prevRoomName", prevRoomName);
+  }, [prevRoomName]);
+
+  const clear = () => {
     setGroupEmitMessages([]);
     setRoomMsgs([]);
   };
@@ -50,15 +57,22 @@ const JoinRoom = () => {
       <TextField
         id="filled-error-helper-text"
         label="Room Name"
+        value={roomName}
         variant="filled"
         helperText="Room Name can't start with a number."
         size="medium"
         onChange={handleChange}
-        InputProps={{ endAdornment:
-          <>
-            <button className="btn groupBtn" type="submit">Join</button>
-            <button className="btn groupBtn" onClick={leaveRoom}>Leave</button>
-          </>
+        InputProps={{
+          endAdornment: (
+            <>
+              <button className="btn groupBtn" type="submit">
+                Join
+              </button>
+              <button className="btn groupBtn" onClick={leaveRoom}>
+                Leave
+              </button>
+            </>
+          ),
         }}
       />
     </form>
