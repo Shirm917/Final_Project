@@ -1,4 +1,4 @@
-import JoinRoom from "./JoinRoom";
+import JoinLeaveRoom from "./JoinLeaveRoom";
 import GroupLog from "./GroupLog";
 import Notifications from "../../../components/Notifications";
 import Divider from "@mui/material/Divider";
@@ -8,7 +8,7 @@ import "./GroupSidebar.css";
 const GroupSidebar = () => {
   const drawer = (
     <>
-      <JoinRoom />
+      <JoinLeaveRoom />
       <Divider />
       <GroupLog />
       <Divider />

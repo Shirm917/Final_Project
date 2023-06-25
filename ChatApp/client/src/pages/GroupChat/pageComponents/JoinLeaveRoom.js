@@ -3,7 +3,7 @@ import { socket } from "../../../utils/socket";
 import { AppContext } from "../../../contexts/AppContext";
 import TextField from "@mui/material/TextField";
 
-const JoinRoom = () => {
+const JoinLeaveRoom = () => {
   const {
     setGroupEmitMessages,
     roomName,
@@ -79,4 +79,4 @@ const JoinRoom = () => {
   );
 };
 
-export default JoinRoom;
+export default JoinLeaveRoom;
