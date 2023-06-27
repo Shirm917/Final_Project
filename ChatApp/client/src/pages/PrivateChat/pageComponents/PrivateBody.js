@@ -38,7 +38,6 @@ const PrivateBody = () => {
 
   useEffect(() => {
     scroll();
-    console.log("emitMessages", emitMessages);
   }, [dbMessages, emitMessages]);
 
   return !showChat ? (

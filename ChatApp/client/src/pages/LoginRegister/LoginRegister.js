@@ -69,6 +69,10 @@ const LoginRegister = (props) => {
   const connectSocket = (fromUserId) => {
     socket.auth = { fromUserId };
     socket.connect();
+
+    socket.on("connect", () => {
+      socket.emit("socketConnected", fromUserId);
+    });
   };
 
   return (

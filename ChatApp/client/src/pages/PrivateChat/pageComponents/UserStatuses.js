@@ -8,6 +8,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemButton from "@mui/material/ListItemButton";
 import CircleIcon from "@mui/icons-material/Circle";
 import Badge from "@mui/material/Badge";
+import { socket } from "../../../utils/socket";
 
 const UserStatuses = () => {
   const {

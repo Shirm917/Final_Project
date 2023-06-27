@@ -1,4 +1,4 @@
-import { useState, createContext, useRef } from "react";
+import { useState, useEffect, createContext, useRef } from "react";
 import { socket } from "../utils/socket";
 import axios from "axios";
 import { useBeforeunload } from "react-beforeunload";
@@ -23,6 +23,18 @@ const AppContextProvider = (props) => {
   const [search, setSearch] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const messagesEnd = useRef(null);
+
+  useEffect(() => {
+    const handleDisconnect = () => {
+      socket.emit("socket disconnected", fromUserId);
+    }
+
+    socket.on("disconnect", handleDisconnect);
+
+    return () => {
+      socket.off("disconnect", handleDisconnect);
+    };
+  }, []);
 
   const reset = () => {
     socket.emit("leave room", roomName, fromUsername);
