@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../contexts/AppContext";
+import { socket } from "../../utils/socket";
 import axios from "axios";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -8,13 +9,8 @@ import FormInput from "./pageComponents/FormInput";
 
 const LoginRegister = (props) => {
   const { title } = props;
-  const {
-    userMsg,
-    setUserMsg,
-    setIsLoggedIn,
-    setFromUserId,
-    setFromUsername,
-  } = useContext(AppContext);
+  const { userMsg, setUserMsg, setIsLoggedIn, setFromUserId, setFromUsername } =
+    useContext(AppContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,7 +25,7 @@ const LoginRegister = (props) => {
     if (title === "Register") {
       try {
         if (username && password) {
-          const response = await axios.post("/register", {
+          await axios.post("/register", {
             username,
             password,
           });
@@ -45,25 +41,34 @@ const LoginRegister = (props) => {
           username,
           password,
         });
-        setUserMsg("");
-        setFromUserId(response.data.user[0].user_id);
-        setFromUsername(response.data.user[0].username);
-        userStatus(response.data.user[0].user_id);
-        setIsLoggedIn(true);
-        navigate("/chat");
+        handleLoginSuccess(response.data.user[0].user_id,response.data.user[0].username);
       } catch (err) {
-        console.log(err);
         setUserMsg(err.response.data.msg);
       }
     }
   };
 
-  const userStatus = async (fromId) => {
+  const handleLoginSuccess = (fromUserId,fromUsername) => {
+    setUserMsg("");
+    setFromUserId(fromUserId);
+    setFromUsername(fromUsername);
+    userStatus(fromUserId);
+    setIsLoggedIn(true);
+    connectSocket(fromUserId);
+    navigate("/chat");
+  };
+
+  const userStatus = async (fromUserId) => {
     try {
       await axios.post("/userStatus", {
-        fromId,
+        fromUserId,
       });
     } catch (err) {}
+  };
+
+  const connectSocket = (fromUserId) => {
+    socket.auth = { fromUserId };
+    socket.connect();
   };
 
   return (

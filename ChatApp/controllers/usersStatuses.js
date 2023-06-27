@@ -16,17 +16,17 @@ export const getUserStatuses = async(req,res) => {
 }
 
 export const userStatus = async(req,res) => {
-    const {fromId} = req.body;
+    const {fromUserId} = req.body;
     try {
         const row = await db("online_notif")
         .select("user_id")
-        .where({user_id: fromId})
+        .where({user_id: fromUserId})
 
         if (!row || row.length === 0) {
             await db("online_notif")
             .insert({
                 online_status: true,
-                user_id: fromId
+                user_id: fromUserId
             });
 
             res.sendStatus(200);
@@ -35,7 +35,7 @@ export const userStatus = async(req,res) => {
             .update({
                 online_status: true,
             })
-            .where({user_id: fromId})
+            .where({user_id: fromUserId})
 
             res.sendStatus(200);
         };
