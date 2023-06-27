@@ -10,7 +10,7 @@ const GroupInput = () => {
   const sendMessage = (event) => {
     event.preventDefault();
     if (text && roomName && fromUserId && fromUsername) {
-      socket.emit("group message", text, roomName, fromUserId, fromUsername);
+      socket.emit("group message", text, roomName, fromUsername);
     }
     setText("");
   };

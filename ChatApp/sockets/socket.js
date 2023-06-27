@@ -1,12 +1,18 @@
 export const configureSocket = (io) => {
     io.on("connection", (socket) => {
+        const fromUserId = socket.handshake.auth.fromUserId;
+        socket.join(fromUserId);
+
+        // ------ User Connecting ------ //
+
+        socket.on("socket connected", () => {
+            io.emit("user connected", fromUserId);
+        });
 
         // ------ Private Messaging ------ //
-        socket.fromUserId = socket.handshake.auth.fromUserId;
-        socket.join(socket.fromUserId);
 
         socket.on("chat message", (toUserId,msg,fromUsername) => {
-            io.to(socket.fromUserId).to(toUserId).emit("msgResponse", socket.fromUserId,msg);
+            io.to(fromUserId).to(toUserId).emit("msgResponse", fromUserId,msg);
             io.to(toUserId).emit("notif", `You got a message from ${fromUsername}`);
         })
 
@@ -25,7 +31,7 @@ export const configureSocket = (io) => {
             socket.to(currentPrevRoomName).emit("roomMsg", `${fromUsername} has left`);
         })
 
-        socket.on("group message", (msg,roomName,fromUserId,fromUsername) => {
+        socket.on("group message", (msg,roomName,fromUsername) => {
             io.to(roomName).emit("group msgResponse", msg,fromUserId,fromUsername);
         });
 

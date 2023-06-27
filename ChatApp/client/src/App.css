@@ -209,7 +209,7 @@ body {
 
 @media only screen and (min-width: 768px) {
   .userStatuses {
-    height: 20%;
+    height: 30%;
   }
   .homeContainer {
     margin-top: -23px;

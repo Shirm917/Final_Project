@@ -25,22 +25,32 @@ const UserStatuses = () => {
     setText
   } = useContext(AppContext);
   const [userStatuses, setUserStatuses] = useState([]);
+  const [usersOnline,setUsersOnline] = useState([]);
 
-  const getUserStatuses = async () => {
-    try {
-      const response = await axios.get(`/userStatuses/${fromUserId}`);
-      setUserStatuses(response.data.userStatuses);
-    } catch (err) {
-      setUserMsg(err.response.data.msg);
-    }
-  };
 
   useEffect(() => {
+    const getUserStatuses = async () => {
+      try {
+        const response = await axios.get(`/userStatuses/${fromUserId}`);
+        setUserStatuses(response.data.userStatuses);
+      } catch (err) {
+        setUserMsg(err.response.data.msg);
+      }
+    };
     getUserStatuses();
-    setInterval(() => {
-      getUserStatuses();
-    }, 1000);
   }, []);
+
+
+  useEffect(() => {
+    socket.on("user connected", (fromUserId) => {
+      console.log("user connected");
+      setUsersOnline([...usersOnline, fromUserId]);
+    });
+
+    return () => {
+      socket.off("user connected");
+    };
+  }, [socket]);
 
   useEffect(() => {
     const getBadgeNotifs = async () => {
@@ -50,12 +60,6 @@ const UserStatuses = () => {
       } catch (err) {}
     };
     getBadgeNotifs();
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      clearInterval(getUserStatuses);
-    };
   }, []);
 
   const handleClick = (id) => {
@@ -96,14 +100,14 @@ const UserStatuses = () => {
                         <Badge
                           badgeContent={badgeNotifNum.length}
                           color="success"
-                        ></Badge>
+                        />
                       )}
                     </ListItemText>
                     <ListItemText primary={user.username} />
-                    {!user.online_status ? (
-                      <CircleIcon style={{ color: "transparent" }} />
-                    ) : (
+                    {user.online_status || usersOnline.includes(user.user_id) ? (
                       <CircleIcon style={{ color: "#b9f6ca" }} />
+                      ) : (
+                      <CircleIcon style={{ color: "transparent" }} />
                     )}
                   </ListItemButton>
                 </ListItem>
