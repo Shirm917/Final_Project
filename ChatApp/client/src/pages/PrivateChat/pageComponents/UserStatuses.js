@@ -42,15 +42,31 @@ const UserStatuses = () => {
 
 
   useEffect(() => {
-    socket.on("user connected", (fromUserId) => {
-      console.log("user connected");
-      setUsersOnline([...usersOnline, fromUserId]);
+    socket.on("user connected", (userId) => {
+      if (!usersOnline.includes(userId)) {
+        setUsersOnline((prevUsers) => [...prevUsers, userId]);
+      };
     });
 
+    console.log(usersOnline);
     return () => {
       socket.off("user connected");
     };
-  }, [socket]);
+  }, [socket,usersOnline]);
+
+
+  useEffect(() => {
+    socket.on("user disconnected", (userId) => {
+      const usersOnlineFiltered = usersOnline.filter(element => {
+        return element !== userId;
+      })
+      setUsersOnline(usersOnlineFiltered);
+    });
+
+    return () => {
+      socket.off("user disconnected");
+    };
+  }, [socket,usersOnline]);
 
   useEffect(() => {
     const getBadgeNotifs = async () => {

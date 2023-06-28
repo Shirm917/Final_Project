@@ -26,7 +26,7 @@ const AppContextProvider = (props) => {
 
   useEffect(() => {
     const handleDisconnect = () => {
-      socket.emit("socket disconnected", fromUserId);
+      socket.emit("socket disconnected");
     }
 
     socket.on("disconnect", handleDisconnect);

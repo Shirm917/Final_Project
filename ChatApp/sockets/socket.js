@@ -35,6 +35,12 @@ export const configureSocket = (io) => {
             io.to(roomName).emit("group msgResponse", msg,fromUserId,fromUsername);
         });
 
+        // ------ User Disconnecting ------ //
+
+        socket.on("socket disconnected", () => {
+            io.emit("user disconnected", fromUserId);
+        });
+
         // on login and logout
         // socket.on("leave room", (roomName,fromUsername) => {
         //     socket.leave(roomName);
