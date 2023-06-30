@@ -109,6 +109,13 @@ body {
   overflow: auto;
 }
 
+.greenCircle {
+  color: #b9f6ca;
+}
+
+.transparentCircle {
+  color: #000;
+}
 /* ---- Messages ---- */
 
 .messagesContainer {
