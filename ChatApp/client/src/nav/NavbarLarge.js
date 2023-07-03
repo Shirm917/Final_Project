@@ -4,7 +4,8 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import ChatIcon from "@mui/icons-material/Chat";
 
-const NavbarLarge = ({ pages }) => {
+const NavbarLarge = (props) => {
+  const { pages, logout, isLoggedIn } = props;
   return (
     <>
       <NavLink to="/" className="link titleContainer">
@@ -44,6 +45,11 @@ const NavbarLarge = ({ pages }) => {
             {page.name}
           </NavLink>
         ))}
+        {isLoggedIn ? (
+          <button className="logoutBtn bigPage" onClick={logout}>
+            Logout
+          </button>
+        ) : null}
       </Box>
     </>
   );

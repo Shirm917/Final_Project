@@ -22,6 +22,7 @@ const Navbar = () => {
 
   const logout = async () => {
     try {
+      console.log("log out");
       const dateNow = new Date();
       await axios.put("/logout", {
         timestamp: dateNow.toUTCString(),
@@ -44,16 +45,12 @@ const Navbar = () => {
     { id: 3, name: "Chat", toLink: "/chat", onClick: null },
   ];
 
-  if (isLoggedIn) {
-    pages.push({ id: 4, name: "Logout", toLink: null, onClick: logout });
-  }
-
   return (
     <nav>
       <AppBar className="appBar" position="fixed">
         <Toolbar className="toolbar">
-          <NavbarSmall pages={pages} />
-          <NavbarLarge pages={pages} />
+          <NavbarSmall pages={pages} logout={logout} isLoggedIn={isLoggedIn} />
+          <NavbarLarge pages={pages} logout={logout} isLoggedIn={isLoggedIn}  />
         </Toolbar>
       </AppBar>
       <Toolbar />

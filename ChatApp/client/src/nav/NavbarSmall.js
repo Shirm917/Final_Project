@@ -8,7 +8,9 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-const NavbarSmall = ({ pages }) => {
+const NavbarSmall = (props) => {
+  const { pages, logout, isLoggedIn } = props;
+
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -65,6 +67,13 @@ const NavbarSmall = ({ pages }) => {
               </NavLink>
             </MenuItem>
           ))}
+          {isLoggedIn ? (
+            <MenuItem>
+              <button className="logoutBtn smallPage" onClick={logout}>
+                Logout
+              </button>
+            </MenuItem>
+          ) : null}
         </Menu>
       </Box>
       <NavLink to="/" className="link titleContainer center">
