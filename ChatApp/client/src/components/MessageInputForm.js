@@ -5,7 +5,7 @@ import EmojiPicker from "emoji-picker-react";
 const MessageInputForm = (props) => {
   const { onSubmit, value, setValue, onChange } = props;
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [selectedEmoji,setSelectedEmoji] = useState(null);
+  const [selectedEmoji, setSelectedEmoji] = useState(null);
 
   const handleKeyDown = (event) => {
     if (!event.shiftKey && event.key === "Enter") {
@@ -63,9 +63,7 @@ const MessageInputForm = (props) => {
           <button className="btn" onClick={closeEmojiPicker}>
             Close
           </button>
-          <EmojiPicker
-            onEmojiClick={onEmojiClick}
-          />
+          <EmojiPicker onEmojiClick={onEmojiClick} />
         </div>
       )}
     </div>

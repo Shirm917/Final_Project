@@ -46,7 +46,7 @@ const Navbar = () => {
 
   if (isLoggedIn) {
     pages.push({ id: 4, name: "Logout", toLink: null, onClick: logout });
-  };
+  }
 
   return (
     <nav>

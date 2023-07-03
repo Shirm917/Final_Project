@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 import Drawer from "@mui/material/Drawer";
+import Box from '@mui/material/Box';
 
 const TemporaryDrawer = ({ drawer, window }) => {
   const { mobileOpen, setMobileOpen } = useContext(AppContext);
@@ -13,30 +14,32 @@ const TemporaryDrawer = ({ drawer, window }) => {
   };
 
   return (
-    <Drawer
-      container={container}
-      variant="temporary"
-      open={mobileOpen}
-      onClose={handleDrawerToggle}
-      ModalProps={{
-        keepMounted: true,
-      }}
-      anchor="left"
-      sx={{
-        display: { xs: "block", sm: "none" },
-        width: 200,
-        flexShrink: 0,
-        zIndex: 0,
-        "& .MuiDrawer-paper": {
-          boxSizing: "border-box",
+    <Box>
+      <Drawer
+        container={container}
+        variant="temporary"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true,
+        }}
+        anchor="left"
+        sx={{
+          display: { xs: "block", sm: "none" },
           width: 200,
-          marginTop: 6.6,
-          marginRight: 20,
-        },
-      }}
-    >
-      {drawer}
-    </Drawer>
+          flexShrink: 0,
+          zIndex: 0,
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: 200,
+            marginTop: 6.6,
+            marginRight: 20,
+          },
+        }}
+      >
+        {drawer}
+      </Drawer>
+    </Box>
   );
 };
 

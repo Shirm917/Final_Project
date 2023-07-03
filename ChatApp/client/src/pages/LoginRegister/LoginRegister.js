@@ -41,14 +41,17 @@ const LoginRegister = (props) => {
           username,
           password,
         });
-        handleLoginSuccess(response.data.user[0].user_id,response.data.user[0].username);
+        handleLoginSuccess(
+          response.data.user[0].user_id,
+          response.data.user[0].username
+        );
       } catch (err) {
         setUserMsg(err.response.data.msg);
       }
     }
   };
 
-  const handleLoginSuccess = (fromUserId,fromUsername) => {
+  const handleLoginSuccess = (fromUserId, fromUsername) => {
     setUserMsg("");
     setFromUserId(fromUserId);
     setFromUsername(fromUsername);

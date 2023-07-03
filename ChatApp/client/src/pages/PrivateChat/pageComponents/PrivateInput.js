@@ -5,7 +5,7 @@ import { AppContext } from "../../../contexts/AppContext";
 import MessageInputForm from "../../../components/MessageInputForm";
 
 const PrivateInput = () => {
-  const { fromUserId, toUserId, showChat, fromUsername,text,setText } =
+  const { fromUserId, toUserId, showChat, fromUsername, text, setText } =
     useContext(AppContext);
 
   useEffect(() => {

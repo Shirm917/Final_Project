@@ -2,8 +2,8 @@ import { useState } from "react";
 import Typography from "@mui/material/Typography";
 
 const Explanation = () => {
-    const [visible, setVisible] = useState(false);
-    return (
+  const [visible, setVisible] = useState(false);
+  return (
     <section className="explanationContainer">
       <Typography
         className="explanationTitle"

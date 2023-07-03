@@ -1,6 +1,7 @@
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import axios from "axios";
+import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -9,6 +10,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import CircleIcon from "@mui/icons-material/Circle";
 import Badge from "@mui/material/Badge";
 import { socket } from "../../../utils/socket";
+import UserStatusIcon from "./UserStatusIcon";
 
 const UserStatuses = () => {
   const {
@@ -22,12 +24,12 @@ const UserStatuses = () => {
     badgeNotifs,
     setBadgeNotifs,
     setMobileOpen,
-    setText
+    setText,
   } = useContext(AppContext);
   const [userStatuses, setUserStatuses] = useState([]);
-  const [usersOnline,setUsersOnline] = useState([]);
+  const [usersOnline, setUsersOnline] = useState([]);
 
-
+  console.log("user statuses rendered");
   useEffect(() => {
     const getUserStatuses = async () => {
       try {
@@ -40,33 +42,28 @@ const UserStatuses = () => {
     getUserStatuses();
   }, []);
 
-
   useEffect(() => {
     socket.on("user connected", (userId) => {
-      if (!usersOnline.includes(userId)) {
-        setUsersOnline((prevUsers) => [...prevUsers, userId]);
-      };
+      setUsersOnline((prevUsers) => [...prevUsers, userId]);
     });
-
-    console.log(usersOnline);
     return () => {
       socket.off("user connected");
     };
-  }, [socket,usersOnline]);
+  }, [socket]);
 
+  // useEffect(() => {
+  //   socket.on("user disconnected", (userId) => {
+  //     console.log("User disconnected:", userId);
+  //     const usersOnlineFiltered = usersOnline.filter((element) => {
+  //       return element !== userId;
+  //     });
+  //     setUsersOnline(usersOnlineFiltered);
+  //   });
 
-  useEffect(() => {
-    socket.on("user disconnected", (userId) => {
-      const usersOnlineFiltered = usersOnline.filter(element => {
-        return element !== userId;
-      })
-      setUsersOnline(usersOnlineFiltered);
-    });
-
-    return () => {
-      socket.off("user disconnected");
-    };
-  }, [socket,usersOnline]);
+  //   return () => {
+  //     socket.off("user disconnected");
+  //   };
+  // }, [socket]);
 
   useEffect(() => {
     const getBadgeNotifs = async () => {
@@ -102,12 +99,14 @@ const UserStatuses = () => {
               .startsWith(search.toLowerCase());
           })
           .map((user) => {
+            console.log(user);
             const badgeNotifNum = badgeNotifs.filter((badgeNotif) => {
               return user.user_id === badgeNotif.from_id;
             });
+            const userOnline = usersOnline.includes(user.user_id);
             return (
-              <>
-                <ListItem key={user.user_id}>
+              <Box key={user.user_id}>
+                <ListItem>
                   <ListItemButton onClick={() => handleClick(user.user_id)}>
                     <ListItemText>
                       {badgeNotifNum.length === 0 ? (
@@ -120,15 +119,11 @@ const UserStatuses = () => {
                       )}
                     </ListItemText>
                     <ListItemText primary={user.username} />
-                    {user.online_status || usersOnline.includes(user.user_id) ? (
-                      <CircleIcon style={{ color: "#b9f6ca" }} />
-                      ) : (
-                      <CircleIcon style={{ color: "transparent" }} />
-                    )}
+                    <UserStatusIcon userOnline={userOnline} onlineStatus={user.online_status} />
                   </ListItemButton>
                 </ListItem>
                 <Divider />
-              </>
+              </Box>
             );
           })
       )}

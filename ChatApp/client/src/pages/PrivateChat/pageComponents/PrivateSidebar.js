@@ -14,9 +14,7 @@ const PrivateSidebar = () => {
     </>
   );
 
-  return (
-    <ResponsiveDrawer drawer={drawer}/>
-  );
+  return <ResponsiveDrawer drawer={drawer} />;
 };
 
 export default PrivateSidebar;

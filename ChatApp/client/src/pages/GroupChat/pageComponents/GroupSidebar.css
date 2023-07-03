@@ -1,27 +1,24 @@
 .groupContainer {
-    height: 35vh;
+  height: 35vh;
 }
 
 .groupTitles {
-    height: 25%;
-    text-align: center;
+  height: 25%;
+  text-align: center;
 }
 
 .groupLog {
-    height: 65%;
-    overflow: auto;
-    margin-top: -15px;
-    list-style: none;
+  height: 65%;
+  overflow: auto;
+  margin-top: -15px;
+  list-style: none;
 }
 
 @media only screen and (max-width: 500px) {
-    /* .groupTitles {
+  /* .groupTitles {
         visibility: hidden;
     }
     .groupLog {
         margin-top: -50px;
     } */
 }
-
-
-

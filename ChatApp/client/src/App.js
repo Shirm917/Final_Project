@@ -7,7 +7,7 @@ function App() {
   return (
     <AppContextProvider>
       <Navbar />
-      <PageRoutes/>
+      <PageRoutes />
     </AppContextProvider>
   );
 }

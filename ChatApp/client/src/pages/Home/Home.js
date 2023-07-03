@@ -12,8 +12,8 @@ const Home = () => {
           Chat App
         </Typography>
       </div>
-        <Buttons />
-        <Explanation />
+      <Buttons />
+      <Explanation />
     </section>
   );
 };

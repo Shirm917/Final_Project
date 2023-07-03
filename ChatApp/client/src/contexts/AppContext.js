@@ -1,7 +1,7 @@
 import { useState, useEffect, createContext, useRef } from "react";
-import { socket } from "../utils/socket";
 import axios from "axios";
 import { useBeforeunload } from "react-beforeunload";
+import { socket } from "../utils/socket";
 
 const AppContext = createContext(null);
 
@@ -25,16 +25,15 @@ const AppContextProvider = (props) => {
   const messagesEnd = useRef(null);
 
   useEffect(() => {
-    const handleDisconnect = () => {
+    socket.on("disconnect", () => {
+      console.log("disconnect");
       socket.emit("socket disconnected");
-    }
-
-    socket.on("disconnect", handleDisconnect);
+    });
 
     return () => {
-      socket.off("disconnect", handleDisconnect);
+      socket.off("disconnect");
     };
-  }, []);
+  }, [socket]);
 
   const reset = () => {
     socket.emit("leave room", roomName, fromUsername);
