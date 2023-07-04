@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { socket } from "../utils/socket";
 import { AppContext } from "../contexts/AppContext";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -23,14 +24,15 @@ const Navbar = () => {
   const logout = async () => {
     try {
       console.log("log out");
-      const dateNow = new Date();
-      await axios.put("/logout", {
-        timestamp: dateNow.toUTCString(),
-        fromUserId,
-      });
+      socket.disconnect();
+      // const dateNow = new Date();
+      // await axios.put("/logout", {
+      //   timestamp: dateNow.toUTCString(),
+      //   fromUserId,
+      // });
       setIsLoggedIn(false);
       setFromUserId(null);
-      reset();
+      // reset();
       navigate("/");
     } catch (err) {}
   };
@@ -42,7 +44,7 @@ const Navbar = () => {
   const pages = [
     { id: 1, name: "Register", toLink: "/register", onClick: resetUserMsg },
     { id: 2, name: "Login", toLink: "/login", onClick: resetUserMsg },
-    { id: 3, name: "Chat", toLink: "/chat", onClick: null },
+    { id: 3, name: "Chat", toLink: "/chat", onClick: () => {} },
   ];
 
   return (
@@ -50,7 +52,7 @@ const Navbar = () => {
       <AppBar className="appBar" position="fixed">
         <Toolbar className="toolbar">
           <NavbarSmall pages={pages} logout={logout} isLoggedIn={isLoggedIn} />
-          <NavbarLarge pages={pages} logout={logout} isLoggedIn={isLoggedIn}  />
+          <NavbarLarge pages={pages} logout={logout} isLoggedIn={isLoggedIn} />
         </Toolbar>
       </AppBar>
       <Toolbar />

@@ -68,7 +68,7 @@ const NavbarSmall = (props) => {
             </MenuItem>
           ))}
           {isLoggedIn ? (
-            <MenuItem>
+            <MenuItem onClick={handleCloseNavMenu}>
               <button className="logoutBtn smallPage" onClick={logout}>
                 Logout
               </button>
