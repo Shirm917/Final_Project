@@ -23,7 +23,7 @@ const Navbar = () => {
 
   const logout = async () => {
     try {
-      console.log("log out");
+      socket.emit("logout");
       socket.disconnect();
       // const dateNow = new Date();
       // await axios.put("/logout", {

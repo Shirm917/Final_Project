@@ -24,19 +24,12 @@ const AppContextProvider = (props) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const messagesEnd = useRef(null);
 
-  useEffect(() => {
-    socket.on("disconnect", () => {
-      console.log("disconnect");
-      socket.emit("socket disconnected");
-    });
-
-    return () => {
-      socket.off("disconnect");
-    };
-  }, [socket]);
-
   const reset = () => {
     socket.emit("leave room", roomName, fromUsername);
+    socket.disconnect();
+    socket.on("disconnect", () => {
+      socket.emit("socket disconnected");
+    });
     setFromUserId(null);
     setToUserId(null);
     setShowChat(false);
@@ -45,7 +38,6 @@ const AppContextProvider = (props) => {
     setGroupEmitMessages([]);
     setRoomMsgs([]);
     setMessageNotifs([]);
-    socket.disconnect();
   };
 
   const scroll = () => {
