@@ -26,6 +26,16 @@ const AppContextProvider = (props) => {
 
   const reset = () => {
     disconnectSocket();
+    clearValues();
+  };
+
+  const disconnectSocket = () => {
+    socket.emit("logout", fromUserId);
+    socket.emit("leave room", roomName, fromUsername);
+    socket.disconnect();
+  };
+
+  const clearValues = () => {
     setFromUserId(null);
     setToUserId(null);
     setShowChat(false);
@@ -34,12 +44,6 @@ const AppContextProvider = (props) => {
     setGroupEmitMessages([]);
     setRoomMsgs([]);
     setMessageNotifs([]);
-  };
-
-  const disconnectSocket = () => {
-    socket.emit("leave room", roomName, fromUsername);
-    socket.emit("logout", fromUserId);
-    socket.disconnect();
   };
 
   const scroll = () => {

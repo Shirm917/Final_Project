@@ -74,7 +74,7 @@ const LoginRegister = (props) => {
     socket.connect();
 
     socket.on("connect", () => {
-      socket.emit("socket connected");
+      socket.emit("socket connected", fromUserId);
     });
   };
 

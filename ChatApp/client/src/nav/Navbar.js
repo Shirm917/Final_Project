@@ -23,16 +23,14 @@ const Navbar = () => {
 
   const logout = async () => {
     try {
-      socket.emit("logout");
-      socket.disconnect();
-      // const dateNow = new Date();
-      // await axios.put("/logout", {
-      //   timestamp: dateNow.toUTCString(),
-      //   fromUserId,
-      // });
+      const dateNow = new Date();
+      await axios.put("/logout", {
+        timestamp: dateNow.toUTCString(),
+        fromUserId,
+      });
       setIsLoggedIn(false);
       setFromUserId(null);
-      // reset();
+      reset();
       navigate("/");
     } catch (err) {}
   };
