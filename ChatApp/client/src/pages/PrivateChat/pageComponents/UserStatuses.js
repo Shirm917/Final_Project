@@ -42,6 +42,7 @@ const UserStatuses = () => {
 
   useEffect(() => {
     const handleUserConnected = (userId) => {
+      if (usersOnline.includes(userId)) return;
       setUsersOnline((prevUsers) => [...prevUsers, userId]);
     };
 
@@ -54,8 +55,6 @@ const UserStatuses = () => {
 
   useEffect(() => {
     socket.on("user disconnected", (userId) => {
-      console.log("usersOnline.includes(userId)",usersOnline.includes(userId));
-      if (usersOnline.includes(userId)) return;
       setUsersOnline((prevUsers) => {
         return prevUsers.filter((user) => user !== userId);
       });
@@ -65,10 +64,6 @@ const UserStatuses = () => {
       socket.off("user disconnected");
     };
   }, [socket]);
-
-  useEffect(() => {
-    console.log("usersOnline", usersOnline);
-  }, [usersOnline]);
 
   useEffect(() => {
     const getBadgeNotifs = async () => {
@@ -108,6 +103,23 @@ const UserStatuses = () => {
               return user.user_id === badgeNotif.from_id;
             });
             const userOnline = usersOnline.includes(user.user_id);
+            console.log("usersOnline", usersOnline.length);
+            console.log("usersOnline", usersOnline);
+            // console.log("typeof usersOnline[0]", typeof usersOnline[0]);
+            // console.log("typeof usersOnline[1]", typeof usersOnline[1]);
+            // console.log("typeof usersOnline[2]", typeof usersOnline[2]);
+            // console.log(
+            //   "usersOnline[0] === usersOnline[1]",
+            //   usersOnline[0] === usersOnline[1]
+            // );
+            // console.log(
+            //   "usersOnline[1] === usersOnline[2]",
+            //   usersOnline[1] === usersOnline[2]
+            // );
+            // console.log(
+            //   "usersOnline[3] === usersOnline[4]",
+            //   usersOnline[3] === usersOnline[4]
+            // );
             return (
               <Box key={user.user_id}>
                 <ListItem>

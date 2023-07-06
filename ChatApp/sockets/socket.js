@@ -5,9 +5,9 @@ export const configureSocket = (io) => {
 
     // ------ User Connecting ------ //
 
-    socket.on("socket connected", () => {
+    socket.on("socket connected", (userId) => {
       console.log("connect");
-      socket.broadcast.emit("user connected", fromUserId);
+      socket.broadcast.emit("user connected", userId);
     });
 
     // ------ Private Messaging ------ //
@@ -40,10 +40,10 @@ export const configureSocket = (io) => {
 
     // ------ User Disconnecting ------ //
 
-    socket.on("logout", () => {
+    socket.on("logout", (userId) => {
       console.log("disconnect");
       socket.leave(fromUserId);
-      socket.broadcast.emit("user disconnected", fromUserId);
+      socket.broadcast.emit("user disconnected", userId);
     });
 
     // on login and logout
