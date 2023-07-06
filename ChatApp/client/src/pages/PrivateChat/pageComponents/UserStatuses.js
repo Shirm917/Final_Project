@@ -33,6 +33,7 @@ const UserStatuses = () => {
       try {
         const response = await axios.get(`/userStatuses/${fromUserId}`);
         setUserStatuses(response.data.userStatuses);
+        updateOnlineUsers(response.data.userStatuses);
       } catch (err) {
         setUserMsg(err.response.data.msg);
       }
@@ -40,9 +41,15 @@ const UserStatuses = () => {
     getUserStatuses();
   }, []);
 
+  const updateOnlineUsers = (userStatusesArr) => {
+    const onlineUsers = userStatusesArr
+      .filter((userStatus) => userStatus.online_status)
+      .map((userStatus) => userStatus.user_id);
+    setUsersOnline((prevUsers) => [...prevUsers, ...onlineUsers]);
+  };
+
   useEffect(() => {
     const handleUserConnected = (userId) => {
-      if (usersOnline.includes(userId)) return;
       setUsersOnline((prevUsers) => [...prevUsers, userId]);
     };
 
@@ -103,7 +110,6 @@ const UserStatuses = () => {
               return user.user_id === badgeNotif.from_id;
             });
             const userOnline = usersOnline.includes(user.user_id);
-            console.log("usersOnline", usersOnline);
             return (
               <Box key={user.user_id}>
                 <ListItem>
@@ -122,7 +128,6 @@ const UserStatuses = () => {
                     <UserStatusIcon
                       userOnline={userOnline}
                       onlineStatus={user.online_status}
-                      userId={user.user_id}
                     />
                   </ListItemButton>
                 </ListItem>
