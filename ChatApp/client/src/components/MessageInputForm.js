@@ -1,6 +1,6 @@
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
-import EmojiPicker from "emoji-picker-react";
+import EmojiPickerMenu from "./EmojiPickerMenu";
 
 const MessageInputForm = (props) => {
   const { onSubmit, value, setValue, onChange } = props;
@@ -59,12 +59,10 @@ const MessageInputForm = (props) => {
         />
       </form>
       {showEmojiPicker && (
-        <div className="emojiPickerContainer">
-          <button className="btn" onClick={closeEmojiPicker}>
-            Close
-          </button>
-          <EmojiPicker onEmojiClick={onEmojiClick} />
-        </div>
+        <EmojiPickerMenu
+          closeEmojiPicker={closeEmojiPicker}
+          onEmojiClick={onEmojiClick}
+        />
       )}
     </div>
   );
