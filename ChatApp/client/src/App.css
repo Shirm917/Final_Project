@@ -178,16 +178,16 @@ body {
 .btn {
   border: none;
   color: rgb(25, 25, 220);
-}
-
-.groupBtn {
-  font-size: small;
-  margin-right: -5px;
+  cursor: pointer;
 }
 
 .chatForm .btn {
   background-color: white;
   font-size: medium;
+}
+
+.emojiPickerContainer .btn {
+  background-color: transparent;
 }
 
 /* Media Queries */
