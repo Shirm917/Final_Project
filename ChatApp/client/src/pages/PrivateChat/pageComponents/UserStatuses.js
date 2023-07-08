@@ -120,7 +120,7 @@ const UserStatuses = () => {
                       ) : (
                         <Badge
                           badgeContent={badgeNotifNum.length}
-                          color="success"
+                          color="error"
                         />
                       )}
                     </ListItemText>
