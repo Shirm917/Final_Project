@@ -13,8 +13,10 @@ export const configureSocket = (io) => {
 
     // ------ Private Messaging ------ //
 
-    socket.on("chat message", (toUserId, msg, fromUsername) => {
-      io.to(fromUserId).to(toUserId).emit("msgResponse", fromUserId, msg);
+    socket.on("private message", (toUserId, msg, fromUsername, messageUuid) => {
+      io.to(fromUserId)
+        .to(toUserId)
+        .emit("msgResponse", fromUserId, msg, messageUuid);
       io.to(toUserId).emit("notif", `You got a message from ${fromUsername}`);
     });
 
@@ -42,7 +44,7 @@ export const configureSocket = (io) => {
     // ------ User Disconnecting ------ //
 
     socket.on("logout", () => {
-      console.log("disconnect",fromUserId);
+      console.log("disconnect", fromUserId);
       socket.leave(fromUserId);
       socket.broadcast.emit("user disconnected", fromUserId);
     });

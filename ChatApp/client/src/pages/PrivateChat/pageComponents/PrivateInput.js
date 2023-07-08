@@ -1,5 +1,6 @@
 import { useEffect, useContext } from "react";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 import { socket } from "../../../utils/socket";
 import { AppContext } from "../../../contexts/AppContext";
 import MessageInputForm from "../../../components/MessageInputForm";
@@ -14,14 +15,14 @@ const PrivateInput = () => {
     }
   }, []);
 
-  const sendMessage = () => {
+  const sendMessage = (messageUuid) => {
     if (toUserId && text && fromUsername) {
-      socket.emit("chat message", toUserId, text, fromUsername);
+      socket.emit("private message", toUserId, text, fromUsername, messageUuid);
     }
     setText("");
   };
 
-  const postMessage = async () => {
+  const postMessage = async (messageUuid) => {
     const dateNow = new Date();
     if (text) {
       await axios.post("/messages", {
@@ -29,6 +30,7 @@ const PrivateInput = () => {
         fromUserId,
         toUserId,
         timestamp: dateNow.toUTCString(),
+        messageUuid,
       });
     }
     setText("");
@@ -36,8 +38,9 @@ const PrivateInput = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    sendMessage();
-    postMessage();
+    const uuid = uuidv4();
+    sendMessage(uuid);
+    postMessage(uuid);
   };
 
   return !showChat ? (

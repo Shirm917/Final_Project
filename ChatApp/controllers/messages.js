@@ -2,13 +2,15 @@ import db from "../config/dbElephantSql.js";
 
 // Function to insert the messages into the database
 export const insertMessage = async (req, res) => {
-  const { text, fromUserId, toUserId, timestamp } = req.body;
+  const { text, fromUserId, toUserId, timestamp, messageUuid } = req.body;
   try {
     await db("messages").insert({
       message: text,
       from_id: fromUserId,
       to_id: toUserId,
       timestamp,
+      has_been_read: false,
+      message_uuid: messageUuid,
     });
     res.sendStatus(200);
   } catch (err) {

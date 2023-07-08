@@ -27,8 +27,8 @@ const PrivateBody = () => {
   }, [toUserId]);
 
   useEffect(() => {
-    socket.on("msgResponse", (fromId, message) => {
-      setEmitMessages([...emitMessages, { fromId, message }]);
+    socket.on("msgResponse", (fromId, message, messageUuid) => {
+      setEmitMessages([...emitMessages, { fromId, message, messageUuid }]);
     });
 
     return () => {
