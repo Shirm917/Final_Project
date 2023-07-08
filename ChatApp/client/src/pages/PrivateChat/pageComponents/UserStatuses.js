@@ -100,9 +100,11 @@ const UserStatuses = () => {
   };
 
   const updateNotifications = async (userBadgeNotifs) => {
+    const notificationTitle = "multipleMessages";
     try {
       await axios.put("/updateNotifications", {
         userBadgeNotifs,
+        notificationTitle
       });
     } catch (err) {
       console.log("updateNotifications err", err);

@@ -29,18 +29,34 @@ const PrivateBody = () => {
   }, [toUserId]);
 
   useEffect(() => {
-    socket.on("msgResponse", (fromId, message, messageUuid) => {
+    socket.on("msgResponse", async (fromId, message, messageUuid) => {
       setEmitMessages([...emitMessages, { fromId, message, messageUuid }]);
-      setBadgeNotifs([
-        ...badgeNotifs,
-        { from_id: fromId, message_uuid: messageUuid },
-      ]);
+      if (fromId !== toUserId) {
+        setBadgeNotifs([
+          ...badgeNotifs,
+          { from_id: fromId, message_uuid: messageUuid },
+        ]);
+      } else {
+        await updateNotifications(messageUuid);
+      }
     });
 
     return () => {
       socket.off("msgResponse");
     };
   }, [socket, emitMessages]);
+
+  const updateNotifications = async (messageUuid) => {
+    const notificationTitle = "singleMessage";
+    try {
+      await axios.put("/updateNotifications", {
+        messageUuid,
+        notificationTitle
+      });
+    } catch (err) {
+      console.log("updateNotifications err", err);
+    }
+  };
 
   useEffect(() => {
     scroll();
