@@ -13,12 +13,20 @@ export const getBadgeNotifs = async (req, res) => {
 };
 
 export const updateNotifications = async (req, res) => {
-  const { userBadgeNotifs } = req.body;
+  const { userBadgeNotifs, messageUuid, notificationTitle } = req.body;
   try {
-    const messageUuids = userBadgeNotifs.map((element) => element.message_uuid);
-    await db("messages")
-      .whereIn("message_uuid", messageUuids)
-      .update("has_been_read", true);
+    if (notificationTitle === "singleMessage") {
+      await db("messages")
+        .where("message_uuid", messageUuid)
+        .update("has_been_read", true);
+    } else if (notificationTitle === "multipleMessages") {
+      const messageUuids = userBadgeNotifs.map(
+        (element) => element.message_uuid
+      );
+      await db("messages")
+        .whereIn("message_uuid", messageUuids)
+        .update("has_been_read", true);
+    }
 
     res.sendStatus(200);
   } catch (err) {
