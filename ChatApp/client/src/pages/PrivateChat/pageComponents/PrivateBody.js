@@ -12,6 +12,8 @@ const PrivateBody = () => {
     showChat,
     messagesEnd,
     scroll,
+    badgeNotifs,
+    setBadgeNotifs,
   } = useContext(AppContext);
   const [dbMessages, setDbMessages] = useState([]);
 
@@ -29,6 +31,10 @@ const PrivateBody = () => {
   useEffect(() => {
     socket.on("msgResponse", (fromId, message, messageUuid) => {
       setEmitMessages([...emitMessages, { fromId, message, messageUuid }]);
+      setBadgeNotifs([
+        ...badgeNotifs,
+        { from_id: fromId, message_uuid: messageUuid },
+      ]);
     });
 
     return () => {
