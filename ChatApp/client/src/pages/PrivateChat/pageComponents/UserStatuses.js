@@ -83,6 +83,11 @@ const UserStatuses = () => {
   }, []);
 
   const handleClick = (id) => {
+    updateNotifications();
+    clearValues(id);
+  };
+
+  const clearValues = (id) => {
     const emptyBadgeNotifs = badgeNotifs.filter((badgeNotif) => {
       return badgeNotif.from_id !== id;
     });
@@ -92,6 +97,16 @@ const UserStatuses = () => {
     setShowChat(true);
     setMobileOpen(false);
     setText("");
+  };
+
+  const updateNotifications = async (userBadgeNotifs) => {
+    try {
+      await axios.put("/updateNotifications", {
+        userBadgeNotifs
+      });
+    } catch (err) {
+      console.log("updateNotifications err", err);
+    }
   };
 
   return (
@@ -106,20 +121,20 @@ const UserStatuses = () => {
               .startsWith(search.toLowerCase());
           })
           .map((user) => {
-            const badgeNotifNum = badgeNotifs.filter((badgeNotif) => {
+            const userBadgeNotifs = badgeNotifs.filter((badgeNotif) => {
               return user.user_id === badgeNotif.from_id;
             });
             const userOnline = usersOnline.includes(user.user_id);
             return (
               <Box key={user.user_id}>
                 <ListItem>
-                  <ListItemButton onClick={() => handleClick(user.user_id)}>
+                  <ListItemButton onClick={() => handleClick(user.user_id,userBadgeNotifs)}>
                     <ListItemText>
-                      {badgeNotifNum.length === 0 ? (
+                      {userBadgeNotifs.length === 0 ? (
                         ""
                       ) : (
                         <Badge
-                          badgeContent={badgeNotifNum.length}
+                          badgeContent={userBadgeNotifs.length}
                           color="error"
                         />
                       )}

@@ -4,7 +4,7 @@ export const getBadgeNotifs = async (req, res) => {
   const { fromUserId } = req.params;
   try {
     const badgeNotifs = await db("messages")
-      .select("from_id")
+      .select("from_id","message_uuid")
       .where({ to_id: fromUserId })
       .andWhere("has_been_read", false);
 
