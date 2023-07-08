@@ -82,9 +82,9 @@ const UserStatuses = () => {
     getBadgeNotifs();
   }, []);
 
-  const handleClick = (id) => {
-    updateNotifications();
+  const handleClick = async (id, userBadgeNotifs) => {
     clearValues(id);
+    await updateNotifications(userBadgeNotifs);
   };
 
   const clearValues = (id) => {
@@ -102,7 +102,7 @@ const UserStatuses = () => {
   const updateNotifications = async (userBadgeNotifs) => {
     try {
       await axios.put("/updateNotifications", {
-        userBadgeNotifs
+        userBadgeNotifs,
       });
     } catch (err) {
       console.log("updateNotifications err", err);
@@ -128,7 +128,9 @@ const UserStatuses = () => {
             return (
               <Box key={user.user_id}>
                 <ListItem>
-                  <ListItemButton onClick={() => handleClick(user.user_id,userBadgeNotifs)}>
+                  <ListItemButton
+                    onClick={() => handleClick(user.user_id, userBadgeNotifs)}
+                  >
                     <ListItemText>
                       {userBadgeNotifs.length === 0 ? (
                         ""
