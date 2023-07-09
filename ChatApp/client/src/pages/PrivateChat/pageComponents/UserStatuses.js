@@ -84,6 +84,7 @@ const UserStatuses = () => {
 
   const handleClick = async (id, userBadgeNotifs) => {
     clearValues(id);
+    if (userBadgeNotifs.length === 0) return;
     await updateNotifications(userBadgeNotifs);
   };
 
@@ -104,7 +105,7 @@ const UserStatuses = () => {
     try {
       await axios.put("/updateNotifications", {
         userBadgeNotifs,
-        notificationTitle
+        notificationTitle,
       });
     } catch (err) {
       console.log("updateNotifications err", err);
