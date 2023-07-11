@@ -51,8 +51,9 @@ const PrivateBody = () => {
     try {
       await axios.put("/updateNotifications", {
         messageUuid,
-        notificationTitle
+        notificationTitle,
       });
+
     } catch (err) {
       console.log("updateNotifications err", err);
     }

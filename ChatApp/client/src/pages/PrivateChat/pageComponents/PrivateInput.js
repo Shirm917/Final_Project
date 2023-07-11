@@ -19,7 +19,6 @@ const PrivateInput = () => {
     if (toUserId && text && fromUsername) {
       socket.emit("private message", toUserId, text, fromUsername, messageUuid);
     }
-    setText("");
   };
 
   const postMessage = async (messageUuid) => {
@@ -33,14 +32,14 @@ const PrivateInput = () => {
         messageUuid,
       });
     }
-    setText("");
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const uuid = uuidv4();
+    await postMessage(uuid);
     sendMessage(uuid);
-    postMessage(uuid);
+    setText("");
   };
 
   return !showChat ? (

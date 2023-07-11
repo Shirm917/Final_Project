@@ -19,6 +19,7 @@ export const updateNotifications = async (req, res) => {
       await db("messages")
         .where("message_uuid", messageUuid)
         .update("has_been_read", true);
+
     } else if (notificationTitle === "multipleMessages") {
       const messageUuids = userBadgeNotifs.map(
         (element) => element.message_uuid
@@ -27,7 +28,6 @@ export const updateNotifications = async (req, res) => {
         .whereIn("message_uuid", messageUuids)
         .update("has_been_read", true);
     }
-
     res.sendStatus(200);
   } catch (err) {
     console.log("update notifications err", err);

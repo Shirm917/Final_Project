@@ -6,7 +6,6 @@ export const configureSocket = (io) => {
     // ------ User Connecting ------ //
 
     socket.on("socket connected", () => {
-      console.log("connect");
       console.log(fromUserId);
       socket.broadcast.emit("user connected", fromUserId);
     });
@@ -44,7 +43,6 @@ export const configureSocket = (io) => {
     // ------ User Disconnecting ------ //
 
     socket.on("logout", () => {
-      console.log("disconnect", fromUserId);
       socket.leave(fromUserId);
       socket.broadcast.emit("user disconnected", fromUserId);
     });
