@@ -3,7 +3,7 @@ import { socket } from "../../../utils/socket";
 import { AppContext } from "../../../contexts/AppContext";
 
 const GroupLog = () => {
-  const { roomMsgs, setRoomMsgs, prevRoomName } = useContext(AppContext);
+  const { roomMsgs, setRoomMsgs, prevRoomName,messagesEnd,scroll } = useContext(AppContext);
 
   useEffect(() => {
     socket.on("roomMsg", (message) => {
@@ -14,6 +14,10 @@ const GroupLog = () => {
       socket.off("roomMsg");
     };
   }, [socket, roomMsgs]);
+
+  useEffect(() => {
+    scroll();
+  }, [roomMsgs]);
 
   return (
     <section className="groupContainer">
@@ -33,6 +37,7 @@ const GroupLog = () => {
                 return <li key={index}>{message}</li>;
               })}
         </ul>
+        <div ref={messagesEnd} />
       </div>
     </section>
   );
