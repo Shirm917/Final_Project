@@ -2,7 +2,8 @@ import { useEffect, useContext } from "react";
 import { socket } from "../utils/socket";
 import { AppContext } from "../contexts/AppContext";
 const Notifications = () => {
-  const { messageNotifs, setMessageNotifs } = useContext(AppContext);
+  const { messageNotifs, setMessageNotifs, scroll, messagesEnd } =
+    useContext(AppContext);
 
   useEffect(() => {
     socket.on("notif", (messageNotif) => {
@@ -13,6 +14,10 @@ const Notifications = () => {
       socket.off("notif");
     };
   }, [socket, messageNotifs]);
+
+  useEffect(() => {
+    scroll();
+  }, [messageNotifs]);
 
   return (
     <section className="notifContainer">
@@ -27,6 +32,7 @@ const Notifications = () => {
                 return <li key={index}>{messageNotif}</li>;
               })}
         </ul>
+        <div ref={messagesEnd} />
       </div>
     </section>
   );
