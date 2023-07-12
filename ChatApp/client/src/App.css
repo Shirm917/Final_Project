@@ -81,6 +81,9 @@ body {
   border-radius: 4px;
   padding: 10px;
   z-index: 9999;
+  display: flex;
+  /* flex-wrap: wrap; */
+  overflow-y: auto;
 }
 
 .helperText {
