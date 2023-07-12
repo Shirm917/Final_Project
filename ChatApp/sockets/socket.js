@@ -6,7 +6,6 @@ export const configureSocket = (io) => {
     // ------ User Connecting ------ //
 
     socket.on("socket connected", () => {
-      console.log(fromUserId);
       socket.broadcast.emit("user connected", fromUserId);
     });
 

@@ -81,8 +81,6 @@ body {
   border-radius: 4px;
   padding: 10px;
   z-index: 9999;
-  display: flex;
-  /* flex-wrap: wrap; */
   overflow-y: auto;
 }
 
@@ -155,12 +153,13 @@ body {
 .toId {
   background-color: #808080;
   align-self: start;
+  margin-left: -15px;
 }
 
 /* ---- Notifications ---- */
 
 .notifContainer {
-  height: 40%;
+  height: 35%;
 }
 
 .notifTitle {
@@ -223,6 +222,9 @@ body {
   }
   .homeContainer {
     margin-top: -23px;
+  }
+  .toId {
+    margin-left: -60px;
   }
 }
 
