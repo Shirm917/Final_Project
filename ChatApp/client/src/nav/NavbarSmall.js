@@ -21,6 +21,11 @@ const NavbarSmall = (props) => {
     setAnchorElNav(null);
   };
 
+  const handleClick = () => {
+    handleCloseNavMenu();
+    logout();
+  };
+
   return (
     <Box
       sx={{
@@ -68,10 +73,8 @@ const NavbarSmall = (props) => {
             </MenuItem>
           ))}
           {isLoggedIn ? (
-            <MenuItem onClick={handleCloseNavMenu}>
-              <button className="logoutBtn smallPage" onClick={logout}>
+            <MenuItem className="smallPage"  onClick={handleClick}>
                 Logout
-              </button>
             </MenuItem>
           ) : null}
         </Menu>

@@ -11,10 +11,7 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const {
-    fromUserId,
-    setFromUserId,
     isLoggedIn,
-    setIsLoggedIn,
     reset,
     setUserMsg,
   } = useContext(AppContext);
@@ -33,7 +30,7 @@ const Navbar = () => {
   const pages = [
     { id: 1, name: "Register", toLink: "/register", onClick: resetUserMsg },
     { id: 2, name: "Login", toLink: "/login", onClick: resetUserMsg },
-    { id: 3, name: "Chat", toLink: "/chat", onClick: () => {} },
+    { id: 3, name: "Chat", toLink: "/chat"},
   ];
 
   return (
