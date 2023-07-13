@@ -24,11 +24,6 @@ const AppContextProvider = (props) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const messagesEnd = useRef(null);
 
-  const reset = () => {
-    disconnectSocket();
-    clearValues();
-  };
-
   const disconnectSocket = () => {
     socket.emit("logout", fromUserId);
     socket.emit("leave room", roomName, fromUsername);
@@ -44,6 +39,21 @@ const AppContextProvider = (props) => {
     setGroupEmitMessages([]);
     setRoomMsgs([]);
     setMessageNotifs([]);
+    setIsLoggedIn(false);
+  };
+
+  const updateLogout = async () => {
+    const dateNow = new Date();
+    await axios.put("/logout", {
+      timestamp: dateNow.toUTCString(),
+      fromUserId,
+    });
+  };
+
+  const reset = async () => {
+    disconnectSocket();
+    clearValues();
+    await updateLogout();
   };
 
   const scroll = () => {
@@ -53,16 +63,7 @@ const AppContextProvider = (props) => {
   useBeforeunload((event) => {
     if (fromUserId) {
       event.preventDefault();
-      const logout = async () => {
-        const dateNow = new Date();
-        await axios.put("/logout", {
-          timestamp: dateNow.toUTCString(),
-          fromUserId,
-        });
-        setIsLoggedIn(false);
-        reset();
-      };
-      logout();
+      reset();
     }
   }, []);
 

@@ -21,18 +21,9 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const logout = async () => {
-    try {
-      const dateNow = new Date();
-      await axios.put("/logout", {
-        timestamp: dateNow.toUTCString(),
-        fromUserId,
-      });
-      setIsLoggedIn(false);
-      setFromUserId(null);
-      reset();
-      navigate("/");
-    } catch (err) {}
+  const logout = () => {
+    reset();
+    navigate("/");
   };
 
   const resetUserMsg = () => {
