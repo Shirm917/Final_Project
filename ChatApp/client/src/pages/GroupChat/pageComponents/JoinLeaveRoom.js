@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { socket } from "../../../utils/socket";
 import { AppContext } from "../../../contexts/AppContext";
 import TextField from "@mui/material/TextField";
@@ -42,10 +42,6 @@ const JoinLeaveRoom = () => {
       setRoomName("");
     }
   };
-
-  useEffect(() => {
-    console.log("prevRoomName", prevRoomName);
-  }, [prevRoomName]);
 
   const clear = () => {
     setGroupEmitMessages([]);

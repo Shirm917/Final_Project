@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 import { socket } from "../utils/socket";
 import { AppContext } from "../contexts/AppContext";
+
 const Notifications = () => {
   const { messageNotifs, setMessageNotifs, scroll, messagesEnd } =
     useContext(AppContext);

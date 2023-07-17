@@ -55,7 +55,6 @@ const PrivateBody = () => {
       });
 
     } catch (err) {
-      console.log("updateNotifications err", err);
     }
   };
 

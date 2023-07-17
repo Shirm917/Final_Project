@@ -22,12 +22,3 @@
   font-size: small;
   margin-right: -5px;
 }
-
-@media only screen and (max-width: 500px) {
-  /* .groupTitles {
-        visibility: hidden;
-    }
-    .groupLog {
-        margin-top: -50px;
-    } */
-}

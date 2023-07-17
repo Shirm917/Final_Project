@@ -108,7 +108,6 @@ const UserStatuses = () => {
         notificationTitle,
       });
     } catch (err) {
-      console.log("updateNotifications err", err);
     }
   };
 

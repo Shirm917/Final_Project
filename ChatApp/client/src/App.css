@@ -171,9 +171,6 @@ body {
   }
 }
 
-@media only screen and (min-width: 600px) {
-}
-
 @media only screen and (min-width: 768px) {
   .userStatuses {
     height: 30%;
@@ -187,7 +184,4 @@ body {
   .userStatuses {
     height: 35%;
   }
-}
-
-@media only screen and (min-width: 1200px) {
 }
