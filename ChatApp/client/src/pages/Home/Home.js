@@ -2,6 +2,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import Buttons from "./pageComponents/Buttons";
 import Explanation from "./pageComponents/Explanation";
 import Typography from "@mui/material/Typography";
+import "./Home.css";
 
 const Home = () => {
   return (
