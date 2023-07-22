@@ -13,16 +13,16 @@ In Chat Click Private Chat Tab To Chat Privately With Friends Or Click Group Cha
 
 ##### Home Screen
 
-![Chat App Home Screen](public/images/home_screen.jpg)
+![Chat App Home Screen](/images/home_screen.jpg)
 
 ##### Register Screen
 
-![Chat App Register Screen](public/images/register.jpg)
+![Chat App Register Screen](/images/register.jpg)
 
 ##### Private Chat Screen
 
-![Chat App Private Chat Screen](public/images/private_chat.jpg)
+![Chat App Private Chat Screen](/images/private_chat.jpg)
 
 ##### Group Chat Screen
 
-![Chat App Group Chat Screen](public/images/group_chat.jpg)
+![Chat App Group Chat Screen](/images/group_chat.jpg)
