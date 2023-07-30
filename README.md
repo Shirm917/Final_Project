@@ -1,10 +1,12 @@
 # CHAT APP
 
-A Chat App With Private Messaging and Temporary Group Messaging.
+A Chat App With Private Messaging and Temporary Group Messaging
 
 ## Demo
 
-https://final-project-yfoh.onrender.com/
+**Note:** The first time you access this demo, it may take a while to load due to the base render plan. Please be patient as subsequent visits will load significantly faster.
+
+[Chat App Demo](https://final-project-yfoh.onrender.com/)
 
 ## How To
 
