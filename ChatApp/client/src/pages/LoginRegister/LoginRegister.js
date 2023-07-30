@@ -106,7 +106,11 @@ const LoginRegister = (props) => {
           value={password}
           setValue={setPassword}
         />
-        <Button variant="contained" onClick={handleClick}>
+        <Button
+          sx={{ backgroundColor: "#1a237e" }}
+          variant="contained"
+          onClick={handleClick}
+        >
           {title}
         </Button>
       </Box>
