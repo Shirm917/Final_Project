@@ -1,6 +1,6 @@
 # CHAT APP
 
-A Chat App With Private Messaging and Temporary Group Messaging
+A real-time chat application with private messaging and temporary group messaging, built using Express.js, Postgresql, <span>Socket.io</span>, and React.
 
 ## Demo
 
@@ -10,7 +10,7 @@ A Chat App With Private Messaging and Temporary Group Messaging
 
 ## How To
 
-In Chat Click Private Chat Tab To Chat Privately With Friends Or Click Group Chat Tab And Enter Any Text To Join A Room and Chat With People Who Joined The Same Room. Rooms Are Temporary So Once You Join Another Or Logout, The Messages Will Disappear.
+In chat click private chat tab to chat privately with friends or click group chat tab and enter any text to join a room and chat with people who joined the same room. Rooms are temporary so once you join another or logout, the messages will disappear.
 ## Screenshots
 
 ##### Home Screen
