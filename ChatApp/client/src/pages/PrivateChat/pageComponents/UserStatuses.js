@@ -136,7 +136,7 @@ const UserStatuses = () => {
                       userOnline={userOnline}
                       onlineStatus={user.online_status}
                     />
-                    <ListItemText primary={user.username} />
+                    <ListItemText sx={{marginLeft: 2}} primary={user.username} />
                     <ListItemText>
                       {userBadgeNotifs.length === 0 ? (
                         ""
