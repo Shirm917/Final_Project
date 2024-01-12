@@ -107,8 +107,7 @@ const UserStatuses = () => {
         userBadgeNotifs,
         notificationTitle,
       });
-    } catch (err) {
-    }
+    } catch (err) {}
   };
 
   return (
@@ -133,6 +132,11 @@ const UserStatuses = () => {
                   <ListItemButton
                     onClick={() => handleClick(user.user_id, userBadgeNotifs)}
                   >
+                    <UserStatusIcon
+                      userOnline={userOnline}
+                      onlineStatus={user.online_status}
+                    />
+                    <ListItemText primary={user.username} />
                     <ListItemText>
                       {userBadgeNotifs.length === 0 ? (
                         ""
@@ -143,11 +147,6 @@ const UserStatuses = () => {
                         />
                       )}
                     </ListItemText>
-                    <ListItemText primary={user.username} />
-                    <UserStatusIcon
-                      userOnline={userOnline}
-                      onlineStatus={user.online_status}
-                    />
                   </ListItemButton>
                 </ListItem>
                 <Divider />
