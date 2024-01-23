@@ -16,7 +16,7 @@ const ResponsiveDrawer = ({ drawer }) => {
 
     return () => {
       window.removeEventListener("resize", handleResize);
-    }
+    };
   }, []);
 
   return (

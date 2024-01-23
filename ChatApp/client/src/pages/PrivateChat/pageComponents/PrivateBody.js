@@ -53,9 +53,7 @@ const PrivateBody = () => {
         messageUuid,
         notificationTitle,
       });
-
-    } catch (err) {
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {

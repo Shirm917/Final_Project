@@ -73,8 +73,8 @@ const NavbarSmall = (props) => {
             </MenuItem>
           ))}
           {isLoggedIn ? (
-            <MenuItem className="smallPage"  onClick={handleClick}>
-                Logout
+            <MenuItem className="smallPage" onClick={handleClick}>
+              Logout
             </MenuItem>
           ) : null}
         </Menu>

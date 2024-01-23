@@ -3,7 +3,8 @@ import { socket } from "../../../utils/socket";
 import { AppContext } from "../../../contexts/AppContext";
 
 const GroupLog = () => {
-  const { roomMsgs, setRoomMsgs, prevRoomName,messagesEnd,scroll } = useContext(AppContext);
+  const { roomMsgs, setRoomMsgs, prevRoomName, messagesEnd, scroll } =
+    useContext(AppContext);
 
   useEffect(() => {
     socket.on("roomMsg", (message) => {
